@@ -1,0 +1,706 @@
+date,desk,book,portfolio,product,risk_factor,sensitivity_type,sensitivity_value
+2026-06-15,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,9850.0
+2026-06-15,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,10500.0
+2026-06-15,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11150.0
+2026-06-15,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,7670.0
+2026-06-15,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11050.0
+2026-06-15,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,11700.0
+2026-06-15,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,12350.0
+2026-06-15,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8450.0
+2026-06-15,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,12250.0
+2026-06-15,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,12900.0
+2026-06-15,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,8807.5
+2026-06-15,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12105.0
+2026-06-15,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9165.0
+2026-06-15,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,14750.0
+2026-06-15,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13185.0
+2026-06-15,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,9945.0
+2026-06-15,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,15950.0
+2026-06-15,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14265.0
+2026-06-15,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,14850.0
+2026-06-15,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,15435.0
+2026-06-15,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17050.0
+2026-06-15,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,17700.0
+2026-06-15,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,18350.0
+2026-06-15,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,18250.0
+2026-06-15,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,18900.0
+2026-06-15,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,19550.0
+2026-06-15,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,19450.0
+2026-06-15,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13065.0
+2026-06-15,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,20750.0
+2026-06-15,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,18585.0
+2026-06-15,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,13845.0
+2026-06-15,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,21950.0
+2026-06-15,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,19665.0
+2026-06-15,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,14625.0
+2026-06-15,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23150.0
+2026-06-15,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,20745.0
+2026-06-15,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,21330.0
+2026-06-15,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,15827.5
+2026-06-15,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,24250.0
+2026-06-15,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,24900.0
+2026-06-15,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,25550.0
+2026-06-15,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,25450.0
+2026-06-15,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26100.0
+2026-06-15,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,26750.0
+2026-06-15,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,23985.0
+2026-06-15,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,24570.0
+2026-06-15,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,27950.0
+2026-06-16,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,9945.0
+2026-06-16,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,10595.0
+2026-06-16,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11245.0
+2026-06-16,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,7731.75
+2026-06-16,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11145.0
+2026-06-16,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,11795.0
+2026-06-16,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,12445.0
+2026-06-16,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8511.75
+2026-06-16,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,12345.0
+2026-06-16,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,12995.0
+2026-06-16,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,8869.25
+2026-06-16,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12190.5
+2026-06-16,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9226.75
+2026-06-16,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,14845.0
+2026-06-16,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13270.5
+2026-06-16,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10006.75
+2026-06-16,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16045.0
+2026-06-16,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14350.5
+2026-06-16,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,14935.5
+2026-06-16,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,15520.5
+2026-06-16,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17145.0
+2026-06-16,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,17795.0
+2026-06-16,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,18445.0
+2026-06-16,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,18345.0
+2026-06-16,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,18995.0
+2026-06-16,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,19645.0
+2026-06-16,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,19545.0
+2026-06-16,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13126.75
+2026-06-16,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,20845.0
+2026-06-16,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,18670.5
+2026-06-16,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,13906.75
+2026-06-16,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22045.0
+2026-06-16,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,19750.5
+2026-06-16,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,14686.75
+2026-06-16,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23245.0
+2026-06-16,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,20830.5
+2026-06-16,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,21415.5
+2026-06-16,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,15889.25
+2026-06-16,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,24345.0
+2026-06-16,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,24995.0
+2026-06-16,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,25645.0
+2026-06-16,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,25545.0
+2026-06-16,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26195.0
+2026-06-16,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,26845.0
+2026-06-16,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24070.5
+2026-06-16,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,24655.5
+2026-06-16,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28045.0
+2026-06-17,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10040.0
+2026-06-17,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,10690.0
+2026-06-17,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11340.0
+2026-06-17,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,7793.5
+2026-06-17,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11240.0
+2026-06-17,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,11890.0
+2026-06-17,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,12540.0
+2026-06-17,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8573.5
+2026-06-17,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,12440.0
+2026-06-17,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13090.0
+2026-06-17,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,8931.0
+2026-06-17,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12276.0
+2026-06-17,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9288.5
+2026-06-17,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,14940.0
+2026-06-17,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13356.0
+2026-06-17,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10068.5
+2026-06-17,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16140.0
+2026-06-17,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14436.0
+2026-06-17,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15021.0
+2026-06-17,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,15606.0
+2026-06-17,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17240.0
+2026-06-17,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,17890.0
+2026-06-17,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,18540.0
+2026-06-17,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,18440.0
+2026-06-17,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19090.0
+2026-06-17,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,19740.0
+2026-06-17,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,19640.0
+2026-06-17,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13188.5
+2026-06-17,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,20940.0
+2026-06-17,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,18756.0
+2026-06-17,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,13968.5
+2026-06-17,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22140.0
+2026-06-17,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,19836.0
+2026-06-17,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,14748.5
+2026-06-17,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23340.0
+2026-06-17,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,20916.0
+2026-06-17,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,21501.0
+2026-06-17,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,15951.0
+2026-06-17,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,24440.0
+2026-06-17,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25090.0
+2026-06-17,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,25740.0
+2026-06-17,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,25640.0
+2026-06-17,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26290.0
+2026-06-17,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,26940.0
+2026-06-17,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24156.0
+2026-06-17,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,24741.0
+2026-06-17,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28140.0
+2026-06-18,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10135.0
+2026-06-18,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,10785.0
+2026-06-18,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11435.0
+2026-06-18,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,7855.25
+2026-06-18,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11335.0
+2026-06-18,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,11985.0
+2026-06-18,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,12635.0
+2026-06-18,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8635.25
+2026-06-18,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,12535.0
+2026-06-18,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13185.0
+2026-06-18,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,8992.75
+2026-06-18,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12361.5
+2026-06-18,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9350.25
+2026-06-18,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15035.0
+2026-06-18,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13441.5
+2026-06-18,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10130.25
+2026-06-18,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16235.0
+2026-06-18,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14521.5
+2026-06-18,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15106.5
+2026-06-18,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,15691.5
+2026-06-18,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17335.0
+2026-06-18,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,17985.0
+2026-06-18,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,18635.0
+2026-06-18,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,18535.0
+2026-06-18,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19185.0
+2026-06-18,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,19835.0
+2026-06-18,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,19735.0
+2026-06-18,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13250.25
+2026-06-18,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21035.0
+2026-06-18,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,18841.5
+2026-06-18,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14030.25
+2026-06-18,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22235.0
+2026-06-18,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,19921.5
+2026-06-18,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,14810.25
+2026-06-18,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23435.0
+2026-06-18,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21001.5
+2026-06-18,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,21586.5
+2026-06-18,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16012.75
+2026-06-18,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,24535.0
+2026-06-18,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25185.0
+2026-06-18,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,25835.0
+2026-06-18,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,25735.0
+2026-06-18,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26385.0
+2026-06-18,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27035.0
+2026-06-18,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24241.5
+2026-06-18,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,24826.5
+2026-06-18,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28235.0
+2026-06-19,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10230.0
+2026-06-19,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,10880.0
+2026-06-19,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11530.0
+2026-06-19,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,7917.0
+2026-06-19,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11430.0
+2026-06-19,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12080.0
+2026-06-19,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,12730.0
+2026-06-19,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8697.0
+2026-06-19,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,12630.0
+2026-06-19,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13280.0
+2026-06-19,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9054.5
+2026-06-19,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12447.0
+2026-06-19,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9412.0
+2026-06-19,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15130.0
+2026-06-19,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13527.0
+2026-06-19,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10192.0
+2026-06-19,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16330.0
+2026-06-19,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14607.0
+2026-06-19,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15192.0
+2026-06-19,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,15777.0
+2026-06-19,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17430.0
+2026-06-19,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18080.0
+2026-06-19,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,18730.0
+2026-06-19,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,18630.0
+2026-06-19,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19280.0
+2026-06-19,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,19930.0
+2026-06-19,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,19830.0
+2026-06-19,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13312.0
+2026-06-19,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21130.0
+2026-06-19,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,18927.0
+2026-06-19,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14092.0
+2026-06-19,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22330.0
+2026-06-19,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20007.0
+2026-06-19,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,14872.0
+2026-06-19,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23530.0
+2026-06-19,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21087.0
+2026-06-19,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,21672.0
+2026-06-19,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16074.5
+2026-06-19,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,24630.0
+2026-06-19,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25280.0
+2026-06-19,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,25930.0
+2026-06-19,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,25830.0
+2026-06-19,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26480.0
+2026-06-19,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27130.0
+2026-06-19,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24327.0
+2026-06-19,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,24912.0
+2026-06-19,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28330.0
+2026-06-22,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10325.0
+2026-06-22,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,10975.0
+2026-06-22,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11625.0
+2026-06-22,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,7978.75
+2026-06-22,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11525.0
+2026-06-22,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12175.0
+2026-06-22,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,12825.0
+2026-06-22,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8758.75
+2026-06-22,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,12725.0
+2026-06-22,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13375.0
+2026-06-22,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9116.25
+2026-06-22,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12532.5
+2026-06-22,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9473.75
+2026-06-22,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15225.0
+2026-06-22,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13612.5
+2026-06-22,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10253.75
+2026-06-22,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16425.0
+2026-06-22,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14692.5
+2026-06-22,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15277.5
+2026-06-22,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,15862.5
+2026-06-22,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17525.0
+2026-06-22,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18175.0
+2026-06-22,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,18825.0
+2026-06-22,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,18725.0
+2026-06-22,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19375.0
+2026-06-22,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20025.0
+2026-06-22,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,19925.0
+2026-06-22,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13373.75
+2026-06-22,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21225.0
+2026-06-22,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19012.5
+2026-06-22,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14153.75
+2026-06-22,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22425.0
+2026-06-22,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20092.5
+2026-06-22,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,14933.75
+2026-06-22,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23625.0
+2026-06-22,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21172.5
+2026-06-22,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,21757.5
+2026-06-22,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16136.25
+2026-06-22,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,24725.0
+2026-06-22,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25375.0
+2026-06-22,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26025.0
+2026-06-22,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,25925.0
+2026-06-22,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26575.0
+2026-06-22,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27225.0
+2026-06-22,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24412.5
+2026-06-22,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,24997.5
+2026-06-22,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28425.0
+2026-06-23,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10420.0
+2026-06-23,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11070.0
+2026-06-23,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11720.0
+2026-06-23,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8040.5
+2026-06-23,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11620.0
+2026-06-23,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12270.0
+2026-06-23,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,12920.0
+2026-06-23,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8820.5
+2026-06-23,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,12820.0
+2026-06-23,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13470.0
+2026-06-23,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9178.0
+2026-06-23,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12618.0
+2026-06-23,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9535.5
+2026-06-23,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15320.0
+2026-06-23,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13698.0
+2026-06-23,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10315.5
+2026-06-23,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16520.0
+2026-06-23,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14778.0
+2026-06-23,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15363.0
+2026-06-23,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,15948.0
+2026-06-23,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17620.0
+2026-06-23,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18270.0
+2026-06-23,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,18920.0
+2026-06-23,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,18820.0
+2026-06-23,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19470.0
+2026-06-23,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20120.0
+2026-06-23,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20020.0
+2026-06-23,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13435.5
+2026-06-23,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21320.0
+2026-06-23,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19098.0
+2026-06-23,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14215.5
+2026-06-23,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22520.0
+2026-06-23,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20178.0
+2026-06-23,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,14995.5
+2026-06-23,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23720.0
+2026-06-23,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21258.0
+2026-06-23,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,21843.0
+2026-06-23,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16198.0
+2026-06-23,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,24820.0
+2026-06-23,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25470.0
+2026-06-23,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26120.0
+2026-06-23,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26020.0
+2026-06-23,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26670.0
+2026-06-23,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27320.0
+2026-06-23,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24498.0
+2026-06-23,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25083.0
+2026-06-23,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28520.0
+2026-06-24,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10515.0
+2026-06-24,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11165.0
+2026-06-24,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11815.0
+2026-06-24,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8102.25
+2026-06-24,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11715.0
+2026-06-24,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12365.0
+2026-06-24,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,13015.0
+2026-06-24,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8882.25
+2026-06-24,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,12915.0
+2026-06-24,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13565.0
+2026-06-24,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9239.75
+2026-06-24,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12703.5
+2026-06-24,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9597.25
+2026-06-24,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15415.0
+2026-06-24,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13783.5
+2026-06-24,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10377.25
+2026-06-24,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16615.0
+2026-06-24,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14863.5
+2026-06-24,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15448.5
+2026-06-24,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,16033.5
+2026-06-24,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17715.0
+2026-06-24,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18365.0
+2026-06-24,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,19015.0
+2026-06-24,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,18915.0
+2026-06-24,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19565.0
+2026-06-24,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20215.0
+2026-06-24,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20115.0
+2026-06-24,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13497.25
+2026-06-24,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21415.0
+2026-06-24,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19183.5
+2026-06-24,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14277.25
+2026-06-24,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22615.0
+2026-06-24,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20263.5
+2026-06-24,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,15057.25
+2026-06-24,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23815.0
+2026-06-24,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21343.5
+2026-06-24,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,21928.5
+2026-06-24,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16259.75
+2026-06-24,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,24915.0
+2026-06-24,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25565.0
+2026-06-24,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26215.0
+2026-06-24,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26115.0
+2026-06-24,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26765.0
+2026-06-24,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27415.0
+2026-06-24,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24583.5
+2026-06-24,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25168.5
+2026-06-24,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28615.0
+2026-06-25,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10610.0
+2026-06-25,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11260.0
+2026-06-25,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,11910.0
+2026-06-25,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8164.0
+2026-06-25,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11810.0
+2026-06-25,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12460.0
+2026-06-25,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,13110.0
+2026-06-25,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,8944.0
+2026-06-25,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,13010.0
+2026-06-25,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13660.0
+2026-06-25,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9301.5
+2026-06-25,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12789.0
+2026-06-25,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9659.0
+2026-06-25,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15510.0
+2026-06-25,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13869.0
+2026-06-25,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10439.0
+2026-06-25,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16710.0
+2026-06-25,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,14949.0
+2026-06-25,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15534.0
+2026-06-25,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,16119.0
+2026-06-25,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17810.0
+2026-06-25,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18460.0
+2026-06-25,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,19110.0
+2026-06-25,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,19010.0
+2026-06-25,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19660.0
+2026-06-25,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20310.0
+2026-06-25,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20210.0
+2026-06-25,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13559.0
+2026-06-25,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21510.0
+2026-06-25,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19269.0
+2026-06-25,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14339.0
+2026-06-25,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22710.0
+2026-06-25,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20349.0
+2026-06-25,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,15119.0
+2026-06-25,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,23910.0
+2026-06-25,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21429.0
+2026-06-25,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,22014.0
+2026-06-25,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16321.5
+2026-06-25,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,25010.0
+2026-06-25,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25660.0
+2026-06-25,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26310.0
+2026-06-25,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26210.0
+2026-06-25,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26860.0
+2026-06-25,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27510.0
+2026-06-25,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24669.0
+2026-06-25,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25254.0
+2026-06-25,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28710.0
+2026-06-26,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10705.0
+2026-06-26,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11355.0
+2026-06-26,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,12005.0
+2026-06-26,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8225.75
+2026-06-26,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,11905.0
+2026-06-26,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12555.0
+2026-06-26,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,13205.0
+2026-06-26,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,9005.75
+2026-06-26,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,13105.0
+2026-06-26,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13755.0
+2026-06-26,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9363.25
+2026-06-26,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12874.5
+2026-06-26,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9720.75
+2026-06-26,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15605.0
+2026-06-26,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,13954.5
+2026-06-26,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10500.75
+2026-06-26,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16805.0
+2026-06-26,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,15034.5
+2026-06-26,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15619.5
+2026-06-26,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,16204.5
+2026-06-26,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,17905.0
+2026-06-26,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18555.0
+2026-06-26,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,19205.0
+2026-06-26,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,19105.0
+2026-06-26,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19755.0
+2026-06-26,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20405.0
+2026-06-26,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20305.0
+2026-06-26,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13620.75
+2026-06-26,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21605.0
+2026-06-26,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19354.5
+2026-06-26,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14400.75
+2026-06-26,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22805.0
+2026-06-26,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20434.5
+2026-06-26,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,15180.75
+2026-06-26,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,24005.0
+2026-06-26,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21514.5
+2026-06-26,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,22099.5
+2026-06-26,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16383.25
+2026-06-26,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,25105.0
+2026-06-26,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25755.0
+2026-06-26,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26405.0
+2026-06-26,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26305.0
+2026-06-26,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,26955.0
+2026-06-26,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27605.0
+2026-06-26,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24754.5
+2026-06-26,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25339.5
+2026-06-26,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28805.0
+2026-06-29,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10800.0
+2026-06-29,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11450.0
+2026-06-29,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,12100.0
+2026-06-29,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8287.5
+2026-06-29,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,12000.0
+2026-06-29,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12650.0
+2026-06-29,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,13300.0
+2026-06-29,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,9067.5
+2026-06-29,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,13200.0
+2026-06-29,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13850.0
+2026-06-29,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9425.0
+2026-06-29,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,12960.0
+2026-06-29,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9782.5
+2026-06-29,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15700.0
+2026-06-29,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,14040.0
+2026-06-29,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10562.5
+2026-06-29,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16900.0
+2026-06-29,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,15120.0
+2026-06-29,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15705.0
+2026-06-29,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,16290.0
+2026-06-29,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,18000.0
+2026-06-29,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18650.0
+2026-06-29,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,19300.0
+2026-06-29,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,19200.0
+2026-06-29,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19850.0
+2026-06-29,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20500.0
+2026-06-29,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20400.0
+2026-06-29,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13682.5
+2026-06-29,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21700.0
+2026-06-29,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19440.0
+2026-06-29,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14462.5
+2026-06-29,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22900.0
+2026-06-29,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20520.0
+2026-06-29,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,15242.5
+2026-06-29,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,24100.0
+2026-06-29,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21600.0
+2026-06-29,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,22185.0
+2026-06-29,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16445.0
+2026-06-29,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,25200.0
+2026-06-29,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25850.0
+2026-06-29,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26500.0
+2026-06-29,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26400.0
+2026-06-29,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,27050.0
+2026-06-29,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27700.0
+2026-06-29,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24840.0
+2026-06-29,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25425.0
+2026-06-29,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28900.0
+2026-06-30,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10895.0
+2026-06-30,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11545.0
+2026-06-30,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,12195.0
+2026-06-30,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8349.25
+2026-06-30,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,12095.0
+2026-06-30,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12745.0
+2026-06-30,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,13395.0
+2026-06-30,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,9129.25
+2026-06-30,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,13295.0
+2026-06-30,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,13945.0
+2026-06-30,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9486.75
+2026-06-30,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,13045.5
+2026-06-30,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9844.25
+2026-06-30,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15795.0
+2026-06-30,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,14125.5
+2026-06-30,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10624.25
+2026-06-30,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,16995.0
+2026-06-30,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,15205.5
+2026-06-30,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15790.5
+2026-06-30,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,16375.5
+2026-06-30,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,18095.0
+2026-06-30,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18745.0
+2026-06-30,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,19395.0
+2026-06-30,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,19295.0
+2026-06-30,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,19945.0
+2026-06-30,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20595.0
+2026-06-30,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20495.0
+2026-06-30,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13744.25
+2026-06-30,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21795.0
+2026-06-30,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19525.5
+2026-06-30,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14524.25
+2026-06-30,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,22995.0
+2026-06-30,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20605.5
+2026-06-30,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,15304.25
+2026-06-30,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,24195.0
+2026-06-30,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21685.5
+2026-06-30,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,22270.5
+2026-06-30,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16506.75
+2026-06-30,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,25295.0
+2026-06-30,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,25945.0
+2026-06-30,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26595.0
+2026-06-30,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26495.0
+2026-06-30,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,27145.0
+2026-06-30,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27795.0
+2026-06-30,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,24925.5
+2026-06-30,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25510.5
+2026-06-30,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,28995.0
+2026-07-01,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,10990.0
+2026-07-01,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11640.0
+2026-07-01,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,12290.0
+2026-07-01,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8411.0
+2026-07-01,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,12190.0
+2026-07-01,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12840.0
+2026-07-01,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,13490.0
+2026-07-01,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,9191.0
+2026-07-01,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,13390.0
+2026-07-01,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,14040.0
+2026-07-01,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9548.5
+2026-07-01,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,13131.0
+2026-07-01,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9906.0
+2026-07-01,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15890.0
+2026-07-01,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,14211.0
+2026-07-01,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10686.0
+2026-07-01,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,17090.0
+2026-07-01,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,15291.0
+2026-07-01,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15876.0
+2026-07-01,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,16461.0
+2026-07-01,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,18190.0
+2026-07-01,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18840.0
+2026-07-01,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,19490.0
+2026-07-01,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,19390.0
+2026-07-01,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,20040.0
+2026-07-01,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20690.0
+2026-07-01,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20590.0
+2026-07-01,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13806.0
+2026-07-01,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21890.0
+2026-07-01,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19611.0
+2026-07-01,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14586.0
+2026-07-01,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,23090.0
+2026-07-01,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20691.0
+2026-07-01,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,15366.0
+2026-07-01,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,24290.0
+2026-07-01,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21771.0
+2026-07-01,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,22356.0
+2026-07-01,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16568.5
+2026-07-01,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,25390.0
+2026-07-01,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,26040.0
+2026-07-01,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26690.0
+2026-07-01,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26590.0
+2026-07-01,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,27240.0
+2026-07-01,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27890.0
+2026-07-01,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,25011.0
+2026-07-01,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25596.0
+2026-07-01,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,29090.0
+2026-07-02,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,11085.0
+2026-07-02,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11735.0
+2026-07-02,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,12385.0
+2026-07-02,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8472.75
+2026-07-02,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,12285.0
+2026-07-02,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,12935.0
+2026-07-02,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,13585.0
+2026-07-02,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,9252.75
+2026-07-02,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,13485.0
+2026-07-02,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,14135.0
+2026-07-02,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9610.25
+2026-07-02,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,13216.5
+2026-07-02,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,9967.75
+2026-07-02,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,15985.0
+2026-07-02,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,14296.5
+2026-07-02,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10747.75
+2026-07-02,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,17185.0
+2026-07-02,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,15376.5
+2026-07-02,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,15961.5
+2026-07-02,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,16546.5
+2026-07-02,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,18285.0
+2026-07-02,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,18935.0
+2026-07-02,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,19585.0
+2026-07-02,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,19485.0
+2026-07-02,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,20135.0
+2026-07-02,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20785.0
+2026-07-02,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20685.0
+2026-07-02,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13867.75
+2026-07-02,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,21985.0
+2026-07-02,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19696.5
+2026-07-02,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14647.75
+2026-07-02,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,23185.0
+2026-07-02,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20776.5
+2026-07-02,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,15427.75
+2026-07-02,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,24385.0
+2026-07-02,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21856.5
+2026-07-02,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,22441.5
+2026-07-02,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16630.25
+2026-07-02,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,25485.0
+2026-07-02,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,26135.0
+2026-07-02,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26785.0
+2026-07-02,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26685.0
+2026-07-02,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,27335.0
+2026-07-02,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,27985.0
+2026-07-02,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,25096.5
+2026-07-02,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25681.5
+2026-07-02,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,29185.0
+2026-07-03,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 2Y,DV01,11180.0
+2026-07-03,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 5Y,DV01,11830.0
+2026-07-03,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP 10Y,DV01,12480.0
+2026-07-03,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,GBP Swaption Vol,Vega,8534.5
+2026-07-03,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 2Y,DV01,12380.0
+2026-07-03,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 5Y,DV01,13030.0
+2026-07-03,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR 10Y,DV01,13680.0
+2026-07-03,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,EUR Swaption Vol,Vega,9314.5
+2026-07-03,London Rates,Rates Options,GBP Vol,Swaption,GBP 5Y,DV01,13580.0
+2026-07-03,London Rates,Rates Options,GBP Vol,Swaption,GBP 10Y,DV01,14230.0
+2026-07-03,London Rates,Rates Options,GBP Vol,Swaption,GBP Swaption Vol,Vega,9672.0
+2026-07-03,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD,Delta,13302.0
+2026-07-03,FX Options,G10 FX Options,EURUSD Options,FX Option,EURUSD Vol,Vega,10029.5
+2026-07-03,FX Options,G10 FX Options,EURUSD Options,FX Option,USD 10Y,DV01,16080.0
+2026-07-03,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD,Delta,14382.0
+2026-07-03,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBPUSD Vol,Vega,10809.5
+2026-07-03,FX Options,GBP FX Options,GBPUSD Options,FX Option,GBP 10Y,DV01,17280.0
+2026-07-03,FX Options,EM FX Options,EM Asia Options,FX Option,USDJPY,Delta,15462.0
+2026-07-03,FX Options,EM FX Options,EM Asia Options,FX Option,USDCNH,Delta,16047.0
+2026-07-03,FX Options,EM FX Options,EM Asia Options,FX Option,USDINR,Delta,16632.0
+2026-07-03,Credit Trading,IG Credit,IG Index,Credit Index Swap,EUR Credit Spread,CS01,18380.0
+2026-07-03,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD Credit Spread,CS01,19030.0
+2026-07-03,Credit Trading,IG Credit,IG Index,Credit Index Swap,USD 10Y,DV01,19680.0
+2026-07-03,Credit Trading,HY Credit,HY Index,Credit Index Swap,HY Credit Spread,CS01,19580.0
+2026-07-03,Credit Trading,HY Credit,HY Index,Credit Index Swap,Energy Credit Spread,CS01,20230.0
+2026-07-03,Credit Trading,HY Credit,HY Index,Credit Index Swap,USD 10Y,DV01,20880.0
+2026-07-03,Credit Trading,Credit Options,Credit Vol,Credit Option,EUR Credit Spread,CS01,20780.0
+2026-07-03,Credit Trading,Credit Options,Credit Vol,Credit Option,Credit Index Vol,Vega,13929.5
+2026-07-03,Credit Trading,Credit Options,Credit Vol,Credit Option,USD Credit Spread,CS01,22080.0
+2026-07-03,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX,Delta,19782.0
+2026-07-03,Equity Derivatives,Index Options,US Index Options,Equity Option,SPX Vol,Vega,14709.5
+2026-07-03,Equity Derivatives,Index Options,US Index Options,Equity Option,USD 10Y,DV01,23280.0
+2026-07-03,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE,Delta,20862.0
+2026-07-03,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,FTSE Vol,Vega,15489.5
+2026-07-03,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,GBP 10Y,DV01,24480.0
+2026-07-03,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,AAPL,Delta,21942.0
+2026-07-03,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,MSFT,Delta,22527.0
+2026-07-03,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,Single Name Vol,Vega,16692.0
+2026-07-03,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 2Y,DV01,25580.0
+2026-07-03,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,USD 10Y,DV01,26230.0
+2026-07-03,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,Funding Spread,CS01,26880.0
+2026-07-03,Treasury,Funding,Term Funding,Funding Swap,Funding Spread,CS01,26780.0
+2026-07-03,Treasury,Funding,Term Funding,Funding Swap,USD 5Y,DV01,27430.0
+2026-07-03,Treasury,Funding,Term Funding,Funding Swap,USD 10Y,DV01,28080.0
+2026-07-03,Treasury,Hedges,Macro Hedges,Macro Hedge,SPX,Delta,25182.0
+2026-07-03,Treasury,Hedges,Macro Hedges,Macro Hedge,EURUSD,Delta,25767.0
+2026-07-03,Treasury,Hedges,Macro Hedges,Macro Hedge,USD 10Y,DV01,29280.0

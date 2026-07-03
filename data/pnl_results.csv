@@ -1,0 +1,226 @@
+date,desk,book,portfolio,product,pnl_value
+2026-06-15,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,1075000.0
+2026-06-15,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1150000.0
+2026-06-15,London Rates,Rates Options,GBP Vol,Swaption,1225000.0
+2026-06-15,FX Options,G10 FX Options,EURUSD Options,FX Option,1300000.0
+2026-06-15,FX Options,GBP FX Options,GBPUSD Options,FX Option,1375000.0
+2026-06-15,FX Options,EM FX Options,EM Asia Options,FX Option,1450000.0
+2026-06-15,Credit Trading,IG Credit,IG Index,Credit Index Swap,1525000.0
+2026-06-15,Credit Trading,HY Credit,HY Index,Credit Index Swap,1600000.0
+2026-06-15,Credit Trading,Credit Options,Credit Vol,Credit Option,1675000.0
+2026-06-15,Equity Derivatives,Index Options,US Index Options,Equity Option,1750000.0
+2026-06-15,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1825000.0
+2026-06-15,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,1900000.0
+2026-06-15,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,1975000.0
+2026-06-15,Treasury,Funding,Term Funding,Funding Swap,2050000.0
+2026-06-15,Treasury,Hedges,Macro Hedges,Macro Hedge,2125000.0
+2026-06-16,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,1103147.0
+2026-06-16,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1224847.5
+2026-06-16,London Rates,Rates Options,GBP Vol,Swaption,1265873.25
+2026-06-16,FX Options,G10 FX Options,EURUSD Options,FX Option,1337461.75
+2026-06-16,FX Options,GBP FX Options,GBPUSD Options,FX Option,1393953.75
+2026-06-16,FX Options,EM FX Options,EM Asia Options,FX Option,1459137.75
+2026-06-16,Credit Trading,IG Credit,IG Index,Credit Index Swap,1367800.0
+2026-06-16,Credit Trading,HY Credit,HY Index,Credit Index Swap,1804700.0
+2026-06-16,Credit Trading,Credit Options,Credit Vol,Credit Option,1429170.75
+2026-06-16,Equity Derivatives,Index Options,US Index Options,Equity Option,1819051.0
+2026-06-16,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1890411.0
+2026-06-16,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,1900526.25
+2026-06-16,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2238500.0
+2026-06-16,Treasury,Funding,Term Funding,Funding Swap,2401100.0
+2026-06-16,Treasury,Hedges,Macro Hedges,Macro Hedge,2234109.0
+2026-06-17,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,1042196.29
+2026-06-17,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1201163.07
+2026-06-17,London Rates,Rates Options,GBP Vol,Swaption,1168349.41
+2026-06-17,FX Options,G10 FX Options,EURUSD Options,FX Option,1274278.76
+2026-06-17,FX Options,GBP FX Options,GBPUSD Options,FX Option,1303695.05
+2026-06-17,FX Options,EM FX Options,EM Asia Options,FX Option,1469615.27
+2026-06-17,Credit Trading,IG Credit,IG Index,Credit Index Swap,1309965.0
+2026-06-17,Credit Trading,HY Credit,HY Index,Credit Index Swap,1787655.0
+2026-06-17,Credit Trading,Credit Options,Credit Vol,Credit Option,1443484.82
+2026-06-17,Equity Derivatives,Index Options,US Index Options,Equity Option,1739418.52
+2026-06-17,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1798929.24
+2026-06-17,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,1903721.35
+2026-06-17,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2119525.0
+2026-06-17,Treasury,Funding,Term Funding,Funding Swap,2129905.0
+2026-06-17,Treasury,Hedges,Macro Hedges,Macro Hedge,2150010.4
+2026-06-18,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,998514.59
+2026-06-18,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1161390.77
+2026-06-18,London Rates,Rates Options,GBP Vol,Swaption,1160085.21
+2026-06-18,FX Options,G10 FX Options,EURUSD Options,FX Option,1282248.06
+2026-06-18,FX Options,GBP FX Options,GBPUSD Options,FX Option,1290222.93
+2026-06-18,FX Options,EM FX Options,EM Asia Options,FX Option,1434116.42
+2026-06-18,Credit Trading,IG Credit,IG Index,Credit Index Swap,1519495.0
+2026-06-18,Credit Trading,HY Credit,HY Index,Credit Index Swap,1712545.0
+2026-06-18,Credit Trading,Credit Options,Credit Vol,Credit Option,1666975.52
+2026-06-18,Equity Derivatives,Index Options,US Index Options,Equity Option,1765641.1
+2026-06-18,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1756568.84
+2026-06-18,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,1974212.5
+2026-06-18,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2084395.0
+2026-06-18,Treasury,Funding,Term Funding,Funding Swap,2172445.0
+2026-06-18,Treasury,Hedges,Macro Hedges,Macro Hedge,2202578.8
+2026-06-19,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,1031669.86
+2026-06-19,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1242184.91
+2026-06-19,London Rates,Rates Options,GBP Vol,Swaption,1205966.74
+2026-06-19,FX Options,G10 FX Options,EURUSD Options,FX Option,1324417.41
+2026-06-19,FX Options,GBP FX Options,GBPUSD Options,FX Option,1313426.14
+2026-06-19,FX Options,EM FX Options,EM Asia Options,FX Option,1447273.5
+2026-06-19,Credit Trading,IG Credit,IG Index,Credit Index Swap,1363480.0
+2026-06-19,Credit Trading,HY Credit,HY Index,Credit Index Swap,1924130.0
+2026-06-19,Credit Trading,Credit Options,Credit Vol,Credit Option,1421392.91
+2026-06-19,Equity Derivatives,Index Options,US Index Options,Equity Option,1839284.27
+2026-06-19,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1826460.15
+2026-06-19,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,1978373.32
+2026-06-19,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2354495.0
+2026-06-19,Treasury,Funding,Term Funding,Funding Swap,2531000.0
+2026-06-19,Treasury,Hedges,Macro Hedges,Macro Hedge,2316382.57
+2026-06-22,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,967162.51
+2026-06-22,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1215882.21
+2026-06-22,London Rates,Rates Options,GBP Vol,Swaption,1104031.26
+2026-06-22,FX Options,G10 FX Options,EURUSD Options,FX Option,1257693.46
+2026-06-22,FX Options,GBP FX Options,GBPUSD Options,FX Option,1219168.34
+2026-06-22,FX Options,EM FX Options,EM Asia Options,FX Option,1455520.35
+2026-06-22,Credit Trading,IG Credit,IG Index,Credit Index Swap,1302290.0
+2026-06-22,Credit Trading,HY Credit,HY Index,Credit Index Swap,1904300.0
+2026-06-22,Credit Trading,Credit Options,Credit Vol,Credit Option,1433373.71
+2026-06-22,Equity Derivatives,Index Options,US Index Options,Equity Option,1756053.12
+2026-06-22,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1731267.85
+2026-06-22,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,1978991.47
+2026-06-22,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2231595.0
+2026-06-22,Treasury,Funding,Term Funding,Funding Swap,2254170.0
+2026-06-22,Treasury,Hedges,Macro Hedges,Macro Hedge,2228749.42
+2026-06-23,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,920174.26
+2026-06-23,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1172991.46
+2026-06-23,London Rates,Rates Options,GBP Vol,Swaption,1093315.51
+2026-06-23,FX Options,G10 FX Options,EURUSD Options,FX Option,1263496.21
+2026-06-23,FX Options,GBP FX Options,GBPUSD Options,FX Option,1203071.52
+2026-06-23,FX Options,EM FX Options,EM Asia Options,FX Option,1416982.85
+2026-06-23,Credit Trading,IG Credit,IG Index,Credit Index Swap,1512740.0
+2026-06-23,Credit Trading,HY Credit,HY Index,Credit Index Swap,1825550.0
+2026-06-23,Credit Trading,Credit Options,Credit Vol,Credit Option,1657450.96
+2026-06-23,Equity Derivatives,Index Options,US Index Options,Equity Option,1780051.44
+2026-06-23,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1685763.35
+2026-06-23,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2047694.41
+2026-06-23,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2193395.0
+2026-06-23,Treasury,Funding,Term Funding,Funding Swap,2294495.0
+2026-06-23,Treasury,Hedges,Macro Hedges,Macro Hedge,2279176.92
+2026-06-24,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,952087.81
+2026-06-24,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1253482.24
+2026-06-24,London Rates,Rates Options,GBP Vol,Swaption,1137955.31
+2026-06-24,FX Options,G10 FX Options,EURUSD Options,FX Option,1304123.16
+2026-06-24,FX Options,GBP FX Options,GBPUSD Options,FX Option,1224274.2
+2026-06-24,FX Options,EM FX Options,EM Asia Options,FX Option,1427909.25
+2026-06-24,Credit Trading,IG Credit,IG Index,Credit Index Swap,1351660.0
+2026-06-24,Credit Trading,HY Credit,HY Index,Credit Index Swap,2037770.0
+2026-06-24,Credit Trading,Credit Options,Credit Vol,Credit Option,1405864.99
+2026-06-24,Equity Derivatives,Index Options,US Index Options,Equity Option,1852036.79
+2026-06-24,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1753884.98
+2026-06-24,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2049239.81
+2026-06-24,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2463845.0
+2026-06-24,Treasury,Funding,Term Funding,Funding Swap,2654255.0
+2026-06-24,Treasury,Hedges,Macro Hedges,Macro Hedge,2391425.47
+2026-06-25,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,950025.58
+2026-06-25,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1230811.26
+2026-06-25,London Rates,Rates Options,GBP Vol,Swaption,1106272.45
+2026-06-25,FX Options,G10 FX Options,EURUSD Options,FX Option,1240108.25
+2026-06-25,FX Options,GBP FX Options,GBPUSD Options,FX Option,1182112.3
+2026-06-25,FX Options,EM FX Options,EM Asia Options,FX Option,1440175.42
+2026-06-25,Credit Trading,IG Credit,IG Index,Credit Index Swap,1346510.0
+2026-06-25,Credit Trading,HY Credit,HY Index,Credit Index Swap,2021405.0
+2026-06-25,Credit Trading,Credit Options,Credit Vol,Credit Option,1482107.51
+2026-06-25,Equity Derivatives,Index Options,US Index Options,Equity Option,1829007.46
+2026-06-25,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1732677.14
+2026-06-25,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2053531.01
+2026-06-25,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2343270.0
+2026-06-25,Treasury,Funding,Term Funding,Funding Swap,2378040.0
+2026-06-25,Treasury,Hedges,Macro Hedges,Macro Hedge,2380258.27
+2026-06-26,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,905980.78
+2026-06-26,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1191052.06
+2026-06-26,London Rates,Rates Options,GBP Vol,Swaption,1099355.15
+2026-06-26,FX Options,G10 FX Options,EURUSD Options,FX Option,1249994.45
+2026-06-26,FX Options,GBP FX Options,GBPUSD Options,FX Option,1169640.8
+2026-06-26,FX Options,EM FX Options,EM Asia Options,FX Option,1404849.27
+2026-06-26,Credit Trading,IG Credit,IG Index,Credit Index Swap,1564130.0
+2026-06-26,Credit Trading,HY Credit,HY Index,Credit Index Swap,1945265.0
+2026-06-26,Credit Trading,Credit Options,Credit Vol,Credit Option,1713021.31
+2026-06-26,Equity Derivatives,Index Options,US Index Options,Equity Option,1857031.51
+2026-06-26,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1690278.54
+2026-06-26,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2126695.74
+2026-06-26,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2308250.0
+2026-06-26,Treasury,Funding,Term Funding,Funding Swap,2422400.0
+2026-06-26,Treasury,Hedges,Macro Hedges,Macro Hedge,2434794.87
+2026-06-29,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,936652.6
+2026-06-29,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1271239.47
+2026-06-29,London Rates,Rates Options,GBP Vol,Swaption,1142753.22
+2026-06-29,FX Options,G10 FX Options,EURUSD Options,FX Option,1289079.0
+2026-06-29,FX Options,GBP FX Options,GBPUSD Options,FX Option,1188842.94
+2026-06-29,FX Options,EM FX Options,EM Asia Options,FX Option,1413545.0
+2026-06-29,Credit Trading,IG Credit,IG Index,Credit Index Swap,1397985.0
+2026-06-29,Credit Trading,HY Credit,HY Index,Credit Index Swap,2158120.0
+2026-06-29,Credit Trading,Credit Options,Credit Vol,Credit Option,1455431.97
+2026-06-29,Equity Derivatives,Index Options,US Index Options,Equity Option,1927359.04
+2026-06-29,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1756630.48
+2026-06-29,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2125625.71
+2026-06-29,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2579050.0
+2026-06-29,Treasury,Funding,Term Funding,Funding Swap,2783365.0
+2026-06-29,Treasury,Hedges,Macro Hedges,Macro Hedge,2545488.2
+2026-06-30,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,871281.97
+2026-06-30,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1245950.22
+2026-06-30,London Rates,Rates Options,GBP Vol,Swaption,1038244.47
+2026-06-30,FX Options,G10 FX Options,EURUSD Options,FX Option,1221523.12
+2026-06-30,FX Options,GBP FX Options,GBPUSD Options,FX Option,1092836.94
+2026-06-30,FX Options,EM FX Options,EM Asia Options,FX Option,1423580.5
+2026-06-30,Credit Trading,IG Credit,IG Index,Credit Index Swap,1336335.0
+2026-06-30,Credit Trading,HY Credit,HY Index,Credit Index Swap,2138970.0
+2026-06-30,Credit Trading,Credit Options,Credit Vol,Credit Option,1468996.22
+2026-06-30,Equity Derivatives,Index Options,US Index Options,Equity Option,1843180.54
+2026-06-30,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1660267.1
+2026-06-30,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2127339.96
+2026-06-30,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2454550.0
+2026-06-30,Treasury,Funding,Term Funding,Funding Swap,2501515.0
+2026-06-30,Treasury,Hedges,Macro Hedges,Macro Hedge,2457035.95
+2026-07-01,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,823930.62
+2026-07-01,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1203072.57
+2026-07-01,London Rates,Rates Options,GBP Vol,Swaption,1028875.62
+2026-07-01,FX Options,G10 FX Options,EURUSD Options,FX Option,1196629.02
+2026-07-01,FX Options,GBP FX Options,GBPUSD Options,FX Option,1042427.0
+2026-07-01,FX Options,EM FX Options,EM Asia Options,FX Option,1385215.7
+2026-07-01,Credit Trading,IG Credit,IG Index,Credit Index Swap,1554875.0
+2026-07-01,Credit Trading,HY Credit,HY Index,Credit Index Swap,2010952.5
+2026-07-01,Credit Trading,Credit Options,Credit Vol,Credit Option,1700496.57
+2026-07-01,Equity Derivatives,Index Options,US Index Options,Equity Option,1868980.33
+2026-07-01,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1614724.4
+2026-07-01,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2198716.48
+2026-07-01,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2349972.5
+2026-07-01,Treasury,Funding,Term Funding,Funding Swap,2477422.5
+2026-07-01,Treasury,Hedges,Macro Hedges,Macro Hedge,2445655.4
+2026-07-02,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,859610.72
+2026-07-02,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1289206.62
+2026-07-02,London Rates,Rates Options,GBP Vol,Swaption,1077281.97
+2026-07-02,FX Options,G10 FX Options,EURUSD Options,FX Option,1240421.17
+2026-07-02,FX Options,GBP FX Options,GBPUSD Options,FX Option,1065878.6
+2026-07-02,FX Options,EM FX Options,EM Asia Options,FX Option,1397930.75
+2026-07-02,Credit Trading,IG Credit,IG Index,Credit Index Swap,1389915.0
+2026-07-02,Credit Trading,HY Credit,HY Index,Credit Index Swap,2230692.5
+2026-07-02,Credit Trading,Credit Options,Credit Vol,Credit Option,1443153.88
+2026-07-02,Equity Derivatives,Index Options,US Index Options,Equity Option,1943900.03
+2026-07-02,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1685556.65
+2026-07-02,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2201281.02
+2026-07-02,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2627372.5
+2026-07-02,Treasury,Funding,Term Funding,Funding Swap,2845842.5
+2026-07-02,Treasury,Hedges,Macro Hedges,Macro Hedge,2561043.5
+2026-07-03,London Rates,GBP Swaps,GBP Linear,Interest Rate Swap,796933.46
+2026-07-03,London Rates,EUR Swaps,EUR Linear,Interest Rate Swap,1267549.1
+2026-07-03,London Rates,Rates Options,GBP Vol,Swaption,974611.59
+2026-07-03,FX Options,G10 FX Options,EURUSD Options,FX Option,1175574.34
+2026-07-03,FX Options,GBP FX Options,GBPUSD Options,FX Option,972123.5
+2026-07-03,FX Options,EM FX Options,EM Asia Options,FX Option,1411985.57
+2026-07-03,Credit Trading,IG Credit,IG Index,Credit Index Swap,1331160.0
+2026-07-03,Credit Trading,HY Credit,HY Index,Credit Index Swap,2215007.5
+2026-07-03,Credit Trading,Credit Options,Credit Vol,Credit Option,1460634.85
+2026-07-03,Equity Derivatives,Index Options,US Index Options,Equity Option,1862372.85
+2026-07-03,Equity Derivatives,UK Index Options,UK Index Options,Equity Option,1591732.74
+2026-07-03,Equity Derivatives,Single Stock Options,Global Single Names,Equity Option,2206668.32
+2026-07-03,Treasury,Liquidity Buffer,HQLA Bonds,Government Bond,2505197.5
+2026-07-03,Treasury,Funding,Term Funding,Funding Swap,2564607.5
+2026-07-03,Treasury,Hedges,Macro Hedges,Macro Hedge,2475306.7
