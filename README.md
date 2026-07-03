@@ -62,6 +62,14 @@ streamlit run app.py
 
 Dummy data loads automatically. Use the sidebar to upload replacement CSVs, reload SQLite, regenerate sample data, or clear chat.
 
+If your environment has a generic dev runner, this also works:
+
+```bash
+npm run dev
+```
+
+The npm script is only a thin wrapper around Streamlit; there are no Node dependencies.
+
 ## Business Logic
 
 PNL:
