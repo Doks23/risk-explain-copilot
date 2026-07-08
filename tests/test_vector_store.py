@@ -7,18 +7,28 @@ def test_retrieve_context_returns_relevant_coverage_chunk(tmp_path) -> None:
     db_path = tmp_path / "vectors.db"
     initialize_vector_store(db_path=db_path, force=True)
 
-    context = retrieve_context("What desks are we covering?", db_path=db_path)
+    context = retrieve_context("What desks and trades are we covering?", db_path=db_path)
     titles = [item["title"] for item in context]
 
-    assert "Hierarchy table" in titles
+    assert "Coverage questions" in titles
     assert context[0]["score"] > 0
 
 
-def test_retrieve_context_returns_relevant_market_move_chunk(tmp_path) -> None:
+def test_retrieve_context_returns_relevant_scenario_pnl_chunk(tmp_path) -> None:
     db_path = tmp_path / "vectors.db"
     initialize_vector_store(db_path=db_path, force=True)
 
-    context = retrieve_context("What market moves explain the PNL change?", db_path=db_path)
+    context = retrieve_context("How does sensitivity times shock create scenario P&L?", db_path=db_path)
     titles = [item["title"] for item in context]
 
-    assert "Market move explanation" in titles
+    assert "Scenario P&L logic" in titles
+
+
+def test_retrieve_context_returns_relevant_var_chunk(tmp_path) -> None:
+    db_path = tmp_path / "vectors.db"
+    initialize_vector_store(db_path=db_path, force=True)
+
+    context = retrieve_context("How is 95 percent VaR calculated from scenario P&L?", db_path=db_path)
+    titles = [item["title"] for item in context]
+
+    assert "VaR percentile logic" in titles

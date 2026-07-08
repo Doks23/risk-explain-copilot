@@ -20,7 +20,7 @@ def main() -> None:
     _sidebar()
 
     st.title("Risk Explain Copilot")
-    st.caption("Ask market risk questions in chat. Each answer keeps its supporting SQL, bounded result, and trace in collapsed details.")
+    st.caption("Ask market risk questions in chat. The app computes scenario P&L from trade sensitivities and historical risk-factor shocks, then derives VaR from the aggregated loss distribution.")
 
     if "chat_history" not in st.session_state:
         st.session_state["chat_history"] = []
@@ -183,7 +183,7 @@ def _sidebar() -> None:
             "Upload replacement CSVs",
             type=["csv"],
             accept_multiple_files=True,
-            help="Accepted names: hierarchy.csv, pnl_results.csv, var_results.csv, sensitivities.csv, market_data.csv, scenario_data.csv",
+            help="Accepted names: trade_sensitivities.csv, risk_factor_scenarios.csv",
         )
         if uploaded_files:
             for uploaded in uploaded_files:
@@ -221,9 +221,12 @@ def _chart_for_result(result: pd.DataFrame, visualization: str):
         return None
     if {"date", "value"}.issubset(result.columns):
         return px.line(result, x="date", y="value", markers=True, title="Returned Trend")
-    if "estimated_pnl_impact" in result.columns and "risk_factor" in result.columns:
-        frame = result.sort_values("estimated_pnl_impact", key=lambda s: s.abs())
-        return px.bar(frame, x="estimated_pnl_impact", y="risk_factor", orientation="h", title="Estimated PNL Impact")
+    if "driver_pnl" in result.columns and "risk_factor" in result.columns:
+        frame = result.sort_values("driver_pnl", key=lambda s: s.abs())
+        return px.bar(frame, x="driver_pnl", y="risk_factor", orientation="h", title="VaR Scenario Risk-Factor Drivers")
+    if "scenario_pnl" in result.columns and "risk_factor" in result.columns:
+        frame = result.sort_values("scenario_pnl", key=lambda s: s.abs())
+        return px.bar(frame, x="scenario_pnl", y="risk_factor", orientation="h", title="Trade Scenario P&L")
     if "delta" in result.columns:
         label = _label_column(result)
         frame = result.sort_values("delta", key=lambda s: s.abs())

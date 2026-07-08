@@ -19,22 +19,17 @@ MAX_RESULT_ROWS = 50
 
 SCHEMA_CONTEXT = """
 SQLite schema:
-- hierarchy(date, desk, book, portfolio, product, currency)
-- pnl_results(date, desk, book, portfolio, product, pnl_value)
-- var_results(date, desk, book, portfolio, scenario, risk_factor, product, var_contribution)
-- sensitivities(date, desk, book, portfolio, product, risk_factor, sensitivity_type, sensitivity_value)
-- market_data(date, risk_factor, market_level, market_move, move_unit)
-- scenario_data(date, scenario, risk_factor, shock_value, shock_unit)
+- trade_sensitivities(trade_id, risk_factor, desk, sensitivity_type, sensitivity_value, product)
+- risk_factor_scenarios(historical_date, scenario_name, risk_factor, shock_value, shock_unit)
 
 Business rules:
-- PNL is actual or hypothetical profit/loss movement between two dates.
-- Explain PNL with estimated_pnl_impact = sensitivity_value from date1 multiplied by market_move from date1 exclusive to date2 inclusive.
-- Compare actual PNL movement from pnl_results with explained PNL and residual PNL.
-- Sensitivity is exposure, not final PNL.
-- Market move alone is not a PNL explanation unless combined with sensitivity.
-- VaR is a risk estimate, not actual loss.
-- Explain VaR using var_contribution movement in var_results, grouped by scenario or risk_factor.
-- Do not explain VaR directly as PNL and do not explain PNL directly as VaR.
+- These are the two stored input tables.
+- Trade-level scenario P&L is computed, not stored: scenario_pnl = sensitivity_value * shock_value.
+- Aggregate P&L by historical_date to create the scenario P&L distribution.
+- 95% VaR is the 95th percentile of scenario losses, where loss_amount = max(-scenario_pnl, 0).
+- Aggregation is essential: desk/product VaR must aggregate scenario P&L by historical_date before calculating percentile.
+- Risk-factor VaR drivers are the risk-factor P&L contributions in the VaR scenario date.
+- Do not treat sensitivity as P&L. Do not treat shocks as P&L. P&L requires sensitivity times shock.
 
 SQL rules:
 - Generate one read-only SQLite SELECT or WITH statement.
@@ -42,7 +37,6 @@ SQL rules:
 - Always aggregate or filter to the user's question.
 - Always include LIMIT 50 or lower.
 - Do not expose full database contents.
-- Prefer latest date versus previous business date for movement questions unless the user specifies dates.
 """
 
 BLOCKED_SQL_TOKENS = (
@@ -199,12 +193,9 @@ def _llm_query_plan(question: str, context: tuple[dict[str, Any], ...], conversa
                 "role": "user",
                 "content": (
                     f"{SCHEMA_CONTEXT}\n\n"
-                    f"Recent conversation context for resolving follow-up questions:\n"
-                    f"{conversation_context or 'No prior conversation context.'}\n\n"
+                    f"Recent conversation context:\n{conversation_context or 'No prior conversation context.'}\n\n"
                     f"Retrieved business context:\n{_context_for_prompt(context)}\n\n"
-                    f"Current question: {question}\n\n"
-                    "Use recent conversation only to resolve missing scope, metric, or intent. "
-                    "If the current question explicitly names a metric, desk, book, date, or intent, it overrides prior context."
+                    f"Current question: {question}"
                 ),
             },
         ],
@@ -247,14 +238,10 @@ def _llm_response(question: str, plan: QueryPlan, result: pd.DataFrame) -> str:
             {
                 "role": "system",
                 "content": (
-                    "You are the answer-synthesis layer of a market risk copilot. "
-                    "Answer the user's question directly using only the SQL result rows provided. "
-                    "Do not invent numbers, dates, desks, books, drivers, or explanations. "
-                    "If the result is insufficient, say what is missing. "
-                    "For PNL, explain actual PNL change, explained PNL from sensitivity times market move, and residual when present. "
-                    "For VaR, explain movement as change in scenario or risk-factor risk contribution; do not describe it as actual loss. "
-                    "For trends, summarize start, end, change, high, and low visible in the rows. "
-                    "Use concise markdown. Do not include SQL, raw JSON, Evidence from SQL, or Data trace in the visible answer."
+                    "Answer using only the SQL result rows. Do not invent numbers. "
+                    "Explain the chain Trade sensitivity x risk-factor shock = scenario P&L; "
+                    "scenario P&Ls aggregate by historical date; 95% VaR is the percentile loss from that distribution. "
+                    "Do not include SQL, raw JSON, Evidence from SQL, or Data trace in the visible answer."
                 ),
             },
             {"role": "user", "content": json.dumps(payload, default=str)},
@@ -270,329 +257,207 @@ def _fallback_query_plan(question: str, db_path: Path, conversation_context: str
     planning_lower = lowered if _has_explicit_intent(lowered) else f"{lowered}\n{context_lower}"
     scope_lower = f"{lowered}\n{context_lower}"
 
-    if _is_coverage_question(lowered):
-        return _coverage_query_plan(question, lowered)
-
-    metric = _metric_from_text(lowered, context_lower)
-    date1, date2 = _latest_comparison_dates(db_path)
+    desk = _match_choice(scope_lower, distinct_values("desk", table="trade_sensitivities", db_path=db_path))
+    product = _match_choice(scope_lower, distinct_values("product", table="trade_sensitivities", db_path=db_path))
+    trade_id = _match_choice(scope_lower, distinct_values("trade_id", table="trade_sensitivities", db_path=db_path))
+    risk_factor = _match_choice(scope_lower, distinct_values("risk_factor", table="trade_sensitivities", db_path=db_path))
+    historical_date = _match_choice(scope_lower, distinct_values("historical_date", table="risk_factor_scenarios", db_path=db_path))
     top_n = _extract_top_n(lowered)
     days = _extract_days(lowered)
-    desk = _match_choice(scope_lower, distinct_values("desk", table="hierarchy", db_path=db_path))
-    book = _match_choice(scope_lower, distinct_values("book", table="hierarchy", db_path=db_path))
-    filters = _scope_filters(desk, book)
+    filters = _scope_filters(desk=desk, product=product, trade_id=trade_id, risk_factor=risk_factor)
+
+    metric_context = planning_lower
+    if not _mentions_var(lowered) and not _mentions_pnl(lowered) and (_mentions_var(context_lower) or _mentions_pnl(context_lower)):
+        metric_context = f"{planning_lower}\n{context_lower}"
+
+    if _is_coverage_question(lowered) and not _mentions_pnl(lowered) and not _mentions_var(lowered):
+        return QueryPlan(question, _coverage_sql(), "coverage", "METADATA", "table", False, "Rule fallback generated coverage SQL.")
+
+    if "risk factor" in planning_lower and ("scenario" in planning_lower or "shock" in planning_lower) and "pnl" not in planning_lower and "p&l" not in planning_lower:
+        return QueryPlan(question, _scenario_shock_sql(risk_factor, historical_date, top_n), "scenario_shocks", "SHOCK", "table", False, "Rule fallback generated RF scenario SQL.")
 
     if "trend" in planning_lower or re.search(r"\b\d+\s*[- ]?day\b", planning_lower):
-        return QueryPlan(
-            question,
-            _trend_sql(metric, filters, days),
-            "trend",
-            metric,
-            "line",
-            False,
-            "Rule fallback generated trend SQL.",
-        )
+        metric = "VAR" if _mentions_var(planning_lower) else "PNL"
+        return QueryPlan(question, _trend_sql(filters, days, metric), "trend", metric, "line", False, "Rule fallback generated scenario P&L trend SQL.")
 
-    if "drill" in planning_lower:
-        return QueryPlan(
-            question,
-            _pnl_drilldown_sql(date1, date2, filters, top_n) if metric == "PNL" else _var_drilldown_sql(date1, date2, filters, top_n),
-            "drilldown",
-            metric,
-            "table",
-            False,
-            "Rule fallback generated bounded drill-down SQL.",
-        )
+    if _mentions_var(metric_context):
+        if "risk factor" in planning_lower or "driver" in planning_lower or "explain" in planning_lower:
+            return QueryPlan(question, _var_driver_sql(filters, top_n), "var_risk_factor_drivers", "VAR", "bar", False, "Rule fallback generated VaR driver SQL.")
+        return QueryPlan(question, _var_sql(filters), "var", "VAR", "metric", False, "Rule fallback generated VaR percentile SQL.")
 
-    if metric == "PNL" and ("risk factor" in planning_lower or "risk-factor" in planning_lower or "market move" in planning_lower or "market moves" in planning_lower or "driver" in planning_lower):
-        return QueryPlan(
-            question,
-            _pnl_risk_factor_sql(date1, date2, filters, top_n),
-            "pnl_risk_factor_attribution",
-            "PNL",
-            "bar",
-            False,
-            "Rule fallback generated PNL sensitivity-times-market-move SQL.",
-        )
-
-    if metric == "VAR" and "scenario" in planning_lower:
-        return QueryPlan(
-            question,
-            _var_driver_sql("scenario", date1, date2, filters, top_n),
-            "var_scenario_drivers",
-            "VAR",
-            "bar",
-            False,
-            "Rule fallback generated VaR scenario driver SQL.",
-        )
-
-    if metric == "VAR" and ("risk factor" in planning_lower or "risk-factor" in planning_lower or "driver" in planning_lower):
-        return QueryPlan(
-            question,
-            _var_driver_sql("risk_factor", date1, date2, filters, top_n),
-            "var_risk_factor_drivers",
-            "VAR",
-            "bar",
-            False,
-            "Rule fallback generated VaR risk-factor driver SQL.",
-        )
-
-    if metric == "PNL":
-        return QueryPlan(
-            question,
-            _pnl_movement_sql(date1, date2, filters),
-            "pnl_movement",
-            "PNL",
-            "metric",
-            False,
-            "Rule fallback generated PNL movement and attribution SQL.",
-        )
-
-    return QueryPlan(
-        question,
-        _var_movement_sql(date1, date2, filters),
-        "var_movement",
-        "VAR",
-        "metric",
-        False,
-        "Rule fallback generated VaR movement SQL.",
-    )
+    return QueryPlan(question, _trade_pnl_sql(filters, historical_date, top_n), "trade_scenario_pnl", "PNL", "bar", False, "Rule fallback generated trade scenario P&L SQL.")
 
 
-def _pnl_movement_sql(date1: str, date2: str, filters: str) -> str:
-    return f"""
-WITH actual AS (
-  SELECT date, SUM(pnl_value) AS value
-  FROM pnl_results
-  WHERE date IN ({_quote(date1)}, {_quote(date2)}){filters}
-  GROUP BY date
-),
-sens AS (
-  SELECT risk_factor, SUM(sensitivity_value) AS sensitivity_value
-  FROM sensitivities
-  WHERE date = {_quote(date1)}{filters}
-  GROUP BY risk_factor
-),
-moves AS (
-  SELECT risk_factor, SUM(market_move) AS market_move
-  FROM market_data
-  WHERE date > {_quote(date1)} AND date <= {_quote(date2)}
-  GROUP BY risk_factor
-),
-explained AS (
-  SELECT COALESCE(SUM(sens.sensitivity_value * COALESCE(moves.market_move, 0)), 0) AS explained_pnl
-  FROM sens
-  LEFT JOIN moves ON moves.risk_factor = sens.risk_factor
-),
-totals AS (
-  SELECT
-    COALESCE(SUM(CASE WHEN date = {_quote(date1)} THEN value ELSE 0 END), 0) AS pnl_date_1,
-    COALESCE(SUM(CASE WHEN date = {_quote(date2)} THEN value ELSE 0 END), 0) AS pnl_date_2
-  FROM actual
-)
-SELECT
-  'PNL' AS metric,
-  {_quote(date1)} AS previous_date,
-  ROUND(totals.pnl_date_1, 4) AS pnl_date_1,
-  {_quote(date2)} AS current_date,
-  ROUND(totals.pnl_date_2, 4) AS pnl_date_2,
-  ROUND(totals.pnl_date_2 - totals.pnl_date_1, 4) AS pnl_change,
-  ROUND(explained.explained_pnl, 4) AS explained_pnl,
-  ROUND((totals.pnl_date_2 - totals.pnl_date_1) - explained.explained_pnl, 4) AS residual_pnl
-FROM totals
-CROSS JOIN explained
-LIMIT 1
-"""
-
-
-def _var_movement_sql(date1: str, date2: str, filters: str) -> str:
-    return f"""
-WITH totals AS (
-  SELECT date, SUM(var_contribution) AS value
-  FROM var_results
-  WHERE date IN ({_quote(date1)}, {_quote(date2)}){filters}
-  GROUP BY date
-),
-pivot AS (
-  SELECT
-    COALESCE(SUM(CASE WHEN date = {_quote(date1)} THEN value ELSE 0 END), 0) AS var_date_1,
-    COALESCE(SUM(CASE WHEN date = {_quote(date2)} THEN value ELSE 0 END), 0) AS var_date_2
-  FROM totals
-)
-SELECT
-  'VAR' AS metric,
-  {_quote(date1)} AS previous_date,
-  ROUND(var_date_1, 4) AS var_date_1,
-  {_quote(date2)} AS current_date,
-  ROUND(var_date_2, 4) AS var_date_2,
-  ROUND(var_date_2 - var_date_1, 4) AS var_change,
-  ROUND(CASE WHEN var_date_1 = 0 THEN 0 ELSE (var_date_2 - var_date_1) * 100.0 / var_date_1 END, 4) AS percentage_change
-FROM pivot
-LIMIT 1
-"""
-
-
-def _pnl_risk_factor_sql(date1: str, date2: str, filters: str, top_n: int) -> str:
-    return f"""
-WITH sens AS (
-  SELECT
-    risk_factor,
-    sensitivity_type,
-    SUM(sensitivity_value) AS sensitivity_value
-  FROM sensitivities
-  WHERE date = {_quote(date1)}{filters}
-  GROUP BY risk_factor, sensitivity_type
-),
-moves AS (
-  SELECT
-    risk_factor,
-    SUM(market_move) AS market_move,
-    MAX(move_unit) AS move_unit
-  FROM market_data
-  WHERE date > {_quote(date1)} AND date <= {_quote(date2)}
-  GROUP BY risk_factor
-)
-SELECT
-  sens.risk_factor,
-  sens.sensitivity_type,
-  ROUND(sens.sensitivity_value, 4) AS sensitivity_value,
-  ROUND(COALESCE(moves.market_move, 0), 4) AS market_move,
-  COALESCE(moves.move_unit, '') AS move_unit,
-  ROUND(sens.sensitivity_value * COALESCE(moves.market_move, 0), 4) AS estimated_pnl_impact
-FROM sens
-LEFT JOIN moves ON moves.risk_factor = sens.risk_factor
-ORDER BY ABS(estimated_pnl_impact) DESC
-LIMIT {top_n}
-"""
-
-
-def _var_driver_sql(group_col: str, date1: str, date2: str, filters: str, top_n: int) -> str:
-    if group_col not in {"scenario", "risk_factor"}:
-        raise ValueError("Unsupported VaR driver column")
-    return f"""
-WITH driver AS (
-  SELECT date, {group_col}, SUM(var_contribution) AS value
-  FROM var_results
-  WHERE date IN ({_quote(date1)}, {_quote(date2)}){filters}
-  GROUP BY date, {group_col}
-),
-pivot AS (
-  SELECT
-    {group_col},
-    COALESCE(SUM(CASE WHEN date = {_quote(date1)} THEN value ELSE 0 END), 0) AS previous_value,
-    COALESCE(SUM(CASE WHEN date = {_quote(date2)} THEN value ELSE 0 END), 0) AS current_value
-  FROM driver
-  GROUP BY {group_col}
-)
-SELECT
-  {group_col},
-  ROUND(previous_value, 4) AS previous_value,
-  ROUND(current_value, 4) AS current_value,
-  ROUND(current_value - previous_value, 4) AS delta
-FROM pivot
-ORDER BY ABS(delta) DESC
-LIMIT {top_n}
-"""
-
-
-def _trend_sql(metric: str, filters: str, days: int) -> str:
-    table = "pnl_results" if metric == "PNL" else "var_results"
-    value_col = "pnl_value" if metric == "PNL" else "var_contribution"
-    return f"""
-SELECT date, ROUND(value, 4) AS value
-FROM (
-  SELECT date, SUM({value_col}) AS value
-  FROM {table}
-  WHERE 1 = 1{filters}
-  GROUP BY date
-  ORDER BY date DESC
-  LIMIT {days}
-)
-ORDER BY date
-"""
-
-
-def _var_drilldown_sql(date1: str, date2: str, filters: str, top_n: int) -> str:
-    return f"""
-WITH driver AS (
-  SELECT
-    date,
-    desk,
-    book,
-    portfolio,
-    product,
-    scenario,
-    risk_factor,
-    SUM(var_contribution) AS value
-  FROM var_results
-  WHERE date IN ({_quote(date1)}, {_quote(date2)}){filters}
-  GROUP BY date, desk, book, portfolio, product, scenario, risk_factor
-),
-pivot AS (
-  SELECT
-    desk,
-    book,
-    portfolio,
-    product,
-    scenario,
-    risk_factor,
-    COALESCE(SUM(CASE WHEN date = {_quote(date1)} THEN value ELSE 0 END), 0) AS previous_value,
-    COALESCE(SUM(CASE WHEN date = {_quote(date2)} THEN value ELSE 0 END), 0) AS current_value
-  FROM driver
-  GROUP BY desk, book, portfolio, product, scenario, risk_factor
-)
+def _coverage_sql() -> str:
+    return """
 SELECT
   desk,
-  book,
-  portfolio,
-  product,
-  scenario,
+  COUNT(DISTINCT trade_id) AS trade_count,
+  COUNT(DISTINCT product) AS product_count,
+  COUNT(DISTINCT risk_factor) AS risk_factor_count,
+  GROUP_CONCAT(DISTINCT product) AS products
+FROM trade_sensitivities
+GROUP BY desk
+ORDER BY desk
+LIMIT 50
+"""
+
+
+def _scenario_shock_sql(risk_factor: str | None, historical_date: str | None, top_n: int) -> str:
+    filters = []
+    if risk_factor:
+        filters.append(f"risk_factor = {_quote(risk_factor)}")
+    if historical_date:
+        filters.append(f"historical_date = {_quote(historical_date)}")
+    where = "WHERE " + " AND ".join(filters) if filters else ""
+    return f"""
+SELECT
+  historical_date,
+  scenario_name,
   risk_factor,
-  ROUND(previous_value, 4) AS previous_value,
-  ROUND(current_value, 4) AS current_value,
-  ROUND(current_value - previous_value, 4) AS delta
-FROM pivot
-ORDER BY ABS(delta) DESC
+  ROUND(shock_value, 4) AS shock_value,
+  shock_unit
+FROM risk_factor_scenarios
+{where}
+ORDER BY historical_date, risk_factor
 LIMIT {top_n}
 """
 
 
-def _pnl_drilldown_sql(date1: str, date2: str, filters: str, top_n: int) -> str:
+def _trade_pnl_sql(filters: str, historical_date: str | None, top_n: int) -> str:
+    date_filter = f" AND rs.historical_date = {_quote(historical_date)}" if historical_date else ""
     return f"""
-WITH sens AS (
-  SELECT
-    desk,
-    book,
-    portfolio,
-    product,
-    risk_factor,
-    sensitivity_type,
-    SUM(sensitivity_value) AS sensitivity_value
-  FROM sensitivities
-  WHERE date = {_quote(date1)}{filters}
-  GROUP BY desk, book, portfolio, product, risk_factor, sensitivity_type
-),
-moves AS (
-  SELECT risk_factor, SUM(market_move) AS market_move, MAX(move_unit) AS move_unit
-  FROM market_data
-  WHERE date > {_quote(date1)} AND date <= {_quote(date2)}
-  GROUP BY risk_factor
-)
 SELECT
-  sens.desk,
-  sens.book,
-  sens.portfolio,
-  sens.product,
-  'Actual market move' AS scenario,
-  sens.risk_factor,
-  sens.sensitivity_type,
-  ROUND(sens.sensitivity_value, 4) AS sensitivity_value,
-  ROUND(COALESCE(moves.market_move, 0), 4) AS market_move,
-  COALESCE(moves.move_unit, '') AS move_unit,
-  ROUND(sens.sensitivity_value * COALESCE(moves.market_move, 0), 4) AS estimated_pnl_impact
-FROM sens
-LEFT JOIN moves ON moves.risk_factor = sens.risk_factor
-ORDER BY ABS(estimated_pnl_impact) DESC
+  ts.trade_id,
+  ts.desk,
+  ts.product,
+  ts.risk_factor,
+  ts.sensitivity_type,
+  ROUND(ts.sensitivity_value, 4) AS sensitivity_value,
+  rs.historical_date,
+  rs.scenario_name,
+  ROUND(rs.shock_value, 4) AS shock_value,
+  rs.shock_unit,
+  ROUND(ts.sensitivity_value * rs.shock_value, 4) AS scenario_pnl
+FROM trade_sensitivities ts
+JOIN risk_factor_scenarios rs
+  ON rs.risk_factor = ts.risk_factor
+WHERE 1 = 1{filters}{date_filter}
+ORDER BY ABS(scenario_pnl) DESC
 LIMIT {top_n}
+"""
+
+
+def _portfolio_pnl_cte(filters: str) -> str:
+    return f"""
+trade_pnl AS (
+  SELECT
+    rs.historical_date,
+    rs.scenario_name,
+    ts.trade_id,
+    ts.desk,
+    ts.product,
+    ts.risk_factor,
+    ts.sensitivity_type,
+    ts.sensitivity_value,
+    rs.shock_value,
+    rs.shock_unit,
+    ts.sensitivity_value * rs.shock_value AS scenario_pnl
+  FROM trade_sensitivities ts
+  JOIN risk_factor_scenarios rs
+    ON rs.risk_factor = ts.risk_factor
+  WHERE 1 = 1{filters}
+),
+pnl_by_scenario AS (
+  SELECT
+    historical_date,
+    scenario_name,
+    SUM(scenario_pnl) AS scenario_pnl
+  FROM trade_pnl
+  GROUP BY historical_date, scenario_name
+),
+losses AS (
+  SELECT
+    historical_date,
+    scenario_name,
+    scenario_pnl,
+    CASE WHEN scenario_pnl < 0 THEN -scenario_pnl ELSE 0 END AS loss_amount
+  FROM pnl_by_scenario
+),
+ranked AS (
+  SELECT
+    historical_date,
+    scenario_name,
+    scenario_pnl,
+    loss_amount,
+    ROW_NUMBER() OVER (ORDER BY loss_amount) AS rn,
+    COUNT(*) OVER () AS scenario_count
+  FROM losses
+),
+target AS (
+  SELECT CAST((scenario_count * 0.95) + 0.999999 AS INT) AS target_rank
+  FROM ranked
+  LIMIT 1
+),
+var_scenario AS (
+  SELECT
+    ranked.historical_date,
+    ranked.scenario_name,
+    ranked.scenario_pnl,
+    ranked.loss_amount,
+    ranked.scenario_count
+  FROM ranked
+  JOIN target ON ranked.rn = target.target_rank
+)
+"""
+
+
+def _var_sql(filters: str) -> str:
+    return f"""
+WITH {_portfolio_pnl_cte(filters)}
+SELECT
+  'VAR' AS metric,
+  0.95 AS confidence_level,
+  historical_date,
+  scenario_name,
+  ROUND(scenario_pnl, 4) AS scenario_pnl,
+  ROUND(loss_amount, 4) AS var_95,
+  scenario_count
+FROM var_scenario
+LIMIT 1
+"""
+
+
+def _var_driver_sql(filters: str, top_n: int) -> str:
+    return f"""
+WITH {_portfolio_pnl_cte(filters)}
+SELECT
+  trade_pnl.risk_factor,
+  trade_pnl.sensitivity_type,
+  ROUND(SUM(trade_pnl.sensitivity_value), 4) AS sensitivity_value,
+  ROUND(MAX(trade_pnl.shock_value), 4) AS shock_value,
+  MAX(trade_pnl.shock_unit) AS shock_unit,
+  ROUND(SUM(trade_pnl.scenario_pnl), 4) AS driver_pnl,
+  var_scenario.historical_date AS var_scenario_date
+FROM trade_pnl
+JOIN var_scenario
+  ON var_scenario.historical_date = trade_pnl.historical_date
+GROUP BY trade_pnl.risk_factor, trade_pnl.sensitivity_type, var_scenario.historical_date
+ORDER BY ABS(driver_pnl) DESC
+LIMIT {top_n}
+"""
+
+
+def _trend_sql(filters: str, days: int, metric: str) -> str:
+    value_expr = "loss_amount" if metric == "VAR" else "scenario_pnl"
+    return f"""
+WITH {_portfolio_pnl_cte(filters)}
+SELECT
+  historical_date AS date,
+  ROUND({value_expr}, 4) AS value
+FROM losses
+ORDER BY historical_date DESC
+LIMIT {days}
 """
 
 
@@ -603,76 +468,51 @@ def _fallback_response(question: str, plan: QueryPlan, result: pd.DataFrame) -> 
     first = result.iloc[0].to_dict()
     lines = ["### Answer"]
 
-    if plan.intent == "desk_coverage" and "desk" in result.columns:
-        total_desks = result["desk"].nunique()
-        total_books = int(result["book_count"].sum()) if "book_count" in result.columns else len(result)
-        lines.append(f"We cover {total_desks} desks across {total_books} books in the hierarchy dataset.")
+    if plan.intent == "coverage" and "desk" in result.columns:
+        lines.append(f"We cover {result['desk'].nunique()} desks across {int(result['trade_count'].sum())} trades.")
         lines.append("\n### Covered desks")
         for _, row in result.iterrows():
-            lines.append(f"- {row['desk']}: {int(row['book_count'])} books; books: {row['books']}; products: {row['products']}")
-    elif plan.intent == "book_coverage" and {"desk", "book"}.issubset(result.columns):
-        lines.append(f"The hierarchy query returned {len(result)} desk/book combinations.")
-        lines.append("\n### Covered books")
-        for _, row in result.iterrows():
-            lines.append(f"- {row['desk']} / {row['book']}: {row.get('portfolio', 'n/a')} - {row.get('product', 'n/a')} ({row.get('currency', 'n/a')})")
-    elif {"pnl_date_1", "pnl_date_2", "pnl_change", "explained_pnl", "residual_pnl"}.issubset(result.columns):
-        direction = "increased" if float(first["pnl_change"]) >= 0 else "decreased"
+            lines.append(f"- {row['desk']}: {int(row['trade_count'])} trades; products: {row['products']}")
+    elif {"var_95", "scenario_pnl", "confidence_level"}.issubset(result.columns):
         lines.append(
-            f"PNL {direction} by {_fmt(first['pnl_change'])}, from {_fmt(first['pnl_date_1'])} on "
-            f"{first['previous_date']} to {_fmt(first['pnl_date_2'])} on {first['current_date']}."
+            f"The {_fmt(first['confidence_level'])} confidence VaR is {_fmt(first['var_95'])}. "
+            f"It comes from historical scenario {first['historical_date']} where aggregate scenario P&L was {_fmt(first['scenario_pnl'])}."
         )
+        lines.append("This is computed from trade sensitivities times risk-factor shocks, aggregated by historical date, then percentile-ranked as a loss distribution.")
+    elif "driver_pnl" in result.columns:
         lines.append(
-            f"The sensitivity x market move attribution explains {_fmt(first['explained_pnl'])}; "
-            f"the residual is {_fmt(first['residual_pnl'])}."
+            f"The largest VaR-scenario driver is {first.get('risk_factor')}: driver P&L {_fmt(first['driver_pnl'])} "
+            f"from sensitivity {_fmt(first.get('sensitivity_value', 0))} and shock {_fmt(first.get('shock_value', 0))} {first.get('shock_unit', '')}."
         )
-    elif {"var_date_1", "var_date_2", "var_change", "percentage_change"}.issubset(result.columns):
-        direction = "increased" if float(first["var_change"]) >= 0 else "decreased"
+    elif "scenario_pnl" in result.columns:
         lines.append(
-            f"VaR {direction} by {_fmt(first['var_change'])}, from {_fmt(first['var_date_1'])} on "
-            f"{first['previous_date']} to {_fmt(first['var_date_2'])} on {first['current_date']} "
-            f"({_fmt(first['percentage_change'])}%)."
+            f"The largest returned trade scenario P&L is trade {first.get('trade_id')} / {first.get('risk_factor')}: "
+            f"{_fmt(first['scenario_pnl'])}, calculated as sensitivity {_fmt(first.get('sensitivity_value', 0))} "
+            f"x shock {_fmt(first.get('shock_value', 0))} {first.get('shock_unit', '')}."
         )
-        lines.append("This is a risk estimate movement based on VaR contributions, not an actual PNL movement.")
-    elif "estimated_pnl_impact" in result.columns:
-        lines.append(
-            f"The largest estimated PNL impact is {first.get('risk_factor', 'n/a')}: "
-            f"{_fmt(first['estimated_pnl_impact'])}, calculated from sensitivity "
-            f"{_fmt(first.get('sensitivity_value', 0))} x market move {_fmt(first.get('market_move', 0))} "
-            f"{first.get('move_unit', '')}."
-        )
-    elif "delta" in result.columns:
-        label = _row_label(first, result)
-        lines.append(f"The largest returned VaR contribution movement is {label}, with delta {_fmt(first['delta'])}.")
     elif {"date", "value"}.issubset(result.columns):
-        start = result.iloc[0]
-        end = result.iloc[-1]
+        ordered = result.sort_values("date")
+        start = ordered.iloc[0]
+        end = ordered.iloc[-1]
         change = float(end["value"]) - float(start["value"])
-        pct_change = (change / float(start["value"]) * 100) if float(start["value"]) else 0.0
-        high = result.loc[result["value"].idxmax()]
-        low = result.loc[result["value"].idxmin()]
-        direction = "increased" if change >= 0 else "decreased"
-        lines.append(
-            f"The returned trend {direction} by {_fmt(change)}, from {_fmt(start['value'])} on {start['date']} "
-            f"to {_fmt(end['value'])} on {end['date']} ({_fmt(pct_change)}%)."
-        )
-        lines.append(f"The high is {_fmt(high['value'])} on {high['date']}; the low is {_fmt(low['value'])} on {low['date']}.")
+        lines.append(f"The returned scenario trend moved by {_fmt(change)}, from {_fmt(start['value'])} on {start['date']} to {_fmt(end['value'])} on {end['date']}.")
+    elif "shock_value" in result.columns:
+        lines.append(f"The query returned {len(result)} historical risk-factor shock rows. The first row is {first.get('risk_factor')} on {first.get('historical_date')}: {_fmt(first.get('shock_value'))} {first.get('shock_unit')}.")
     else:
         lines.append(f"The SQL returned {len(result)} row(s). The top row is: {first}.")
 
     numeric_cols = [col for col in result.columns if pd.api.types.is_numeric_dtype(result[col])]
-    if plan.intent not in {"desk_coverage", "book_coverage", "trend"}:
+    if plan.intent not in {"coverage", "trend"}:
         lines.append("\n### Key metrics")
-        if numeric_cols:
-            for col in numeric_cols[:6]:
-                lines.append(f"- {col}: {_fmt(first[col])} on top returned row")
-        else:
-            lines.append("- No numeric metric columns were returned.")
+        for col in numeric_cols[:6]:
+            lines.append(f"- {col}: {_fmt(first[col])} on top returned row")
 
         if len(result) > 1:
             lines.append("\n### Top returned rows")
             for _, row in result.head(5).iterrows():
-                numeric_summary = ", ".join(f"{col}={_fmt(row[col])}" for col in numeric_cols[:3])
-                lines.append(f"- {_row_label(row.to_dict(), result)}: {numeric_summary}")
+                label = row.get("risk_factor", row.get("trade_id", row.get("historical_date", "row")))
+                summary = ", ".join(f"{col}={_fmt(row[col])}" for col in numeric_cols[:3])
+                lines.append(f"- {label}: {summary}")
 
     return "\n".join(lines)
 
@@ -697,51 +537,21 @@ def _context_for_prompt(context: tuple[dict[str, Any], ...]) -> str:
 
 
 def _is_coverage_question(lowered: str) -> bool:
-    coverage_terms = ("cover", "covering", "covered", "available", "list", "show", "what")
-    subject_terms = ("desk", "desks", "book", "books", "portfolio", "portfolios", "product", "products", "currency", "currencies")
-    return any(term in lowered for term in coverage_terms) and any(term in lowered for term in subject_terms)
+    return any(term in lowered for term in ("cover", "covering", "covered", "available", "list", "show", "what")) and any(
+        term in lowered for term in ("desk", "desks", "trade", "trades", "product", "products")
+    )
 
 
-def _coverage_query_plan(question: str, lowered: str) -> QueryPlan:
-    if "book" in lowered and "desk" not in lowered:
-        sql = """
-SELECT
-  desk,
-  book,
-  portfolio,
-  product,
-  currency
-FROM hierarchy
-GROUP BY desk, book, portfolio, product, currency
-ORDER BY desk, book, portfolio
-LIMIT 50
-"""
-        return QueryPlan(question, sql, "book_coverage", "METADATA", "table", False, "Rule fallback generated book coverage SQL.")
-
-    sql = """
-SELECT
-  desk,
-  COUNT(DISTINCT book) AS book_count,
-  COUNT(DISTINCT portfolio) AS portfolio_count,
-  GROUP_CONCAT(DISTINCT book) AS books,
-  GROUP_CONCAT(DISTINCT product) AS products,
-  GROUP_CONCAT(DISTINCT currency) AS currencies
-FROM hierarchy
-GROUP BY desk
-ORDER BY desk
-LIMIT 50
-"""
-    return QueryPlan(question, sql, "desk_coverage", "METADATA", "table", False, "Rule fallback generated desk coverage SQL.")
+def _mentions_var(text: str) -> bool:
+    return bool(re.search(r"\bvar\b|value at risk", text))
 
 
-def _parse_json_object(content: str) -> dict[str, Any]:
-    try:
-        return json.loads(content)
-    except json.JSONDecodeError:
-        match = re.search(r"\{.*\}", content, flags=re.DOTALL)
-        if not match:
-            raise
-        return json.loads(match.group(0))
+def _mentions_pnl(text: str) -> bool:
+    return bool(re.search(r"\bpnl\b|\bp&l\b|\bpl\b|profit|loss", text))
+
+
+def _has_explicit_intent(lowered: str) -> bool:
+    return any(term in lowered for term in ("scenario", "shock", "trend", "day", "risk factor", "driver", "var", "pnl", "p&l", "pl", "trade"))
 
 
 def _extract_top_n(lowered: str) -> int:
@@ -751,7 +561,7 @@ def _extract_top_n(lowered: str) -> int:
     show_match = re.search(r"\bshow\s+(\d+)\s+(?![- ]?day\b)", lowered)
     if show_match:
         return max(1, min(25, int(show_match.group(1))))
-    return 10 if "drill" in lowered else 5
+    return 10
 
 
 def _extract_days(lowered: str) -> int:
@@ -759,54 +569,6 @@ def _extract_days(lowered: str) -> int:
     if not match:
         return 10
     return max(2, min(60, int(match.group(1))))
-
-
-def _metric_from_text(current_lower: str, context_lower: str) -> str:
-    if _mentions_pnl(current_lower):
-        return "PNL"
-    if _mentions_var(current_lower):
-        return "VAR"
-    if _mentions_pnl(context_lower):
-        return "PNL"
-    if _mentions_var(context_lower):
-        return "VAR"
-    return "VAR"
-
-
-def _mentions_pnl(text: str) -> bool:
-    return bool(re.search(r"\bp[\s&-]?n[\s&-]?l\b|\bpnl\b|profit", text))
-
-
-def _mentions_var(text: str) -> bool:
-    return bool(re.search(r"\bvar\b|value at risk", text))
-
-
-def _has_explicit_intent(lowered: str) -> bool:
-    intent_terms = (
-        "market move",
-        "market moves",
-        "trend",
-        "day",
-        "risk factor",
-        "risk-factor",
-        "scenario",
-        "drill",
-        "move",
-        "movement",
-        "why",
-        "explain",
-        "driver",
-    )
-    return any(term in lowered for term in intent_terms)
-
-
-def _latest_comparison_dates(db_path: Path) -> tuple[str, str]:
-    with get_connection(db_path) as conn:
-        rows = conn.execute("SELECT DISTINCT date FROM hierarchy ORDER BY date").fetchall()
-    dates = [str(row[0]) for row in rows]
-    if len(dates) < 2:
-        raise ValueError("At least two dates are required for comparison questions")
-    return dates[-2], dates[-1]
 
 
 def _match_choice(lowered: str, choices: list[str]) -> str | None:
@@ -820,31 +582,36 @@ def _match_choice(lowered: str, choices: list[str]) -> str | None:
     return None
 
 
-def _scope_filters(desk: str | None, book: str | None) -> str:
+def _scope_filters(
+    desk: str | None = None,
+    product: str | None = None,
+    trade_id: str | None = None,
+    risk_factor: str | None = None,
+) -> str:
     filters = []
     if desk:
-        filters.append(f"desk = {_quote(desk)}")
-    if book:
-        filters.append(f"book = {_quote(book)}")
+        filters.append(f"ts.desk = {_quote(desk)}")
+    if product:
+        filters.append(f"ts.product = {_quote(product)}")
+    if trade_id:
+        filters.append(f"ts.trade_id = {_quote(trade_id)}")
+    if risk_factor:
+        filters.append(f"ts.risk_factor = {_quote(risk_factor)}")
     return " AND " + " AND ".join(filters) if filters else ""
+
+
+def _parse_json_object(content: str) -> dict[str, Any]:
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError:
+        match = re.search(r"\{.*\}", content, flags=re.DOTALL)
+        if not match:
+            raise
+        return json.loads(match.group(0))
 
 
 def _quote(value: str) -> str:
     return "'" + value.replace("'", "''") + "'"
-
-
-def _first_label_column(result: pd.DataFrame) -> str:
-    for col in ("scenario", "risk_factor", "desk", "book", "portfolio", "date"):
-        if col in result.columns:
-            return col
-    return result.columns[0]
-
-
-def _row_label(row: dict[str, Any], result: pd.DataFrame) -> str:
-    if {"risk_factor", "scenario"}.issubset(result.columns):
-        return f"{row.get('risk_factor')} / {row.get('scenario')}"
-    label_col = _first_label_column(result)
-    return str(row.get(label_col, "row"))
 
 
 def _fmt(value: Any) -> str:

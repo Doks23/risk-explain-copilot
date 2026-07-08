@@ -1,0 +1,39 @@
+trade_id,risk_factor,desk,sensitivity_type,sensitivity_value,product
+T1,SOFR,D1,IR Delta,44.0,IR Swap
+T1,USD GBP,D1,FX Delta,-57.0,IR Swap
+T2,SONIA,D1,IR Delta,76.0,IR Swap
+T2,USD GBP,D1,FX Delta,59.0,IR Swap
+T3,ESTER,D1,IR Delta,-91.0,FX Swap
+T3,USD EUR,D1,FX Delta,46.0,FX Swap
+T4,Vodafone Spot,D1,Equity Delta,65.0,Equity Option
+T4,USD GBP,D1,FX Delta,-63.0,Equity Option
+T4,SOFR,D1,IR Delta,50.0,Equity Option
+T5,USD JPY,D1,FX Delta,20.0,FX Forward
+T6,USD GBP,D2,FX Delta,67.0,FX Forward
+T7,USD EUR,D2,FX Delta,54.0,FX Swap
+T7,ESTER,D2,IR Delta,4.0,FX Swap
+T8,HSBC Spot,D2,Equity Delta,81.0,Equity Total Return Swap
+T8,USD GBP,D2,FX Delta,71.0,Equity Total Return Swap
+T8,ESTER,D2,IR Delta,6.0,Equity Total Return Swap
+T9,USD EUR,D2,FX Delta,58.0,FX Forward
+T10,ESTER,D2,IR Delta,93.0,IR Forward
+T10,USD EUR,D2,FX Delta,70.0,IR Forward
+T11,Vodafone Spot,D3,Equity Delta,3.0,Cash Equity
+T12,Vodafone Spot,D3,Equity Delta,6.0,Equity Total Return Swap
+T12,USD GBP,D3,FX Delta,72.0,Equity Total Return Swap
+T12,SONIA,D3,IR Delta,77.0,Equity Total Return Swap
+T13,USD JPY,D3,FX Delta,56.0,FX Forward
+T14,SONIA,D3,IR Delta,83.0,IR Swap
+T14,USD GBP,D3,FX Delta,78.0,IR Swap
+T15,HSBC Spot,D3,Equity Delta,63.0,Cash Equity
+T16,SOFR,D4,IR Delta,-90.0,Rates Option
+T16,GBP Swaption Vol,D4,Vega,-14.0,Rates Option
+T17,EUR Credit Spread,D4,CS01,79.0,Credit Index Swap
+T17,USD EUR,D4,FX Delta,91.0,Credit Index Swap
+T18,SPX,D4,Equity Delta,47.0,Equity Option
+T18,USD GBP,D4,FX Delta,90.0,Equity Option
+T19,Brent,D5,Commodity Delta,94.0,Commodity Forward
+T19,USD EUR,D5,FX Delta,2.0,Commodity Forward
+T20,SOFR,D5,IR Delta,74.0,Macro Hedge
+T20,SPX,D5,Equity Delta,-25.0,Macro Hedge
+T20,USD JPY,D5,FX Delta,-49.0,Macro Hedge

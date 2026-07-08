@@ -19,11 +19,11 @@ def _db(tmp_path: Path) -> Path:
 
 def test_validate_sql_rejects_unsafe_or_full_table_patterns() -> None:
     with pytest.raises(ValueError):
-        validate_sql("DELETE FROM var_results")
+        validate_sql("DELETE FROM trade_sensitivities")
     with pytest.raises(ValueError):
-        validate_sql("SELECT * FROM var_results")
+        validate_sql("SELECT * FROM trade_sensitivities")
     with pytest.raises(ValueError):
-        validate_sql("SELECT date FROM var_results; SELECT date FROM pnl_results")
+        validate_sql("SELECT trade_id FROM trade_sensitivities; SELECT risk_factor FROM risk_factor_scenarios")
 
 
 def test_llm_config_can_use_gemini_key(monkeypatch) -> None:
@@ -42,105 +42,69 @@ def test_llm_config_can_use_gemini_key(monkeypatch) -> None:
     assert config.base_url == "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 
-def test_var_movement_uses_var_contribution_not_pnl(tmp_path: Path) -> None:
+def test_var_query_computes_percentile_loss_from_two_source_tables(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
-    plan = generate_query_plan("Why did VAR move for London Rates?", db_path=db_path)
+
+    plan = generate_query_plan("Calculate 95% VaR for D1", db_path=db_path)
     result = execute_query_plan(plan, db_path=db_path)
     answer = generate_response(plan.question, plan, result)
 
-    assert plan.intent == "var_movement"
+    assert plan.intent == "var"
     assert plan.metric == "VAR"
-    assert not plan.llm_used
-    assert len(result) == 1
-    assert {"var_date_1", "var_date_2", "var_change", "percentage_change"}.issubset(result.columns)
-    assert "var_contribution" in plan.sql
-    assert "pnl_value" not in plan.sql
+    assert {"confidence_level", "historical_date", "scenario_pnl", "var_95", "scenario_count"}.issubset(result.columns)
+    assert "trade_sensitivities" in plan.sql
+    assert "risk_factor_scenarios" in plan.sql
     assert "Data trace" not in answer
 
 
-def test_pnl_movement_returns_explained_and_residual_pnl(tmp_path: Path) -> None:
+def test_trade_scenario_pnl_query_uses_sensitivity_times_shock(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
-    plan = generate_query_plan("Explain PNL movement for London Rates", db_path=db_path)
+
+    plan = generate_query_plan("Show trade level PNL for D1", db_path=db_path)
     result = execute_query_plan(plan, db_path=db_path)
 
-    assert plan.intent == "pnl_movement"
-    assert plan.metric == "PNL"
-    assert len(result) == 1
-    assert {"pnl_date_1", "pnl_date_2", "pnl_change", "explained_pnl", "residual_pnl"}.issubset(result.columns)
-    assert "sensitivity_value" in plan.sql
-    assert "market_move" in plan.sql
+    assert plan.intent == "trade_scenario_pnl"
+    assert {"trade_id", "risk_factor", "sensitivity_value", "shock_value", "scenario_pnl"}.issubset(result.columns)
+    assert "sensitivity_value * rs.shock_value" in plan.sql
 
 
-def test_driver_and_trend_queries_use_correct_business_logic(tmp_path: Path) -> None:
+def test_var_driver_and_trend_queries(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
-    scenario_plan = generate_query_plan("What are the top 5 scenario drivers for VAR?", db_path=db_path)
-    pnl_driver_plan = generate_query_plan("What market moves explain the PNL change?", db_path=db_path)
-    trend_plan = generate_query_plan("Show 10-day VAR trend for FX Options", db_path=db_path)
 
-    scenario_driver = execute_query_plan(scenario_plan, db_path=db_path)
-    pnl_driver = execute_query_plan(pnl_driver_plan, db_path=db_path)
+    driver_plan = generate_query_plan("Explain VaR risk factor drivers for D1", db_path=db_path)
+    trend_plan = generate_query_plan("Show 10-day PNL trend for D2", db_path=db_path)
+
+    drivers = execute_query_plan(driver_plan, db_path=db_path)
     trend = execute_query_plan(trend_plan, db_path=db_path)
 
-    assert len(scenario_driver) == 5
-    assert {"scenario", "delta"}.issubset(scenario_driver.columns)
-    assert "var_contribution" in scenario_plan.sql
-    assert len(pnl_driver) == 5
-    assert {"risk_factor", "sensitivity_value", "market_move", "estimated_pnl_impact"}.issubset(pnl_driver.columns)
-    assert "sensitivity_value" in pnl_driver_plan.sql
-    assert len(trend) == 10
+    assert driver_plan.intent == "var_risk_factor_drivers"
+    assert {"risk_factor", "driver_pnl", "var_scenario_date"}.issubset(drivers.columns)
+    assert trend_plan.intent == "trend"
     assert {"date", "value"}.issubset(trend.columns)
-    assert "desk = 'FX Options'" in trend_plan.sql
+    assert len(trend) == 10
 
 
-def test_fallback_trend_response_is_not_driver_framed(tmp_path: Path) -> None:
+def test_coverage_question_uses_trade_table(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
-    plan = generate_query_plan("Show 10-day VAR trend for FX Options", db_path=db_path)
-    result = execute_query_plan(plan, db_path=db_path)
-    answer = generate_response(plan.question, plan, result)
 
-    assert plan.intent == "trend"
-    assert "The returned trend" in answer
-    assert "### Evidence from SQL" not in answer
-    assert "### Drivers" not in answer
-
-
-def test_query_plan_handles_desk_coverage_question(tmp_path: Path) -> None:
-    db_path = _db(tmp_path)
     plan = generate_query_plan("What desks are we covering?", db_path=db_path)
     result = execute_query_plan(plan, db_path=db_path)
     answer = generate_response(plan.question, plan, result)
 
-    assert plan.intent == "desk_coverage"
+    assert plan.intent == "coverage"
     assert plan.metric == "METADATA"
-    assert plan.retrieved_context
-    assert {"desk", "book_count", "portfolio_count", "books", "products", "currencies"}.issubset(result.columns)
-    assert "We cover 5 desks" in answer
-    assert "London Rates" in answer
+    assert {"desk", "trade_count", "product_count", "risk_factor_count", "products"}.issubset(result.columns)
+    assert "We cover" in answer
+    assert "D1" in answer
 
 
-def test_follow_up_query_uses_prior_scope_for_sql(tmp_path: Path) -> None:
+def test_follow_up_query_uses_prior_desk_scope(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
-    context = "User: Show 10-day VAR trend for FX Options\nAssistant: intent=trend; metric=VAR; visualization=line"
+    context = "User: Calculate 95% VaR for D1\nAssistant: intent=var; metric=VAR; visualization=metric"
 
-    plan = generate_query_plan("same for PNL", db_path=db_path, conversation_context=context)
+    plan = generate_query_plan("show risk factor drivers", db_path=db_path, conversation_context=context)
     result = execute_query_plan(plan, db_path=db_path)
 
-    assert plan.intent == "trend"
-    assert plan.metric == "PNL"
-    assert "pnl_results" in plan.sql
-    assert "desk = 'FX Options'" in plan.sql
-    assert len(result) == 10
-
-
-def test_follow_up_query_uses_prior_desk_for_movement(tmp_path: Path) -> None:
-    db_path = _db(tmp_path)
-    context = "User: Why did VAR move for London Rates?\nAssistant: intent=var_movement; metric=VAR; visualization=metric"
-
-    plan = generate_query_plan("what about PNL?", db_path=db_path, conversation_context=context)
-    result = execute_query_plan(plan, db_path=db_path)
-
-    assert plan.intent == "pnl_movement"
-    assert plan.metric == "PNL"
-    assert "pnl_results" in plan.sql
-    assert "desk = 'London Rates'" in plan.sql
-    assert len(result) == 1
+    assert plan.intent == "var_risk_factor_drivers"
+    assert "ts.desk = 'D1'" in plan.sql
+    assert not result.empty

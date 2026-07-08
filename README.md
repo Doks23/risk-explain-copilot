@@ -1,31 +1,42 @@
 # Risk Explain Copilot
 
-Risk Explain Copilot is a Streamlit prototype for market risk analysts who ask:
-
-> Why did VaR or PNL move between two dates?
+Risk Explain Copilot is a Streamlit prototype for market risk analysts who want to understand how trade sensitivities and historical risk-factor shocks create scenario P&L and VaR.
 
 The app uses natural-language questions to generate safe SQL, run a bounded SQLite query, and answer only from the returned rows. It does not expose the full database in the UI.
 
 ## Problem Statement
 
-Daily risk review is not just raw reporting. Analysts need to separate actual PNL movement from risk estimate movement, then connect the movement to risk factors, scenarios, market moves, and desk/book hierarchy.
+The core market risk chain is:
 
-This prototype makes that distinction explicit:
+```text
+Risk Factor -> Sensitivity -> Shock / Scenario -> Scenario P&L -> P&L Distribution -> VaR
+```
 
-- PNL explanation uses `sensitivity_value x market_move`.
-- VaR explanation uses changes in `var_contribution` by scenario and risk factor.
-- The answer layer is grounded in SQL output, so it should not invent numbers.
+In business terms:
+
+- Risk factor: what market variable can move?
+- Sensitivity: how exposed is the trade to that move?
+- Shock/scenario: how much does that risk factor move in a historical scenario?
+- P&L: what is the financial impact?
+- VaR: what percentile loss comes from the aggregated P&L distribution?
+
+This prototype stores only the two source inputs:
+
+- trade-level sensitivities
+- historical risk-factor scenarios
+
+Scenario P&L and VaR are computed from those inputs.
 
 ## Architecture
 
 - `app.py`: Streamlit chat UI. Each answer keeps generated SQL, bounded result rows, trace, and retrieved context under collapsed `Explanation details`.
-- `src/data_generator.py`: Generates deterministic sample market risk data.
+- `src/data_generator.py`: Generates deterministic trade sensitivities and historical RF scenarios.
 - `src/db.py`: Validates CSV columns, loads SQLite tables, and resets/reloads data.
-- `src/analytics.py`: Testable business calculations for PNL attribution, VaR attribution, trends, and drilldown.
-- `src/knowledge_base.py`: Business definitions and schema guidance used by retrieval.
+- `src/analytics.py`: Computes trade scenario P&L, aggregated P&L distributions, VaR, and drivers.
+- `src/knowledge_base.py`: Business definitions and schema guidance used for retrieval.
 - `src/vector_store.py`: Local SQLite-backed vector store with deterministic embeddings.
 - `src/query_engine.py`: Natural-language-to-SQL planner, SQL safety checks, execution, and answer generation.
-- `tests/`: Tests for SQL safety, query behavior, analytics formulas, follow-up context, and retrieval.
+- `tests/`: Tests for SQL safety, analytics formulas, query behavior, follow-up context, and retrieval.
 
 ## Setup Steps
 
@@ -36,20 +47,20 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Optional OpenAI-compatible mode:
-
-```bash
-OPENAI_API_KEY="..."
-OPENAI_MODEL="gpt-4o-mini"
-OPENAI_BASE_URL="https://your-compatible-endpoint/v1"
-```
-
 Optional Gemini mode:
 
 ```bash
 GEMINI_API_KEY="..."
 GEMINI_MODEL="gemini-2.5-flash"
 GEMINI_BASE_URL="https://generativelanguage.googleapis.com/v1beta/openai/"
+```
+
+Optional OpenAI-compatible mode:
+
+```bash
+OPENAI_API_KEY="..."
+OPENAI_MODEL="gpt-4o-mini"
+OPENAI_BASE_URL="https://your-compatible-endpoint/v1"
 ```
 
 If no key is configured, the app uses deterministic fallback SQL and response generation.
@@ -60,84 +71,100 @@ If no key is configured, the app uses deterministic fallback SQL and response ge
 streamlit run app.py
 ```
 
-Dummy data loads automatically. Use the sidebar to upload replacement CSVs, reload SQLite, regenerate sample data, or clear chat.
-
-If your environment has a generic dev runner, this also works:
+or:
 
 ```bash
 npm run dev
 ```
 
-The npm script is only a thin wrapper around Streamlit; there are no Node dependencies.
+Dummy data loads automatically. Use the sidebar to upload replacement CSVs, reload SQLite, regenerate sample data, or clear chat.
+
+## Data Model
+
+The database stores two source tables.
+
+### `trade_sensitivities`
+
+Trade-level exposure data.
+
+Columns:
+
+- `trade_id`
+- `risk_factor`
+- `desk`
+- `sensitivity_type`
+- `sensitivity_value`
+- `product`
+
+This table answers: how exposed is each trade to each risk factor?
+
+### `risk_factor_scenarios`
+
+Historical risk-factor shocks.
+
+Columns:
+
+- `historical_date`
+- `scenario_name`
+- `risk_factor`
+- `shock_value`
+- `shock_unit`
+
+Each historical date is treated as one scenario containing shocks across risk factors.
 
 ## Business Logic
 
-PNL:
+Trade scenario P&L:
 
-- Actual PNL change = `SUM(pnl_value on date2) - SUM(pnl_value on date1)`.
-- Estimated PNL impact = `sensitivity_value from date1 x market_move from date1 exclusive to date2 inclusive`.
-- Explained PNL = sum of estimated PNL impacts.
-- Residual PNL = actual PNL change - explained PNL.
-- PNL drivers are ranked by absolute estimated PNL impact.
+```text
+scenario_pnl = sensitivity_value x shock_value
+```
 
-VaR:
+Portfolio scenario P&L:
 
-- VaR is a risk estimate, not actual loss.
-- VaR change = `SUM(var_contribution on date2) - SUM(var_contribution on date1)`.
-- Scenario drivers compare scenario-level VaR contribution between two dates.
-- Risk-factor drivers compare risk-factor VaR contribution between two dates.
-- VaR drivers are ranked by absolute contribution movement.
+```text
+portfolio_scenario_pnl = SUM(scenario_pnl) by historical_date
+```
 
-The app should not explain VaR as PNL, and should not explain PNL as VaR.
+Loss amount:
+
+```text
+loss_amount = max(-portfolio_scenario_pnl, 0)
+```
+
+95% VaR:
+
+```text
+95% VaR = 95th percentile of loss_amount across historical dates
+```
+
+VaR drivers:
+
+1. Find the historical date selected by the 95% VaR percentile.
+2. Recompute trade/risk-factor P&L for that date.
+3. Group by risk factor.
+4. Rank by absolute driver P&L.
+
+## Sample Questions
+
+- What desks are we covering?
+- Show trade level P&L for D1.
+- Calculate 95% VaR for D1.
+- Explain VaR risk factor drivers for D1.
+- Show 10-day P&L trend for D2.
+- Show risk factor scenarios for SOFR.
+- What trades are in Equity Option?
 
 ## Query Flow
 
 1. User asks a question in chat.
 2. The vector store retrieves relevant schema and business context.
 3. If an API key is present, the LLM generates one read-only SQLite query.
-4. If no API key is present, a deterministic fallback planner handles common PNL, VaR, trend, coverage, driver, market move, and drilldown questions.
+4. If no API key is present, a deterministic fallback planner handles common coverage, P&L, VaR, scenario, driver, and trend questions.
 5. SQL safety validation blocks writes, multiple statements, `SELECT *`, SQLite internals, and unbounded raw-table exposure.
 6. The app executes only the bounded query.
 7. The answer layer receives the question plus SQL result rows and produces a concise answer.
 8. Previous chat turns are retained so follow-up questions can reuse scope and metric context.
-
-## Sample Questions
-
-- Why did VAR move for London Rates?
-- Explain PNL movement for London Rates.
-- What market moves explain the PNL change?
-- What are the top 5 scenario drivers for VAR?
-- Show 10-day VAR trend for FX Options.
-- Drill down London Rates VAR by risk factor.
-- What desks are we covering?
-
-## Data Model
-
-The app loads six CSVs into SQLite:
-
-- `hierarchy.csv`: `date`, `desk`, `book`, `portfolio`, `product`, `currency`
-- `pnl_results.csv`: `date`, `desk`, `book`, `portfolio`, `product`, `pnl_value`
-- `var_results.csv`: `date`, `desk`, `book`, `portfolio`, `scenario`, `risk_factor`, `product`, `var_contribution`
-- `sensitivities.csv`: `date`, `desk`, `book`, `portfolio`, `product`, `risk_factor`, `sensitivity_type`, `sensitivity_value`
-- `market_data.csv`: `date`, `risk_factor`, `market_level`, `market_move`, `move_unit`
-- `scenario_data.csv`: `date`, `scenario`, `risk_factor`, `shock_value`, `shock_unit`
-
-Table relationships:
-
-- `desk`, `book`, `portfolio`, and `product` link hierarchy, PNL, VaR, and sensitivities.
-- `risk_factor` links sensitivities, market data, scenario data, and VaR contribution rows.
-- `scenario` links VaR contribution rows to scenario shocks.
-- `date` defines the comparison window and trend grain.
-
-Generated sample coverage:
-
-- 5 desks
-- 3 books per desk
-- 15 portfolios
-- 20+ risk factors
-- 10 scenarios
-- 15 business dates
-- Multiple products and currencies
 
 ## SQL Safety
 
@@ -150,9 +177,9 @@ Generated sample coverage:
 
 ## Future Enhancements
 
-- Richer date parsing for explicit ranges, MTD, and quarter-to-date.
-- More realistic residual PNL decomposition for carry, fees, trades, and model effects.
-- Scenario shock interpretation in the final answer.
-- Role-based access controls and desk-level entitlements.
-- Production adapters for risk runs, market data, and trade lifecycle events.
-- Confidence scoring for stale, missing, or weakly explained movements.
+- Add explicit Postgres support for Prisma/Vercel storage.
+- Add trade economics and notional fields.
+- Add product-level and desk-level VaR decomposition.
+- Add expected shortfall.
+- Add confidence-level selection.
+- Add richer scenario labels and real historical market data adapters.

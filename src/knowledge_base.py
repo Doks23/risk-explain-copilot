@@ -13,102 +13,78 @@ class KnowledgeChunk:
 
 KNOWLEDGE_CHUNKS: tuple[KnowledgeChunk, ...] = (
     KnowledgeChunk(
-        "schema_var_results",
-        "VaR results table",
+        "risk_chain",
+        "Risk chain",
         (
-            "Use var_results for Value at Risk or VaR questions. "
-            "The table is at date, desk, book, portfolio, product, scenario, and risk_factor grain. "
-            "VaR movement is current date SUM(var_contribution) minus previous date SUM(var_contribution)."
+            "The core chain is Risk Factor -> Trade Sensitivity -> Historical Shock/Scenario -> Scenario P&L -> P&L Distribution -> VaR. "
+            "A risk factor is what can move; sensitivity is exposure; shock is how much it moves; P&L is sensitivity times shock; VaR is a percentile loss from aggregated scenario P&Ls."
         ),
-        ("schema", "var", "movement"),
+        ("risk_factor", "sensitivity", "shock", "pnl", "var"),
     ),
     KnowledgeChunk(
-        "schema_pnl_results",
-        "PNL results table",
+        "schema_trade_sensitivities",
+        "Trade sensitivity table",
         (
-            "Use pnl_results for actual or hypothetical PNL level questions. "
-            "The table is at date, desk, book, portfolio, and product grain. "
-            "Actual PNL movement is current date SUM(pnl_value) minus previous date SUM(pnl_value)."
+            "trade_sensitivities is the trade-level input table with trade_id, risk_factor, desk, sensitivity_type, sensitivity_value, and product. "
+            "It stores exposure, not P&L."
         ),
-        ("schema", "pnl", "movement"),
+        ("schema", "trade", "sensitivity"),
     ),
     KnowledgeChunk(
-        "schema_sensitivities",
-        "Sensitivities table",
+        "schema_risk_factor_scenarios",
+        "Risk-factor scenario table",
         (
-            "Use sensitivities for exposure. Sensitivity is not final PNL. "
-            "DV01 explains rate exposure, Delta explains equity or FX spot exposure, Vega explains volatility exposure, "
-            "and CS01 explains credit spread exposure."
-        ),
-        ("schema", "sensitivities", "exposure"),
-    ),
-    KnowledgeChunk(
-        "schema_market_data",
-        "Market data table",
-        (
-            "Use market_data for actual market moves by risk_factor. "
-            "Market move alone does not explain PNL; combine it with sensitivity. "
-            "For date1 to date2 attribution, use moves where date is greater than date1 and less than or equal to date2."
-        ),
-        ("schema", "market_data", "market_moves"),
-    ),
-    KnowledgeChunk(
-        "schema_scenario_data",
-        "Scenario data table",
-        (
-            "Use scenario_data for scenario shocks by date, scenario, and risk_factor. "
-            "It provides shock values and units that support scenario interpretation, while VaR contribution movement comes from var_results."
+            "risk_factor_scenarios is the historical risk-factor shock table with historical_date, scenario_name, risk_factor, shock_value, and shock_unit. "
+            "Each historical date is one scenario containing shocks for many risk factors."
         ),
         ("schema", "scenario", "shock"),
     ),
     KnowledgeChunk(
-        "schema_hierarchy",
-        "Hierarchy table",
+        "scenario_pnl_logic",
+        "Scenario P&L logic",
         (
-            "Use hierarchy for coverage questions such as what desks, books, portfolios, products, or currencies are covered. "
-            "The hierarchy table maps date, desk, book, portfolio, product, and currency. "
-            "Coverage questions should not default to VaR or PNL movement."
+            "Trade scenario P&L is computed by joining trade_sensitivities to risk_factor_scenarios on risk_factor. "
+            "scenario_pnl = sensitivity_value * shock_value. "
+            "This can be shown by trade, risk factor, desk, product, and historical scenario date."
         ),
-        ("schema", "coverage", "desk", "book"),
+        ("pnl", "scenario", "calculation"),
     ),
     KnowledgeChunk(
-        "pnl_attribution",
-        "PNL attribution logic",
+        "aggregation_logic",
+        "Aggregation logic",
         (
-            "PNL should be explained as estimated_pnl_impact = sensitivity_value from date1 multiplied by market_move between date1 and date2. "
-            "Actual PNL change comes from pnl_results. Explained PNL is the sum of estimated_pnl_impact. "
-            "Residual PNL equals actual PNL change minus explained PNL."
+            "Aggregation is essential for VaR. First compute trade/risk-factor scenario P&L, then aggregate scenario_pnl by historical_date across the selected desk/product/trades. "
+            "This creates the portfolio scenario P&L distribution."
         ),
-        ("pnl", "drivers", "sensitivities", "market_moves"),
+        ("aggregation", "pnl", "var"),
     ),
     KnowledgeChunk(
-        "market_move_explanation",
-        "Market move explanation",
+        "var_logic",
+        "VaR percentile logic",
         (
-            "For questions asking what market moves explain PNL, join sensitivities from date1 to market_data moves between date1 and date2. "
-            "Rank risk factors by absolute estimated_pnl_impact. "
-            "Do not use raw market moves as the final answer without the sensitivity exposure."
+            "VaR is computed from the aggregated scenario P&L distribution. "
+            "For this prototype, loss_amount = max(-scenario_pnl, 0), and 95% VaR is the 95th percentile loss across historical scenario dates. "
+            "VaR is not actual P&L and is not a maximum possible loss."
         ),
-        ("market_moves", "pnl", "sensitivities", "drivers"),
+        ("var", "percentile", "loss"),
     ),
     KnowledgeChunk(
-        "var_attribution",
-        "VaR attribution logic",
+        "var_drivers",
+        "VaR driver logic",
         (
-            "VaR is a risk estimate, not an actual loss. "
-            "Explain VaR movement by comparing var_contribution between two dates and ranking scenario or risk_factor deltas by absolute movement. "
-            "Do not explain VaR directly using sensitivity times market move."
+            "Risk-factor VaR drivers are the risk-factor P&L contributions on the historical scenario date selected by the 95% VaR percentile. "
+            "Rank drivers by absolute driver_pnl."
         ),
-        ("var", "drivers", "scenario", "risk_factor"),
+        ("var", "drivers", "risk_factor"),
     ),
     KnowledgeChunk(
-        "trend_analysis",
-        "Trend analysis",
+        "coverage",
+        "Coverage questions",
         (
-            "Trend questions should aggregate SUM(var_contribution) for VaR or SUM(pnl_value) for PNL by date. "
-            "For a 10-day trend, select the latest 10 business dates and order ascending."
+            "Coverage questions should use trade_sensitivities to list desks, trades, products, and risk factors. "
+            "Do not default coverage questions to VaR or P&L calculations."
         ),
-        ("trend", "time_series", "var", "pnl"),
+        ("coverage", "desk", "trade", "product"),
     ),
     KnowledgeChunk(
         "sql_safety",
@@ -128,14 +104,5 @@ KNOWLEDGE_CHUNKS: tuple[KnowledgeChunk, ...] = (
             "Do not invent numbers. If a question needs data that was not returned, say what is missing."
         ),
         ("response", "grounding"),
-    ),
-    KnowledgeChunk(
-        "desk_aliases",
-        "Desk and book examples",
-        (
-            "Known desks include London Rates, FX Options, Credit Trading, Equity Derivatives, and Treasury. "
-            "Each desk has three books and multiple portfolios/products."
-        ),
-        ("desk", "book", "aliases"),
     ),
 )
