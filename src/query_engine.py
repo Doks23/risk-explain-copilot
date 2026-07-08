@@ -1,35 +1,44 @@
 from __future__ import annotations
 
 import json
-import os
 import re
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from dotenv import load_dotenv
 
 from .db import DB_PATH, distinct_values, get_connection
-from .vector_store import retrieve_context
+from .document_store import retrieve_context
+from .llm_config import get_llm_config
 
 
-load_dotenv()
 MAX_RESULT_ROWS = 50
 
 SCHEMA_CONTEXT = """
 SQLite schema:
 - trade_sensitivities(trade_id, risk_factor, desk, sensitivity_type, sensitivity_value, product)
 - risk_factor_scenarios(historical_date, scenario_name, risk_factor, shock_value, shock_unit)
+- trade_pnl(trade_id, desk, product, historical_date, scenario_name, pnl)
 
 Business rules:
-- These are the two stored input tables.
-- Trade-level scenario P&L is computed, not stored: scenario_pnl = sensitivity_value * shock_value.
-- Aggregate P&L by historical_date to create the scenario P&L distribution.
-- 95% VaR is the 95th percentile of scenario losses, where loss_amount = max(-scenario_pnl, 0).
-- Aggregation is essential: desk/product VaR must aggregate scenario P&L by historical_date before calculating percentile.
-- Risk-factor VaR drivers are the risk-factor P&L contributions in the VaR scenario date.
-- Do not treat sensitivity as P&L. Do not treat shocks as P&L. P&L requires sensitivity times shock.
+- These are the three stored input tables. trade_pnl holds the actual trade-level P&L for every
+  trade on every historical scenario date (as if from full revaluation) and is the source of truth
+  for aggregation and VaR.
+- Portfolio/desk/entity scenario P&L = SUM(trade_pnl.pnl) grouped by historical_date for the scope
+  (desk/product/trade filters). Never derive portfolio P&L from trade_sensitivities x
+  risk_factor_scenarios; use trade_pnl for that.
+- 95% VaR uses the nearest-rank method: rank the scope's historical loss_amounts ascending
+  (loss_amount = max(-scenario_pnl, 0)) and take the ceil(N x 0.95)-th smallest, i.e. the 3rd-worst
+  day out of 50 historical scenarios. Not linear-interpolated percentile.
+- VaR is NOT additive: entity-level VaR is not the sum of desk-level VaRs, because each scope's
+  95th-percentile scenario date can differ. Only P&L is additive across scopes, VaR is not.
+- To explain WHAT drives VaR on its worst-case scenario date, join trade_sensitivities to
+  risk_factor_scenarios on risk_factor (sensitivity_value * shock_value) for that single date only.
+  This is a linear risk-factor attribution of the actual trade_pnl and may leave a small unexplained
+  residual versus the actual stored P&L (non-linear/convexity effects a static sensitivity can't capture).
+- Do not treat sensitivity as P&L. Do not treat shocks as P&L. Attribution P&L requires sensitivity
+  times shock, and only approximates the real trade_pnl.
 
 SQL rules:
 - Generate one read-only SQLite SELECT or WITH statement.
@@ -71,14 +80,6 @@ class QueryPlan:
     conversation_context: str = ""
 
 
-@dataclass(frozen=True)
-class LLMConfig:
-    provider: str
-    api_key: str
-    base_url: str | None
-    model: str
-
-
 def generate_query_plan(question: str, db_path: Path = DB_PATH, conversation_context: str | None = None) -> QueryPlan:
     cleaned = question.strip()
     if not cleaned:
@@ -91,6 +92,8 @@ def generate_query_plan(question: str, db_path: Path = DB_PATH, conversation_con
         try:
             plan = _llm_query_plan(cleaned, context, conversation_context)
             validate_sql(plan.sql)
+            if not _llm_sql_uses_trade_pnl_where_required(cleaned, plan.sql):
+                raise ValueError("LLM SQL aggregated P&L without sourcing trade_pnl.")
             return plan
         except Exception:
             pass
@@ -100,6 +103,23 @@ def generate_query_plan(question: str, db_path: Path = DB_PATH, conversation_con
         retrieved_context=context,
         conversation_context=conversation_context,
     )
+
+
+def _llm_sql_uses_trade_pnl_where_required(question: str, sql: str) -> bool:
+    """Guard against the LLM silently deriving portfolio P&L from sensitivity x shock instead of trade_pnl.
+
+    That SQL still executes successfully (so execute_query_plan won't catch it), but the VaR-scenario
+    date it finds is only a linear approximation of the real trade_pnl distribution. Only VaR/P&L/trend/
+    driver questions require trade_pnl; coverage and raw shock-lookup questions legitimately don't touch it.
+    """
+    lowered = question.lower()
+    if _is_coverage_question(lowered) and not _mentions_pnl(lowered) and not _mentions_var(lowered):
+        return True
+    if "risk factor" in lowered and ("scenario" in lowered or "shock" in lowered) and not _mentions_pnl(lowered) and not _mentions_var(lowered):
+        return True
+    if _mentions_var(lowered) or _mentions_pnl(lowered) or "trend" in lowered or "driver" in lowered or "explain" in lowered or re.search(r"\b\d+\s*[- ]?day\b", lowered):
+        return "trade_pnl" in sql.lower()
+    return True
 
 
 def generate_fallback_query_plan(question: str, db_path: Path = DB_PATH, conversation_context: str | None = None) -> QueryPlan:
@@ -130,24 +150,6 @@ def generate_response(question: str, plan: QueryPlan, result: pd.DataFrame) -> s
     return _fallback_response(question, plan, result)
 
 
-def get_llm_config() -> LLMConfig | None:
-    if os.getenv("OPENAI_API_KEY"):
-        return LLMConfig(
-            provider="OpenAI-compatible",
-            api_key=os.environ["OPENAI_API_KEY"],
-            base_url=os.getenv("OPENAI_BASE_URL") or None,
-            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
-        )
-    if os.getenv("GEMINI_API_KEY"):
-        return LLMConfig(
-            provider="Gemini",
-            api_key=os.environ["GEMINI_API_KEY"],
-            base_url=os.getenv("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/"),
-            model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
-        )
-    return None
-
-
 def validate_sql(sql: str) -> str:
     normalized = sql.strip().rstrip(";").strip()
     lowered = normalized.lower()
@@ -166,7 +168,7 @@ def validate_sql(sql: str) -> str:
 
 
 def enforce_limit(sql: str, row_limit: int = MAX_RESULT_ROWS) -> str:
-    if re.search(r"\blimit\s+\d+\s*$", sql, flags=re.IGNORECASE):
+    if re.search(r"\blimit\s+\d+\b", sql, flags=re.IGNORECASE):
         return sql
     return f"{sql}\nLIMIT {row_limit}"
 
@@ -239,9 +241,12 @@ def _llm_response(question: str, plan: QueryPlan, result: pd.DataFrame) -> str:
                 "role": "system",
                 "content": (
                     "Answer using only the SQL result rows. Do not invent numbers. "
-                    "Explain the chain Trade sensitivity x risk-factor shock = scenario P&L; "
-                    "scenario P&Ls aggregate by historical date; 95% VaR is the percentile loss from that distribution. "
-                    "Do not include SQL, raw JSON, Evidence from SQL, or Data trace in the visible answer."
+                    "trade_pnl holds actual trade-level P&L; VaR is the nearest-rank percentile loss from that "
+                    "scope's aggregated distribution and is NOT additive across scopes. Sensitivity x shock only "
+                    "explains what drove VaR on its worst-case date and may leave a small residual versus actual P&L. "
+                    "Write like a market risk analyst briefing a colleague: 2-4 sentences, plain prose, no markdown "
+                    "headers, no bullet-point walls, no restating every row. Lead with the number, then the one-line "
+                    "reason. Do not include SQL, raw JSON, or mention 'trace' in the visible answer."
                 ),
             },
             {"role": "user", "content": json.dumps(payload, default=str)},
@@ -264,7 +269,8 @@ def _fallback_query_plan(question: str, db_path: Path, conversation_context: str
     historical_date = _match_choice(scope_lower, distinct_values("historical_date", table="risk_factor_scenarios", db_path=db_path))
     top_n = _extract_top_n(lowered)
     days = _extract_days(lowered)
-    filters = _scope_filters(desk=desk, product=product, trade_id=trade_id, risk_factor=risk_factor)
+    pnl_filters = _scope_filters(desk=desk, product=product, trade_id=trade_id)
+    ts_filters = _scope_filters(desk=desk, product=product, trade_id=trade_id, risk_factor=risk_factor, alias="ts")
 
     metric_context = planning_lower
     if not _mentions_var(lowered) and not _mentions_pnl(lowered) and (_mentions_var(context_lower) or _mentions_pnl(context_lower)):
@@ -278,14 +284,14 @@ def _fallback_query_plan(question: str, db_path: Path, conversation_context: str
 
     if "trend" in planning_lower or re.search(r"\b\d+\s*[- ]?day\b", planning_lower):
         metric = "VAR" if _mentions_var(planning_lower) else "PNL"
-        return QueryPlan(question, _trend_sql(filters, days, metric), "trend", metric, "line", False, "Rule fallback generated scenario P&L trend SQL.")
+        return QueryPlan(question, _trend_sql(pnl_filters, days, metric), "trend", metric, "line", False, "Rule fallback generated P&L trend SQL from trade_pnl.")
 
     if _mentions_var(metric_context):
         if "risk factor" in planning_lower or "driver" in planning_lower or "explain" in planning_lower:
-            return QueryPlan(question, _var_driver_sql(filters, top_n), "var_risk_factor_drivers", "VAR", "bar", False, "Rule fallback generated VaR driver SQL.")
-        return QueryPlan(question, _var_sql(filters), "var", "VAR", "metric", False, "Rule fallback generated VaR percentile SQL.")
+            return QueryPlan(question, _var_driver_sql(pnl_filters, ts_filters, top_n), "var_risk_factor_drivers", "VAR", "bar", False, "Rule fallback generated VaR risk-factor attribution SQL with residual.")
+        return QueryPlan(question, _var_sql(pnl_filters), "var", "VAR", "metric", False, "Rule fallback generated VaR percentile SQL from trade_pnl.")
 
-    return QueryPlan(question, _trade_pnl_sql(filters, historical_date, top_n), "trade_scenario_pnl", "PNL", "bar", False, "Rule fallback generated trade scenario P&L SQL.")
+    return QueryPlan(question, _trade_pnl_sql(pnl_filters, historical_date, top_n), "trade_pnl", "PNL", "bar", False, "Rule fallback generated trade-level P&L SQL from trade_pnl.")
 
 
 def _coverage_sql() -> str:
@@ -324,56 +330,32 @@ LIMIT {top_n}
 """
 
 
-def _trade_pnl_sql(filters: str, historical_date: str | None, top_n: int) -> str:
-    date_filter = f" AND rs.historical_date = {_quote(historical_date)}" if historical_date else ""
+def _trade_pnl_sql(pnl_filters: str, historical_date: str | None, top_n: int) -> str:
+    date_filter = f" AND historical_date = {_quote(historical_date)}" if historical_date else ""
     return f"""
 SELECT
-  ts.trade_id,
-  ts.desk,
-  ts.product,
-  ts.risk_factor,
-  ts.sensitivity_type,
-  ROUND(ts.sensitivity_value, 4) AS sensitivity_value,
-  rs.historical_date,
-  rs.scenario_name,
-  ROUND(rs.shock_value, 4) AS shock_value,
-  rs.shock_unit,
-  ROUND(ts.sensitivity_value * rs.shock_value, 4) AS scenario_pnl
-FROM trade_sensitivities ts
-JOIN risk_factor_scenarios rs
-  ON rs.risk_factor = ts.risk_factor
-WHERE 1 = 1{filters}{date_filter}
-ORDER BY ABS(scenario_pnl) DESC
+  trade_id,
+  desk,
+  product,
+  historical_date,
+  scenario_name,
+  ROUND(pnl, 4) AS pnl
+FROM trade_pnl
+WHERE 1 = 1{pnl_filters}{date_filter}
+ORDER BY ABS(pnl) DESC
 LIMIT {top_n}
 """
 
 
-def _portfolio_pnl_cte(filters: str) -> str:
+def _var_pnl_cte(pnl_filters: str) -> str:
     return f"""
-trade_pnl AS (
-  SELECT
-    rs.historical_date,
-    rs.scenario_name,
-    ts.trade_id,
-    ts.desk,
-    ts.product,
-    ts.risk_factor,
-    ts.sensitivity_type,
-    ts.sensitivity_value,
-    rs.shock_value,
-    rs.shock_unit,
-    ts.sensitivity_value * rs.shock_value AS scenario_pnl
-  FROM trade_sensitivities ts
-  JOIN risk_factor_scenarios rs
-    ON rs.risk_factor = ts.risk_factor
-  WHERE 1 = 1{filters}
-),
 pnl_by_scenario AS (
   SELECT
     historical_date,
     scenario_name,
-    SUM(scenario_pnl) AS scenario_pnl
+    SUM(pnl) AS scenario_pnl
   FROM trade_pnl
+  WHERE 1 = 1{pnl_filters}
   GROUP BY historical_date, scenario_name
 ),
 losses AS (
@@ -412,9 +394,9 @@ var_scenario AS (
 """
 
 
-def _var_sql(filters: str) -> str:
+def _var_sql(pnl_filters: str) -> str:
     return f"""
-WITH {_portfolio_pnl_cte(filters)}
+WITH {_var_pnl_cte(pnl_filters)}
 SELECT
   'VAR' AS metric,
   0.95 AS confidence_level,
@@ -428,30 +410,63 @@ LIMIT 1
 """
 
 
-def _var_driver_sql(filters: str, top_n: int) -> str:
+def _var_driver_sql(pnl_filters: str, ts_filters: str, top_n: int) -> str:
     return f"""
-WITH {_portfolio_pnl_cte(filters)}
+WITH {_var_pnl_cte(pnl_filters)},
+attribution AS (
+  SELECT
+    ts.risk_factor,
+    ts.sensitivity_type,
+    SUM(ts.sensitivity_value) AS sensitivity_value,
+    MAX(rs.shock_value) AS shock_value,
+    MAX(rs.shock_unit) AS shock_unit,
+    SUM(ts.sensitivity_value * rs.shock_value) AS driver_pnl
+  FROM trade_sensitivities ts
+  JOIN risk_factor_scenarios rs
+    ON rs.risk_factor = ts.risk_factor
+  JOIN var_scenario
+    ON var_scenario.historical_date = rs.historical_date
+  WHERE 1 = 1{ts_filters}
+  GROUP BY ts.risk_factor, ts.sensitivity_type
+),
+drivers_with_residual AS (
+  SELECT
+    risk_factor,
+    sensitivity_type,
+    ROUND(sensitivity_value, 4) AS sensitivity_value,
+    ROUND(shock_value, 4) AS shock_value,
+    shock_unit,
+    ROUND(driver_pnl, 4) AS driver_pnl,
+    (SELECT historical_date FROM var_scenario) AS var_scenario_date
+  FROM attribution
+  UNION ALL
+  SELECT
+    'Unexplained (non-linear residual)' AS risk_factor,
+    'Residual' AS sensitivity_type,
+    NULL AS sensitivity_value,
+    NULL AS shock_value,
+    NULL AS shock_unit,
+    ROUND((SELECT scenario_pnl FROM var_scenario) - (SELECT SUM(driver_pnl) FROM attribution), 4) AS driver_pnl,
+    (SELECT historical_date FROM var_scenario) AS var_scenario_date
+)
 SELECT
-  trade_pnl.risk_factor,
-  trade_pnl.sensitivity_type,
-  ROUND(SUM(trade_pnl.sensitivity_value), 4) AS sensitivity_value,
-  ROUND(MAX(trade_pnl.shock_value), 4) AS shock_value,
-  MAX(trade_pnl.shock_unit) AS shock_unit,
-  ROUND(SUM(trade_pnl.scenario_pnl), 4) AS driver_pnl,
-  var_scenario.historical_date AS var_scenario_date
-FROM trade_pnl
-JOIN var_scenario
-  ON var_scenario.historical_date = trade_pnl.historical_date
-GROUP BY trade_pnl.risk_factor, trade_pnl.sensitivity_type, var_scenario.historical_date
+  risk_factor,
+  sensitivity_type,
+  sensitivity_value,
+  shock_value,
+  shock_unit,
+  driver_pnl,
+  var_scenario_date
+FROM drivers_with_residual
 ORDER BY ABS(driver_pnl) DESC
 LIMIT {top_n}
 """
 
 
-def _trend_sql(filters: str, days: int, metric: str) -> str:
+def _trend_sql(pnl_filters: str, days: int, metric: str) -> str:
     value_expr = "loss_amount" if metric == "VAR" else "scenario_pnl"
     return f"""
-WITH {_portfolio_pnl_cte(filters)}
+WITH {_var_pnl_cte(pnl_filters)}
 SELECT
   historical_date AS date,
   ROUND({value_expr}, 4) AS value
@@ -463,58 +478,43 @@ LIMIT {days}
 
 def _fallback_response(question: str, plan: QueryPlan, result: pd.DataFrame) -> str:
     if result.empty:
-        return "### Answer\nThe query returned no rows, so there is not enough data to answer from the available result."
+        return "No rows matched this query, so there isn't enough data to answer."
 
     first = result.iloc[0].to_dict()
-    lines = ["### Answer"]
 
     if plan.intent == "coverage" and "desk" in result.columns:
-        lines.append(f"We cover {result['desk'].nunique()} desks across {int(result['trade_count'].sum())} trades.")
-        lines.append("\n### Covered desks")
-        for _, row in result.iterrows():
-            lines.append(f"- {row['desk']}: {int(row['trade_count'])} trades; products: {row['products']}")
-    elif {"var_95", "scenario_pnl", "confidence_level"}.issubset(result.columns):
-        lines.append(
-            f"The {_fmt(first['confidence_level'])} confidence VaR is {_fmt(first['var_95'])}. "
-            f"It comes from historical scenario {first['historical_date']} where aggregate scenario P&L was {_fmt(first['scenario_pnl'])}."
+        return f"We cover {result['desk'].nunique()} desks, {int(result['trade_count'].sum())} trades: " + "; ".join(
+            f"{row['desk']} ({int(row['trade_count'])} trades, {row['products']})" for _, row in result.iterrows()
+        ) + "."
+
+    if {"var_95", "scenario_pnl", "confidence_level"}.issubset(result.columns):
+        return (
+            f"{_fmt(first['confidence_level'])} VaR is {_fmt(first['var_95'])}, driven by the {first['historical_date']} "
+            f"scenario (aggregated P&L {_fmt(first['scenario_pnl'])}). This is the scope's own worst-case percentile, "
+            f"not a sum of narrower scopes' VaR."
         )
-        lines.append("This is computed from trade sensitivities times risk-factor shocks, aggregated by historical date, then percentile-ranked as a loss distribution.")
-    elif "driver_pnl" in result.columns:
-        lines.append(
-            f"The largest VaR-scenario driver is {first.get('risk_factor')}: driver P&L {_fmt(first['driver_pnl'])} "
-            f"from sensitivity {_fmt(first.get('sensitivity_value', 0))} and shock {_fmt(first.get('shock_value', 0))} {first.get('shock_unit', '')}."
+
+    if "driver_pnl" in result.columns:
+        if first.get("risk_factor") == "Unexplained (non-linear residual)":
+            return f"Unexplained residual of {_fmt(first['driver_pnl'])} — the gap between actual P&L on the VaR date and the linear risk-factor attribution."
+        return (
+            f"Largest driver is {first.get('risk_factor')}: {_fmt(first['driver_pnl'])} "
+            f"(sensitivity {_fmt(first.get('sensitivity_value', 0))} x shock {_fmt(first.get('shock_value', 0))} {first.get('shock_unit', '')})."
         )
-    elif "scenario_pnl" in result.columns:
-        lines.append(
-            f"The largest returned trade scenario P&L is trade {first.get('trade_id')} / {first.get('risk_factor')}: "
-            f"{_fmt(first['scenario_pnl'])}, calculated as sensitivity {_fmt(first.get('sensitivity_value', 0))} "
-            f"x shock {_fmt(first.get('shock_value', 0))} {first.get('shock_unit', '')}."
-        )
-    elif {"date", "value"}.issubset(result.columns):
+
+    if "pnl" in result.columns and "trade_id" in result.columns:
+        return f"Largest P&L is trade {first.get('trade_id')} ({first.get('desk')}/{first.get('product')}) on {first.get('historical_date')}: {_fmt(first['pnl'])}."
+
+    if {"date", "value"}.issubset(result.columns):
         ordered = result.sort_values("date")
-        start = ordered.iloc[0]
-        end = ordered.iloc[-1]
+        start, end = ordered.iloc[0], ordered.iloc[-1]
         change = float(end["value"]) - float(start["value"])
-        lines.append(f"The returned scenario trend moved by {_fmt(change)}, from {_fmt(start['value'])} on {start['date']} to {_fmt(end['value'])} on {end['date']}.")
-    elif "shock_value" in result.columns:
-        lines.append(f"The query returned {len(result)} historical risk-factor shock rows. The first row is {first.get('risk_factor')} on {first.get('historical_date')}: {_fmt(first.get('shock_value'))} {first.get('shock_unit')}.")
-    else:
-        lines.append(f"The SQL returned {len(result)} row(s). The top row is: {first}.")
+        return f"Moved {_fmt(change)}, from {_fmt(start['value'])} on {start['date']} to {_fmt(end['value'])} on {end['date']}."
 
-    numeric_cols = [col for col in result.columns if pd.api.types.is_numeric_dtype(result[col])]
-    if plan.intent not in {"coverage", "trend"}:
-        lines.append("\n### Key metrics")
-        for col in numeric_cols[:6]:
-            lines.append(f"- {col}: {_fmt(first[col])} on top returned row")
+    if "shock_value" in result.columns:
+        return f"{len(result)} historical shock rows; first is {first.get('risk_factor')} on {first.get('historical_date')}: {_fmt(first.get('shock_value'))} {first.get('shock_unit')}."
 
-        if len(result) > 1:
-            lines.append("\n### Top returned rows")
-            for _, row in result.head(5).iterrows():
-                label = row.get("risk_factor", row.get("trade_id", row.get("historical_date", "row")))
-                summary = ", ".join(f"{col}={_fmt(row[col])}" for col in numeric_cols[:3])
-                lines.append(f"- {label}: {summary}")
-
-    return "\n".join(lines)
+    return f"{len(result)} row(s) returned. Top row: {first}."
 
 
 def _result_profile(result: pd.DataFrame) -> dict[str, Any]:
@@ -587,16 +587,18 @@ def _scope_filters(
     product: str | None = None,
     trade_id: str | None = None,
     risk_factor: str | None = None,
+    alias: str = "",
 ) -> str:
+    prefix = f"{alias}." if alias else ""
     filters = []
     if desk:
-        filters.append(f"ts.desk = {_quote(desk)}")
+        filters.append(f"{prefix}desk = {_quote(desk)}")
     if product:
-        filters.append(f"ts.product = {_quote(product)}")
+        filters.append(f"{prefix}product = {_quote(product)}")
     if trade_id:
-        filters.append(f"ts.trade_id = {_quote(trade_id)}")
+        filters.append(f"{prefix}trade_id = {_quote(trade_id)}")
     if risk_factor:
-        filters.append(f"ts.risk_factor = {_quote(risk_factor)}")
+        filters.append(f"{prefix}risk_factor = {_quote(risk_factor)}")
     return " AND " + " AND ".join(filters) if filters else ""
 
 
@@ -615,6 +617,8 @@ def _quote(value: str) -> str:
 
 
 def _fmt(value: Any) -> str:
+    if value is None:
+        return "n/a"
     try:
         return f"{float(value):,.2f}"
     except (TypeError, ValueError):

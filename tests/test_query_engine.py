@@ -42,7 +42,7 @@ def test_llm_config_can_use_gemini_key(monkeypatch) -> None:
     assert config.base_url == "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 
-def test_var_query_computes_percentile_loss_from_two_source_tables(tmp_path: Path) -> None:
+def test_var_query_computes_percentile_loss_from_stored_trade_pnl(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
 
     plan = generate_query_plan("Calculate 95% VaR for D1", db_path=db_path)
@@ -52,36 +52,43 @@ def test_var_query_computes_percentile_loss_from_two_source_tables(tmp_path: Pat
     assert plan.intent == "var"
     assert plan.metric == "VAR"
     assert {"confidence_level", "historical_date", "scenario_pnl", "var_95", "scenario_count"}.issubset(result.columns)
-    assert "trade_sensitivities" in plan.sql
-    assert "risk_factor_scenarios" in plan.sql
+    assert "trade_pnl" in plan.sql
     assert "Data trace" not in answer
 
 
-def test_trade_scenario_pnl_query_uses_sensitivity_times_shock(tmp_path: Path) -> None:
+def test_trade_pnl_query_returns_actual_stored_pnl(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
 
     plan = generate_query_plan("Show trade level PNL for D1", db_path=db_path)
     result = execute_query_plan(plan, db_path=db_path)
 
-    assert plan.intent == "trade_scenario_pnl"
-    assert {"trade_id", "risk_factor", "sensitivity_value", "shock_value", "scenario_pnl"}.issubset(result.columns)
-    assert "sensitivity_value * rs.shock_value" in plan.sql
+    assert plan.intent == "trade_pnl"
+    assert {"trade_id", "desk", "product", "historical_date", "pnl"}.issubset(result.columns)
+    assert "FROM trade_pnl" in plan.sql
 
 
-def test_var_driver_and_trend_queries(tmp_path: Path) -> None:
+def test_var_driver_query_attributes_by_risk_factor_with_residual(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
 
     driver_plan = generate_query_plan("Explain VaR risk factor drivers for D1", db_path=db_path)
-    trend_plan = generate_query_plan("Show 10-day PNL trend for D2", db_path=db_path)
-
     drivers = execute_query_plan(driver_plan, db_path=db_path)
-    trend = execute_query_plan(trend_plan, db_path=db_path)
 
     assert driver_plan.intent == "var_risk_factor_drivers"
     assert {"risk_factor", "driver_pnl", "var_scenario_date"}.issubset(drivers.columns)
+    assert "trade_sensitivities" in driver_plan.sql
+    assert "risk_factor_scenarios" in driver_plan.sql
+
+
+def test_trend_query_uses_stored_trade_pnl(tmp_path: Path) -> None:
+    db_path = _db(tmp_path)
+
+    trend_plan = generate_query_plan("Show 10-day PNL trend for D2", db_path=db_path)
+    trend = execute_query_plan(trend_plan, db_path=db_path)
+
     assert trend_plan.intent == "trend"
     assert {"date", "value"}.issubset(trend.columns)
     assert len(trend) == 10
+    assert "trade_pnl" in trend_plan.sql
 
 
 def test_coverage_question_uses_trade_table(tmp_path: Path) -> None:

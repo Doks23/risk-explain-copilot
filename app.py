@@ -5,28 +5,29 @@ import plotly.express as px
 import streamlit as st
 from dotenv import load_dotenv
 
-from src.db import DATA_DIR, DB_PATH, bootstrap_database, load_csvs_to_sqlite, save_uploaded_csv
+from src.db import DB_PATH, bootstrap_database
+from src.document_store import CHROMA_DIR, ingest_documents
 from src.query_engine import execute_query_plan, generate_fallback_query_plan, generate_query_plan, generate_response, get_llm_config
-from src.vector_store import VECTOR_DB_PATH, initialize_vector_store
 
 
 load_dotenv()
 st.set_page_config(page_title="Risk Explain Copilot", page_icon="Risk", layout="wide")
 
 
+@st.cache_resource(show_spinner="Indexing knowledge base...")
+def _ensure_documents_indexed() -> bool:
+    return ingest_documents()
+
+
 def main() -> None:
     bootstrap_database()
-    initialize_vector_store()
-    _sidebar()
+    _ensure_documents_indexed()
 
     st.title("Risk Explain Copilot")
-    st.caption("Ask market risk questions in chat. The app computes scenario P&L from trade sensitivities and historical risk-factor shocks, then derives VaR from the aggregated loss distribution.")
+    st.caption("Ask market risk questions. VaR is aggregated from actual trade-level P&L; drivers are explained via risk-factor attribution on the VaR date.")
 
     if "chat_history" not in st.session_state:
         st.session_state["chat_history"] = []
-
-    if not st.session_state["chat_history"]:
-        st.info("Ask a question below. The app will generate safe SQL, execute only that bounded query, then answer from the returned rows.")
 
     for idx, message in enumerate(st.session_state["chat_history"]):
         _render_chat_message(message, idx)
@@ -95,7 +96,7 @@ def _answer_question(question: str, conversation_context: str = "") -> dict[str,
             "answer_source": answer_source,
             "rows_returned": len(result),
             "database": str(DB_PATH),
-            "vector_store": str(VECTOR_DB_PATH),
+            "vector_store": str(CHROMA_DIR),
             "notes": plan.notes,
         }
         return {
@@ -151,69 +152,8 @@ def _render_assistant_message(message: dict[str, object], idx: int) -> None:
         else:
             st.caption("No SQL was generated for this response.")
 
-        st.markdown("**Data used for this response**")
-        st.caption("This is the bounded SQL result returned to the answer layer, not the full database.")
-        if result.empty:
-            st.caption("No rows returned.")
-        else:
-            st.dataframe(_display_frame(result), use_container_width=True, hide_index=True)
-
         st.markdown("**Calculation trace**")
         st.write(trace)
-        context = list(message.get("retrieved_context", []))
-        if context:
-            st.markdown("**Retrieved context**")
-            for item in context:
-                st.markdown(f"- **{item['title']}** `{item['score']}`: {item['text']}")
-        conversation_context = str(message.get("conversation_context", "")).strip()
-        if conversation_context:
-            st.markdown("**Conversation context used**")
-            st.text(conversation_context)
-
-
-def _sidebar() -> None:
-    with st.sidebar:
-        st.header("Data Admin")
-        if st.button("Clear chat", use_container_width=True):
-            st.session_state["chat_history"] = []
-            st.rerun()
-
-        st.divider()
-        uploaded_files = st.file_uploader(
-            "Upload replacement CSVs",
-            type=["csv"],
-            accept_multiple_files=True,
-            help="Accepted names: trade_sensitivities.csv, risk_factor_scenarios.csv",
-        )
-        if uploaded_files:
-            for uploaded in uploaded_files:
-                save_uploaded_csv(uploaded.name, uploaded.getvalue())
-            load_csvs_to_sqlite(reset=True)
-            st.success(f"Loaded {len(uploaded_files)} uploaded file(s).")
-
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("Reload CSVs", use_container_width=True):
-                load_csvs_to_sqlite(reset=True)
-                st.success("Reloaded SQLite database.")
-        with col2:
-            if st.button("Reset data", use_container_width=True):
-                from src.data_generator import generate_sample_data
-
-                generate_sample_data(DATA_DIR)
-                load_csvs_to_sqlite(reset=True)
-                st.success("Regenerated sample data.")
-
-        st.divider()
-        llm_config = get_llm_config()
-        if llm_config:
-            st.success(f"{llm_config.provider} mode enabled")
-            st.caption(f"Model: {llm_config.model}")
-        else:
-            st.warning("Mock mode")
-            st.caption("No OpenAI or Gemini key found. Using deterministic SQL and response fallback.")
-        st.caption(f"Vector context store: {VECTOR_DB_PATH.name}")
-        st.caption("The UI does not expose raw database tables.")
 
 
 def _chart_for_result(result: pd.DataFrame, visualization: str):
@@ -221,17 +161,18 @@ def _chart_for_result(result: pd.DataFrame, visualization: str):
         return None
     if {"date", "value"}.issubset(result.columns):
         return px.line(result, x="date", y="value", markers=True, title="Returned Trend")
-    if "driver_pnl" in result.columns and "risk_factor" in result.columns:
+    if "driver_pnl" in result.columns:
+        label = _label_column(result)
         frame = result.sort_values("driver_pnl", key=lambda s: s.abs())
-        return px.bar(frame, x="driver_pnl", y="risk_factor", orientation="h", title="VaR Scenario Risk-Factor Drivers")
-    if "scenario_pnl" in result.columns and "risk_factor" in result.columns:
-        frame = result.sort_values("scenario_pnl", key=lambda s: s.abs())
-        return px.bar(frame, x="scenario_pnl", y="risk_factor", orientation="h", title="Trade Scenario P&L")
+        return px.bar(frame, x="driver_pnl", y=label, orientation="h", title="VaR Scenario Drivers")
+    if "pnl" in result.columns and "trade_id" in result.columns:
+        frame = result.sort_values("pnl", key=lambda s: s.abs())
+        return px.bar(frame, x="pnl", y="trade_id", orientation="h", title="Trade-Level P&L")
     if "delta" in result.columns:
         label = _label_column(result)
         frame = result.sort_values("delta", key=lambda s: s.abs())
         return px.bar(frame, x="delta", y=label, orientation="h", title="Returned Driver Deltas")
-    if visualization == "bar":
+    if "bar" in visualization.lower():
         numeric_cols = [col for col in result.columns if pd.api.types.is_numeric_dtype(result[col])]
         if numeric_cols:
             label = _label_column(result)
@@ -240,19 +181,10 @@ def _chart_for_result(result: pd.DataFrame, visualization: str):
 
 
 def _label_column(result: pd.DataFrame) -> str:
-    if {"desk", "book", "portfolio", "scenario", "risk_factor"}.issubset(result.columns):
-        return "risk_factor"
-    for col in ("scenario", "risk_factor", "desk", "book", "date", "metric"):
+    for col in ("risk_factor", "driver", "trade_id", "scenario", "desk", "book", "date", "metric"):
         if col in result.columns:
             return col
     return result.columns[0]
-
-
-def _display_frame(frame: pd.DataFrame) -> pd.DataFrame:
-    display = frame.copy()
-    for col in display.select_dtypes(include=["float", "int"]).columns:
-        display[col] = display[col].map(lambda value: round(float(value), 4))
-    return display
 
 
 def _message_result_frame(message: dict[str, object]) -> pd.DataFrame:

@@ -13,16 +13,8 @@ DB_PATH = DATA_DIR / "risk_explain.db"
 EXPECTED_FILES = {
     "trade_sensitivities": "trade_sensitivities.csv",
     "risk_factor_scenarios": "risk_factor_scenarios.csv",
+    "trade_pnl": "trade_pnl.csv",
 }
-
-LEGACY_TABLES = (
-    "hierarchy",
-    "pnl_results",
-    "var_results",
-    "sensitivities",
-    "market_data",
-    "scenario_data",
-)
 
 SCHEMA = {
     "trade_sensitivities": """
@@ -44,11 +36,22 @@ SCHEMA = {
             shock_unit TEXT NOT NULL
         )
     """,
+    "trade_pnl": """
+        CREATE TABLE IF NOT EXISTS trade_pnl (
+            trade_id TEXT NOT NULL,
+            desk TEXT NOT NULL,
+            product TEXT NOT NULL,
+            historical_date TEXT NOT NULL,
+            scenario_name TEXT NOT NULL,
+            pnl REAL NOT NULL
+        )
+    """,
 }
 
 REQUIRED_COLUMNS = {
     "trade_sensitivities": ["trade_id", "risk_factor", "desk", "sensitivity_type", "sensitivity_value", "product"],
     "risk_factor_scenarios": ["historical_date", "scenario_name", "risk_factor", "shock_value", "shock_unit"],
+    "trade_pnl": ["trade_id", "desk", "product", "historical_date", "scenario_name", "pnl"],
 }
 
 
@@ -62,7 +65,7 @@ def get_connection(db_path: Path = DB_PATH) -> sqlite3.Connection:
 def initialize_database(db_path: Path = DB_PATH, reset: bool = False) -> None:
     with get_connection(db_path) as conn:
         if reset:
-            for table in (*EXPECTED_FILES.keys(), *LEGACY_TABLES):
+            for table in EXPECTED_FILES:
                 conn.execute(f"DROP TABLE IF EXISTS {table}")
         for ddl in SCHEMA.values():
             conn.execute(ddl)
@@ -123,17 +126,8 @@ def distinct_values(column: str, table: str = "trade_sensitivities", db_path: Pa
     return [str(row[0]) for row in rows]
 
 
-def save_uploaded_csv(filename: str, content: bytes, data_dir: Path = DATA_DIR) -> Path:
-    allowed = set(EXPECTED_FILES.values())
-    if filename not in allowed:
-        raise ValueError(f"Unexpected file {filename}. Expected one of: {sorted(allowed)}")
-    data_dir.mkdir(parents=True, exist_ok=True)
-    path = data_dir / filename
-    path.write_bytes(content)
-    return path
-
-
 def _create_indexes(conn: sqlite3.Connection) -> None:
     conn.execute("CREATE INDEX IF NOT EXISTS idx_trade_scope ON trade_sensitivities(desk, product, trade_id)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_trade_factor ON trade_sensitivities(risk_factor)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_scenario_factor ON risk_factor_scenarios(historical_date, risk_factor)")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_trade_pnl_scope ON trade_pnl(desk, product, trade_id, historical_date)")

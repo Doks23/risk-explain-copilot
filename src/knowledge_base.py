@@ -16,8 +16,10 @@ KNOWLEDGE_CHUNKS: tuple[KnowledgeChunk, ...] = (
         "risk_chain",
         "Risk chain",
         (
-            "The core chain is Risk Factor -> Trade Sensitivity -> Historical Shock/Scenario -> Scenario P&L -> P&L Distribution -> VaR. "
-            "A risk factor is what can move; sensitivity is exposure; shock is how much it moves; P&L is sensitivity times shock; VaR is a percentile loss from aggregated scenario P&Ls."
+            "The core chain is Risk Factor -> Trade Sensitivity -> Historical Shock/Scenario -> Trade P&L -> P&L Distribution -> VaR. "
+            "A risk factor is what can move; sensitivity is exposure; shock is how much it moves; trade_pnl is the actual "
+            "trade-level financial impact on a historical scenario date; VaR is a percentile loss from the aggregated P&L distribution. "
+            "Sensitivity times shock is used separately to attribute/explain what drove P&L on a specific date, not to compute the P&L itself."
         ),
         ("risk_factor", "sensitivity", "shock", "pnl", "var"),
     ),
@@ -26,7 +28,7 @@ KNOWLEDGE_CHUNKS: tuple[KnowledgeChunk, ...] = (
         "Trade sensitivity table",
         (
             "trade_sensitivities is the trade-level input table with trade_id, risk_factor, desk, sensitivity_type, sensitivity_value, and product. "
-            "It stores exposure, not P&L."
+            "It stores exposure, not P&L, and is used for risk-factor attribution/explain, not for aggregating VaR."
         ),
         ("schema", "trade", "sensitivity"),
     ),
@@ -40,12 +42,21 @@ KNOWLEDGE_CHUNKS: tuple[KnowledgeChunk, ...] = (
         ("schema", "scenario", "shock"),
     ),
     KnowledgeChunk(
+        "schema_trade_pnl",
+        "Trade P&L table",
+        (
+            "trade_pnl is the stored, actual trade-level P&L table with trade_id, desk, product, historical_date, scenario_name, and pnl. "
+            "It is the ground truth for every trade on every historical scenario date (as if from full revaluation), and is the "
+            "table to aggregate for portfolio, desk, product, or entity-level P&L and VaR."
+        ),
+        ("schema", "trade", "pnl"),
+    ),
+    KnowledgeChunk(
         "scenario_pnl_logic",
         "Scenario P&L logic",
         (
-            "Trade scenario P&L is computed by joining trade_sensitivities to risk_factor_scenarios on risk_factor. "
-            "scenario_pnl = sensitivity_value * shock_value. "
-            "This can be shown by trade, risk factor, desk, product, and historical scenario date."
+            "Portfolio/desk/entity scenario P&L is SUM(trade_pnl.pnl) grouped by historical_date for the scope's trades. "
+            "This is aggregation of stored actual P&L, not a computation from sensitivities and shocks."
         ),
         ("pnl", "scenario", "calculation"),
     ),
@@ -53,8 +64,8 @@ KNOWLEDGE_CHUNKS: tuple[KnowledgeChunk, ...] = (
         "aggregation_logic",
         "Aggregation logic",
         (
-            "Aggregation is essential for VaR. First compute trade/risk-factor scenario P&L, then aggregate scenario_pnl by historical_date across the selected desk/product/trades. "
-            "This creates the portfolio scenario P&L distribution."
+            "Aggregation is essential for VaR. Sum trade_pnl.pnl by historical_date across the selected desk/product/trades "
+            "to create that scope's portfolio P&L distribution before ranking it into a percentile."
         ),
         ("aggregation", "pnl", "var"),
     ),
@@ -62,20 +73,26 @@ KNOWLEDGE_CHUNKS: tuple[KnowledgeChunk, ...] = (
         "var_logic",
         "VaR percentile logic",
         (
-            "VaR is computed from the aggregated scenario P&L distribution. "
-            "For this prototype, loss_amount = max(-scenario_pnl, 0), and 95% VaR is the 95th percentile loss across historical scenario dates. "
+            "VaR is computed from a scope's own aggregated P&L distribution (from trade_pnl). "
+            "loss_amount = max(-scenario_pnl, 0). 95% VaR uses the nearest-rank method: rank the N historical "
+            "loss_amounts ascending and take the ceil(N x 0.95)-th smallest (e.g. the 3rd-worst day out of 50). "
+            "VaR is NOT additive: entity-level VaR is not the sum of desk-level VaRs, because each scope's 95th-percentile "
+            "scenario date can be a different historical date. Only P&L is additive across scopes; VaR is not. "
             "VaR is not actual P&L and is not a maximum possible loss."
         ),
-        ("var", "percentile", "loss"),
+        ("var", "percentile", "loss", "additivity"),
     ),
     KnowledgeChunk(
         "var_drivers",
         "VaR driver logic",
         (
-            "Risk-factor VaR drivers are the risk-factor P&L contributions on the historical scenario date selected by the 95% VaR percentile. "
+            "To explain what drove VaR, first find the scope's 95th-percentile historical scenario date from trade_pnl. "
+            "Then, for that single date only, join trade_sensitivities to risk_factor_scenarios (sensitivity_value * shock_value) "
+            "to attribute the move by risk factor. This linear attribution is an approximation of the actual trade_pnl on that "
+            "date, so an 'Unexplained (non-linear residual)' amount reconciles the attributed total back to actual P&L. "
             "Rank drivers by absolute driver_pnl."
         ),
-        ("var", "drivers", "risk_factor"),
+        ("var", "drivers", "risk_factor", "residual"),
     ),
     KnowledgeChunk(
         "coverage",

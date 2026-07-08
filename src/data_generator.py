@@ -82,6 +82,13 @@ def _shock_value(date_idx: int, risk_factor: str) -> float:
     return round(float(direction), 4)
 
 
+def _residual_pnl(trade_id: str, historical_date: str, linear_pnl: float) -> float:
+    """Non-linear/convexity effect a linear sensitivity model can't capture, bounded to +/-5% of the linear estimate."""
+    seed = _stable_index(f"{trade_id}-{historical_date}-residual")
+    pct = ((seed % 11) - 5) * 0.01
+    return round(linear_pnl * pct, 4)
+
+
 def generate_sample_data(data_dir: Path = DATA_DIR) -> dict[str, pd.DataFrame]:
     data_dir.mkdir(parents=True, exist_ok=True)
 
@@ -115,9 +122,31 @@ def generate_sample_data(data_dir: Path = DATA_DIR) -> dict[str, pd.DataFrame]:
                 }
             )
 
+    pnl_rows: list[dict[str, object]] = []
+    for trade in TRADES:
+        for date_idx, date in enumerate(_historical_dates()):
+            historical_date = date.strftime("%Y-%m-%d")
+            scenario_name = f"Historical {historical_date}"
+            linear_pnl = sum(
+                _sensitivity_value(trade.trade_id, risk_factor) * _shock_value(date_idx, risk_factor)
+                for risk_factor in trade.risk_factors
+            )
+            residual = _residual_pnl(trade.trade_id, historical_date, linear_pnl)
+            pnl_rows.append(
+                {
+                    "trade_id": trade.trade_id,
+                    "desk": trade.desk,
+                    "product": trade.product,
+                    "historical_date": historical_date,
+                    "scenario_name": scenario_name,
+                    "pnl": round(linear_pnl + residual, 4),
+                }
+            )
+
     frames = {
         "trade_sensitivities": pd.DataFrame(trade_rows),
         "risk_factor_scenarios": pd.DataFrame(scenario_rows),
+        "trade_pnl": pd.DataFrame(pnl_rows),
     }
 
     for name, frame in frames.items():
@@ -127,7 +156,7 @@ def generate_sample_data(data_dir: Path = DATA_DIR) -> dict[str, pd.DataFrame]:
 
 
 def ensure_sample_data(data_dir: Path = DATA_DIR) -> None:
-    expected = {"trade_sensitivities.csv", "risk_factor_scenarios.csv"}
+    expected = {"trade_sensitivities.csv", "risk_factor_scenarios.csv", "trade_pnl.csv"}
     if not expected.issubset({path.name for path in data_dir.glob("*.csv")}):
         generate_sample_data(data_dir)
 

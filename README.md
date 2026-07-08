@@ -9,34 +9,42 @@ The app uses natural-language questions to generate safe SQL, run a bounded SQLi
 The core market risk chain is:
 
 ```text
-Risk Factor -> Sensitivity -> Shock / Scenario -> Scenario P&L -> P&L Distribution -> VaR
+Risk Factor -> Sensitivity -> Shock / Scenario -> Trade P&L -> P&L Distribution -> VaR
 ```
 
 In business terms:
 
 - Risk factor: what market variable can move?
-- Sensitivity: how exposed is the trade to that move?
-- Shock/scenario: how much does that risk factor move in a historical scenario?
-- P&L: what is the financial impact?
-- VaR: what percentile loss comes from the aggregated P&L distribution?
+- Sensitivity: how exposed is a trade to that move?
+- Shock/scenario: how much does that risk factor move on a historical date?
+- Trade P&L: what was the actual financial impact on that trade for that scenario?
+- VaR: what percentile loss comes from a scope's aggregated P&L distribution?
 
-This prototype stores only the two source inputs:
+This prototype stores three source inputs:
 
-- trade-level sensitivities
-- historical risk-factor scenarios
+- trade-level sensitivities (exposure)
+- historical risk-factor scenarios (shocks)
+- trade-level P&L (the actual, stored P&L per trade per historical scenario date, as if from full revaluation)
 
-Scenario P&L and VaR are computed from those inputs.
+Aggregated P&L and VaR are computed directly from `trade_pnl`. Sensitivities and shocks are used
+only to *explain* what drove VaR on its worst-case date, via a linear risk-factor attribution that
+may leave a small unexplained residual against the actual P&L — the same gap real desks see between
+Greeks-based P&L explain and full revaluation.
+
+**VaR is not additive.** Entity-level VaR is not the sum of desk-level VaRs, because each scope's
+95th-percentile scenario date can be a different historical date. Only P&L is additive across scopes.
 
 ## Architecture
 
-- `app.py`: Streamlit chat UI. Each answer keeps generated SQL, bounded result rows, trace, and retrieved context under collapsed `Explanation details`.
-- `src/data_generator.py`: Generates deterministic trade sensitivities and historical RF scenarios.
+- `app.py`: Streamlit chat UI, single column, no sidebar. Each answer keeps generated SQL and calculation trace under a collapsed `Explanation details`.
+- `src/data_generator.py`: Generates deterministic trade sensitivities, historical RF scenarios, and trade-level P&L.
 - `src/db.py`: Validates CSV columns, loads SQLite tables, and resets/reloads data.
-- `src/analytics.py`: Computes trade scenario P&L, aggregated P&L distributions, VaR, and drivers.
-- `src/knowledge_base.py`: Business definitions and schema guidance used for retrieval.
-- `src/vector_store.py`: Local SQLite-backed vector store with deterministic embeddings.
+- `src/llm_config.py`: Resolves the active LLM provider (OpenAI-compatible or Gemini) from environment variables; shared by chat and embeddings.
+- `src/knowledge_base.py`: Hardcoded business-rule/schema chunks, ingested into the vector store alongside real documents.
+- `src/document_store.py`: RAG layer — LangChain loaders (`docs/*.md|.txt|.pdf`) → text splitter → embeddings (Gemini native or OpenAI) → a persisted Chroma vector store. Re-embeds only when source content changes.
 - `src/query_engine.py`: Natural-language-to-SQL planner, SQL safety checks, execution, and answer generation.
-- `tests/`: Tests for SQL safety, analytics formulas, query behavior, follow-up context, and retrieval.
+- `docs/`: Source documents for retrieval (methodology, policy). Drop in your own `.md`/`.txt`/`.pdf` files.
+- `tests/`: Tests for SQL safety, query behavior, follow-up context, and retrieval.
 
 ## Setup Steps
 
@@ -52,7 +60,7 @@ Optional Gemini mode:
 ```bash
 GEMINI_API_KEY="..."
 GEMINI_MODEL="gemini-2.5-flash"
-GEMINI_BASE_URL="https://generativelanguage.googleapis.com/v1beta/openai/"
+GEMINI_EMBEDDING_MODEL="gemini-embedding-001"
 ```
 
 Optional OpenAI-compatible mode:
@@ -61,9 +69,13 @@ Optional OpenAI-compatible mode:
 OPENAI_API_KEY="..."
 OPENAI_MODEL="gpt-4o-mini"
 OPENAI_BASE_URL="https://your-compatible-endpoint/v1"
+OPENAI_EMBEDDING_MODEL="text-embedding-3-small"
 ```
 
-If no key is configured, the app uses deterministic fallback SQL and response generation.
+If no key is configured, the app uses deterministic fallback SQL and response generation,
+and the RAG knowledge base is not indexed (retrieval returns nothing — the LLM path needs a
+key for both chat and embeddings). Gemini embeddings use the native Google GenAI API, since
+Gemini's OpenAI-compatible endpoint only proxies chat completions, not `/embeddings`.
 
 ## How To Run
 
@@ -77,11 +89,15 @@ or:
 npm run dev
 ```
 
-Dummy data loads automatically. Use the sidebar to upload replacement CSVs, reload SQLite, regenerate sample data, or clear chat.
+Sample data generates and loads automatically on first run. To regenerate it, delete `data/*.csv` and `data/*.db` and restart the app.
+
+Drop `.md`/`.txt`/`.pdf` files into `docs/` and restart the app to index them — ingestion
+hashes source content and only re-embeds when something actually changed, so restarts with
+unchanged docs are instant.
 
 ## Data Model
 
-The database stores two source tables.
+The database stores three source tables.
 
 ### `trade_sensitivities`
 
@@ -96,7 +112,7 @@ Columns:
 - `sensitivity_value`
 - `product`
 
-This table answers: how exposed is each trade to each risk factor?
+This table answers: how exposed is each trade to each risk factor? Used for explain, not aggregation.
 
 ### `risk_factor_scenarios`
 
@@ -110,40 +126,52 @@ Columns:
 - `shock_value`
 - `shock_unit`
 
-Each historical date is treated as one scenario containing shocks across risk factors.
+Each historical date is treated as one scenario containing shocks across risk factors. Used for explain, not aggregation.
+
+### `trade_pnl`
+
+Actual trade-level P&L per historical scenario date (as if from full revaluation).
+
+Columns:
+
+- `trade_id`
+- `desk`
+- `product`
+- `historical_date`
+- `scenario_name`
+- `pnl`
+
+This is the source of truth for aggregation and VaR at any scope (entity, desk, product, or trade).
 
 ## Business Logic
 
-Trade scenario P&L:
+Portfolio/desk/entity scenario P&L (aggregation, always from `trade_pnl`):
 
 ```text
-scenario_pnl = sensitivity_value x shock_value
-```
-
-Portfolio scenario P&L:
-
-```text
-portfolio_scenario_pnl = SUM(scenario_pnl) by historical_date
+scenario_pnl = SUM(trade_pnl.pnl) by historical_date, for the scope's trades
 ```
 
 Loss amount:
 
 ```text
-loss_amount = max(-portfolio_scenario_pnl, 0)
+loss_amount = max(-scenario_pnl, 0)
 ```
 
-95% VaR:
+95% VaR (nearest-rank method):
 
 ```text
-95% VaR = 95th percentile of loss_amount across historical dates
+95% VaR = ceil(N x 0.95)-th smallest loss_amount across the scope's N historical dates
+        = the 3rd-worst day out of 50 historical scenarios
 ```
 
-VaR drivers:
+VaR is not additive: entity VaR != SUM(desk VaRs), because each scope's 95th-percentile date can differ.
 
-1. Find the historical date selected by the 95% VaR percentile.
-2. Recompute trade/risk-factor P&L for that date.
-3. Group by risk factor.
-4. Rank by absolute driver P&L.
+VaR drivers (explain, not aggregation):
+
+1. Find the historical date selected by the scope's 95% VaR percentile.
+2. Attribute P&L on that date by risk factor: `driver_pnl = sensitivity_value x shock_value`, from `trade_sensitivities` joined to `risk_factor_scenarios`.
+3. Group by risk factor and rank by absolute driver P&L.
+4. Reconcile: `residual = actual scenario_pnl on that date - SUM(driver_pnl)`, shown as an "Unexplained (non-linear residual)" row.
 
 ## Sample Questions
 
@@ -173,13 +201,12 @@ VaR drivers:
 - Multiple statements are rejected.
 - Write/admin commands are rejected.
 - Results are capped at 50 rows unless the generated query has a lower limit.
-- The UI shows only answer-specific bounded result rows inside collapsed details.
+- The UI never renders raw database tables; `Explanation details` shows only the generated SQL and the calculation trace.
 
 ## Future Enhancements
 
 - Add explicit Postgres support for Prisma/Vercel storage.
 - Add trade economics and notional fields.
-- Add product-level and desk-level VaR decomposition.
 - Add expected shortfall.
 - Add confidence-level selection.
 - Add richer scenario labels and real historical market data adapters.
