@@ -203,9 +203,33 @@ VaR drivers (explain, not aggregation):
 - Results are capped at 50 rows unless the generated query has a lower limit.
 - The UI never renders raw database tables; `Explanation details` shows only the generated SQL and the calculation trace.
 
+## Deployment
+
+Streamlit needs a persistent process (not serverless functions), so it doesn't run on
+Vercel. Deploy to **[Streamlit Community Cloud](https://share.streamlit.io)** instead — free,
+built for this, and needs zero code changes:
+
+1. Push this repo to GitHub.
+2. On share.streamlit.io: **New app** → pick the repo/branch → main file path `app.py` → **Deploy**.
+3. In the app's **Settings → Secrets**, add your key(s):
+
+   ```toml
+   GEMINI_API_KEY = "..."
+   GEMINI_MODEL = "gemini-2.5-flash"
+   GEMINI_EMBEDDING_MODEL = "gemini-embedding-001"
+   ```
+
+   Streamlit Cloud exposes secrets as real environment variables, so `os.getenv(...)` picks
+   them up with no code change.
+4. First load regenerates `data/*.csv`/`*.db` and re-indexes `docs/` into Chroma automatically
+   (see `bootstrap_database()` and `ingest_documents()`) — no database service or persistent
+   volume needed, since both are self-healing on a fresh container.
+
+For a host with a persistent disk (chat history/uploaded docs surviving restarts), Render or
+Railway both run `streamlit run app.py` directly with no config changes.
+
 ## Future Enhancements
 
-- Add explicit Postgres support for Prisma/Vercel storage.
 - Add trade economics and notional fields.
 - Add expected shortfall.
 - Add confidence-level selection.
