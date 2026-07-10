@@ -56,6 +56,28 @@ Business rules:
   and sum exactly to the scope's total P&L on that date — unlike desk-level VaR figures, which are
   each computed on a different desk's own worst-case date and are never additive.
 - Do not treat sensitivity as P&L. Do not treat shocks as P&L.
+- If the question asks to see a series over time -- "trend", "graph", "chart", "plot", "timeline",
+  "visualize", "over time", "history", or "last N days" -- set visualization to "line", and pick ONE
+  of these two shapes depending on which metric:
+  - PNL trend: one COB's own scenario_pnl/loss_amount spread across its historical_date window (the
+    existing single-COB pattern). Still filter to exactly one cob_date.
+  - VAR trend: VaR is one number per COB, so a VaR trend means recomputing the 95% VaR independently
+    for EACH cob_date and plotting one point per COB (NOT spreading one COB's distribution across
+    historical_date, and NOT filtering to a single cob_date -- rank historical_date within each
+    cob_date separately, e.g. with ROW_NUMBER() OVER (PARTITION BY cob_date ORDER BY loss_amount),
+    keep only the 5th-worst row per cob_date, and return one (cob_date, var_95) row per COB).
+  Do not confuse either with "movement" used to mean "explain what drove this VaR" (e.g. "Desk D1 Var
+  movement"), which is a single-date breakdown, not a time series.
+
+Conversation rules:
+- If the current question does not say VAR or PNL, use whichever one the previous turn was about
+  (from the conversation context). Only switch metric when the current question explicitly says the
+  other one. E.g. after "What VAR for entity", a follow-up "explain the contribution by desk" stays
+  VAR and reuses entity VaR's own historical date; "show trend" stays VAR too, not PNL.
+- Likewise inherit scope (desk/product/trade/cob_date) from the previous turn when the current
+  question doesn't name one, and only change it when the current question explicitly names a
+  different one (e.g. "Explain the Desk D1 Var movement" switches scope to D1 and uses D1's own VaR
+  date, even if the prior turn was about the entity).
 
 SQL rules:
 - Generate one read-only SQLite SELECT or WITH statement.
@@ -270,9 +292,11 @@ def _llm_response(question: str, plan: QueryPlan, result: pd.DataFrame) -> str:
                     "sensitivity/shock context but the P&L itself is real, not approximated). "
                     "If the result rows include a cob_date, state it explicitly (e.g. 'As of COB 2026-07-08, ...') "
                     "since the book and its VaR both change from one COB to the next. "
-                    "Write like a market risk analyst briefing a colleague: 2-4 sentences, plain prose, no markdown "
-                    "headers, no bullet-point walls, no restating every row. Lead with the number, then the one-line "
-                    "reason. Do not include SQL, raw JSON, or mention 'trace' in the visible answer."
+                    "Be concise. Write like a market risk analyst briefing a colleague on a trading floor, not "
+                    "writing a report: at most 2-3 short sentences, plain prose, no markdown headers, no "
+                    "bullet-point walls, no restating every row, no filler ('it's worth noting', 'in summary'). "
+                    "Lead with the number, then the one-line reason, stop there. "
+                    "Do not include SQL, raw JSON, or mention 'trace' in the visible answer."
                 ),
             },
             {"role": "user", "content": json.dumps(payload, default=str)},
@@ -286,18 +310,18 @@ def _fallback_query_plan(question: str, db_path: Path, conversation_context: str
     lowered = question.lower()
     context_lower = conversation_context.lower()
     planning_lower = lowered if _has_explicit_intent(lowered) else f"{lowered}\n{context_lower}"
-    scope_lower = f"{lowered}\n{context_lower}"
 
-    desk = _match_choice(scope_lower, distinct_values("desk", table="trade_sensitivities", db_path=db_path))
-    product = _match_choice(scope_lower, distinct_values("product", table="trade_sensitivities", db_path=db_path))
-    trade_id = _match_choice(scope_lower, distinct_values("trade_id", table="trade_sensitivities", db_path=db_path))
-    risk_factor = _match_choice(scope_lower, distinct_values("risk_factor", table="trade_sensitivities", db_path=db_path))
-    historical_date = _match_choice(scope_lower, distinct_values("historical_date", table="risk_factor_scenarios", db_path=db_path))
-    cob_date = _resolve_cob_date(scope_lower, db_path)
+    desk = _match_choice(lowered, context_lower, distinct_values("desk", table="trade_sensitivities", db_path=db_path))
+    product = _match_choice(lowered, context_lower, distinct_values("product", table="trade_sensitivities", db_path=db_path))
+    trade_id = _match_choice(lowered, context_lower, distinct_values("trade_id", table="trade_sensitivities", db_path=db_path))
+    risk_factor = _match_choice(lowered, context_lower, distinct_values("risk_factor", table="trade_sensitivities", db_path=db_path))
+    historical_date = _match_choice(lowered, context_lower, distinct_values("historical_date", table="risk_factor_scenarios", db_path=db_path))
+    cob_date = _resolve_cob_date(lowered, context_lower, db_path)
     top_n = _extract_top_n(lowered)
     days = _extract_days(lowered)
     pnl_filters = _scope_filters(cob_date=cob_date, desk=desk, product=product, trade_id=trade_id)
     ts_filters = _scope_filters(cob_date=cob_date, desk=desk, product=product, trade_id=trade_id, risk_factor=risk_factor, alias="ts")
+    pnl_filters_no_cob = _scope_filters(desk=desk, product=product, trade_id=trade_id)
     cob_note = f" (COB {cob_date})" if cob_date else ""
 
     metric_context = planning_lower
@@ -310,9 +334,15 @@ def _fallback_query_plan(question: str, db_path: Path, conversation_context: str
     if "risk factor" in planning_lower and ("scenario" in planning_lower or "shock" in planning_lower) and "pnl" not in planning_lower and "p&l" not in planning_lower:
         return QueryPlan(question, _scenario_shock_sql(risk_factor, historical_date, top_n), "scenario_shocks", "SHOCK", "table", False, "Rule fallback generated RF scenario SQL.")
 
-    if "trend" in planning_lower or re.search(r"\b\d+\s*[- ]?day\b", planning_lower):
-        metric = "VAR" if _mentions_var(planning_lower) else "PNL"
-        return QueryPlan(question, _trend_sql(pnl_filters, days, metric, cob_date), "trend", metric, "line", False, f"Rule fallback generated P&L trend SQL from trade_pnl{cob_note}.")
+    if _mentions_timeline(planning_lower) or re.search(r"\b\d+\s*[- ]?day\b", planning_lower):
+        # Use metric_context, not planning_lower: timeline words alone count as an explicit intent,
+        # which would otherwise block inheriting VAR/PNL from the prior question (e.g. a bare "show
+        # trend" after "What VAR for entity" must stay VAR, not silently default to PNL).
+        if _mentions_var(metric_context):
+            # A true VaR trend: the 95% VaR figure itself, recomputed once per COB, across COBs --
+            # not one COB's own loss distribution spread across historical_date (that's PNL trend).
+            return QueryPlan(question, _var_trend_across_cobs_sql(pnl_filters_no_cob, days), "var_trend", "VAR", "line", False, "Rule fallback generated VaR-per-COB trend SQL, recomputed independently for each COB.")
+        return QueryPlan(question, _trend_sql(pnl_filters, days, "PNL", cob_date), "trend", "PNL", "line", False, f"Rule fallback generated PNL trend SQL from trade_pnl{cob_note}.")
 
     if _mentions_var(metric_context):
         wants_breakdown = "driver" in planning_lower or "explain" in planning_lower or "break" in planning_lower
@@ -539,6 +569,58 @@ LIMIT {days}
 """
 
 
+def _var_trend_across_cobs_sql(filters_no_cob: str, days: int) -> str:
+    """A true VaR trend: the 95% VaR figure itself, recomputed once per COB, plotted across COBs.
+
+    Different from _trend_sql (which spreads one COB's own loss distribution across historical_date) --
+    this ranks each COB's window independently (PARTITION BY cob_date) and keeps only the k-th-worst
+    row per COB, so the result is one VaR point per COB, e.g. how VaR moved day over day.
+    """
+    return f"""
+WITH pnl_by_scenario AS (
+  SELECT
+    cob_date,
+    historical_date,
+    SUM(pnl) AS scenario_pnl
+  FROM trade_pnl
+  WHERE 1 = 1{filters_no_cob}
+  GROUP BY cob_date, historical_date
+),
+losses AS (
+  SELECT
+    cob_date,
+    historical_date,
+    CASE WHEN scenario_pnl < 0 THEN -scenario_pnl ELSE 0 END AS loss_amount
+  FROM pnl_by_scenario
+),
+ranked AS (
+  SELECT
+    cob_date,
+    historical_date,
+    loss_amount,
+    ROW_NUMBER() OVER (PARTITION BY cob_date ORDER BY loss_amount) AS rn,
+    COUNT(*) OVER (PARTITION BY cob_date) AS scenario_count
+  FROM losses
+),
+target AS (
+  SELECT
+    cob_date,
+    scenario_count - CAST(ROUND(MAX(scenario_count * 0.05, 1)) AS INT) + 1 AS target_rank
+  FROM ranked
+  GROUP BY cob_date, scenario_count
+)
+SELECT
+  ranked.cob_date AS date,
+  ROUND(ranked.loss_amount, 4) AS value,
+  ranked.historical_date AS var_scenario_date
+FROM ranked
+JOIN target
+  ON target.cob_date = ranked.cob_date AND target.target_rank = ranked.rn
+ORDER BY ranked.cob_date DESC
+LIMIT {days}
+"""
+
+
 def _cob_prefix(row: dict[str, Any]) -> str:
     cob_date = row.get("cob_date")
     return f"As of COB {cob_date}, " if cob_date else ""
@@ -629,8 +711,18 @@ def _mentions_desk_breakdown(text: str) -> bool:
     return bool(re.search(r"by desk|desk level|desk breakdown|per desk|across desks|each desk|by book", text))
 
 
+def _mentions_timeline(text: str) -> bool:
+    """Any phrasing that asks to see a series over time, plotted as a line chart.
+
+    Deliberately excludes words like "movement" alone, which is already used to mean "explain what
+    drove this VaR" (e.g. "Explain the Desk D1 Var movement") -- a single-date breakdown, not a
+    time series -- so it must not be redirected into the trend branch.
+    """
+    return bool(re.search(r"\btrend\b|\bgraph\b|\bchart\b|\bplot\b|\btimeline\b|visuali[sz]e|over time|\bhistory\b", text))
+
+
 def _has_explicit_intent(lowered: str) -> bool:
-    return any(term in lowered for term in ("scenario", "shock", "trend", "day", "risk factor", "driver", "var", "pnl", "p&l", "pl", "trade"))
+    return _mentions_timeline(lowered) or any(term in lowered for term in ("scenario", "shock", "day", "risk factor", "driver", "var", "pnl", "p&l", "pl", "trade"))
 
 
 def _extract_top_n(lowered: str) -> int:
@@ -650,28 +742,44 @@ def _extract_days(lowered: str) -> int:
     return max(2, min(60, int(match.group(1))))
 
 
-def _match_choice(lowered: str, choices: list[str]) -> str | None:
+def _literal_match(text: str, choices: list[str]) -> str | None:
     for choice in sorted(choices, key=len, reverse=True):
-        if choice.lower() in lowered:
-            return choice
-    compact_query = re.sub(r"[^a-z0-9]", "", lowered)
-    for choice in sorted(choices, key=len, reverse=True):
-        if re.sub(r"[^a-z0-9]", "", choice.lower()) in compact_query:
+        if choice.lower() in text:
             return choice
     return None
 
 
-def _resolve_cob_date(scope_lower: str, db_path: Path) -> str | None:
+def _compact_match(text: str, choices: list[str]) -> str | None:
+    compact_text = re.sub(r"[^a-z0-9]", "", text)
+    for choice in sorted(choices, key=len, reverse=True):
+        if re.sub(r"[^a-z0-9]", "", choice.lower()) in compact_text:
+            return choice
+    return None
+
+
+def _match_choice(question_lower: str, context_lower: str, choices: list[str]) -> str | None:
+    """Resolve a scope value (desk/product/trade_id/...), preferring an explicit mention in the
+    current question, then falling back to prior conversation turns for follow-ups.
+
+    The fuzzy "compact" pass (strips spaces/punctuation, for phrasing like "T-1" vs "T1") only ever
+    runs against the CURRENT question, never against conversation context. Context includes raw
+    generated SQL for cob_date continuity, and compact-matching SQL is unsafe: e.g. "...AS INT) + 1"
+    compacts to "...asint1...", which falsely substring-matches trade_id "T1".
+    """
+    return _literal_match(question_lower, choices) or _literal_match(context_lower, choices) or _compact_match(question_lower, choices)
+
+
+def _resolve_cob_date(question_lower: str, context_lower: str, db_path: Path) -> str | None:
     """The single cob_date every trade_pnl/trade_sensitivities query must be scoped to.
 
     Matches an explicit date mention, "latest"/"today"/"current"/"now", or falls back to the
     most recent cob_date on the book — the same default the LLM path is instructed to use.
     """
     cob_dates = distinct_values("cob_date", table="trade_sensitivities", db_path=db_path)
-    matched = _match_choice(scope_lower, cob_dates)
+    matched = _match_choice(question_lower, context_lower, cob_dates)
     if matched:
         return matched
-    if re.search(r"\b(latest|today|current|now|most recent)\b", scope_lower):
+    if re.search(r"\b(latest|today|current|now|most recent)\b", f"{question_lower}\n{context_lower}"):
         return latest_cob_date(db_path)
     return latest_cob_date(db_path)
 

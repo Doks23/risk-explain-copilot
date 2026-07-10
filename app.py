@@ -161,6 +161,12 @@ def _chart_for_result(result: pd.DataFrame, visualization: str):
         return None
     if {"date", "value"}.issubset(result.columns):
         return px.line(result, x="date", y="value", markers=True, title="Returned Trend")
+    date_col = _date_like_column(result)
+    if date_col and "line" in visualization.lower():
+        numeric_cols = [c for c in result.columns if pd.api.types.is_numeric_dtype(result[c]) and c != date_col]
+        if numeric_cols:
+            frame = result.sort_values(date_col)
+            return px.line(frame, x=date_col, y=numeric_cols[0], markers=True, title="Returned Trend")
     if "driver_pnl" in result.columns:
         label = _label_column(result)
         frame = result.sort_values("driver_pnl", key=lambda s: s.abs())
@@ -185,6 +191,22 @@ def _label_column(result: pd.DataFrame) -> str:
         if col in result.columns:
             return col
     return result.columns[0]
+
+
+def _date_like_column(result: pd.DataFrame) -> str | None:
+    """The x-axis column for a trend chart, robust to the LLM naming it differently than "date".
+
+    Prefers a more specific date column (e.g. "historical_date") over "cob_date", since cob_date is
+    usually a fixed scope label within one COB's trend -- except when it's the ONLY date-like column,
+    which means this is a VaR-across-COBs trend where cob_date genuinely is the time axis.
+    """
+    if "date" in result.columns:
+        return "date"
+    date_like = [col for col in result.columns if "date" in col.lower()]
+    if not date_like:
+        return None
+    non_cob = [col for col in date_like if col != "cob_date"]
+    return non_cob[0] if non_cob else date_like[0]
 
 
 def _message_result_frame(message: dict[str, object]) -> pd.DataFrame:

@@ -181,3 +181,31 @@ def test_follow_up_query_uses_prior_desk_scope(tmp_path: Path) -> None:
     assert plan.intent == "var_risk_factor_drivers"
     assert "ts.desk = 'D1'" in plan.sql
     assert not result.empty
+
+
+def test_conversation_context_sql_does_not_falsely_match_trade_id(tmp_path: Path) -> None:
+    """Regression test: prior turns' generated SQL is embedded in conversation_context, and SQL syntax
+    can accidentally spell out a trade_id-like substring once whitespace/punctuation is stripped
+    (e.g. "...AS INT) + 1..." compacts to "...asint1...", falsely matching trade_id "T1"). The fuzzy
+    compact-match pass must never run against conversation context, only the current question."""
+    db_path = _db(tmp_path)
+    entity_plan = generate_query_plan("What VAR for entity", db_path=db_path)
+    context = f"User: What VAR for entity\nAssistant: intent={entity_plan.intent}; sql={entity_plan.sql}"
+
+    follow_up = generate_query_plan("Explain the contribution by Desk", db_path=db_path, conversation_context=context)
+
+    assert "trade_id" not in follow_up.sql
+    assert follow_up.intent == "var_desk_drivers"
+
+
+def test_bare_trend_question_inherits_var_from_prior_turn_not_pnl(tmp_path: Path) -> None:
+    db_path = _db(tmp_path)
+    entity_plan = generate_query_plan("What VAR for entity", db_path=db_path)
+    context = f"User: What VAR for entity\nAssistant: intent={entity_plan.intent}; metric={entity_plan.metric}; sql={entity_plan.sql}"
+
+    trend_plan = generate_query_plan("show trend", db_path=db_path, conversation_context=context)
+
+    assert trend_plan.metric == "VAR"
+
+    override_plan = generate_query_plan("show pnl trend", db_path=db_path, conversation_context=context)
+    assert override_plan.metric == "PNL"
