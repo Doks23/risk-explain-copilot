@@ -1,601 +1,1249 @@
 historical_date,scenario_name,risk_factor,shock_value,shock_unit
-2025-07-01,Historical 2025-07-01,SOFR,-70.0,bps
-2025-07-01,Historical 2025-07-01,SONIA,-86.0,bps
-2025-07-01,Historical 2025-07-01,ESTER,58.0,bps
-2025-07-01,Historical 2025-07-01,USD GBP,-6.0,pct
-2025-07-01,Historical 2025-07-01,USD EUR,7.0,pct
-2025-07-01,Historical 2025-07-01,USD JPY,9.0,pct
-2025-07-01,Historical 2025-07-01,Vodafone Spot,5.0,pct
-2025-07-01,Historical 2025-07-01,HSBC Spot,-6.0,pct
-2025-07-01,Historical 2025-07-01,SPX,-7.0,pct
-2025-07-01,Historical 2025-07-01,GBP Swaption Vol,-0.7,vol_pt
-2025-07-01,Historical 2025-07-01,EUR Credit Spread,-46.0,bps
-2025-07-01,Historical 2025-07-01,Brent,-10.0,pct
-2025-07-02,Historical 2025-07-02,SOFR,69.0,bps
-2025-07-02,Historical 2025-07-02,SONIA,53.0,bps
-2025-07-02,Historical 2025-07-02,ESTER,29.0,bps
-2025-07-02,Historical 2025-07-02,USD GBP,-10.0,pct
-2025-07-02,Historical 2025-07-02,USD EUR,3.0,pct
-2025-07-02,Historical 2025-07-02,USD JPY,5.0,pct
-2025-07-02,Historical 2025-07-02,Vodafone Spot,1.0,pct
-2025-07-02,Historical 2025-07-02,HSBC Spot,-10.0,pct
-2025-07-02,Historical 2025-07-02,SPX,10.0,pct
-2025-07-02,Historical 2025-07-02,GBP Swaption Vol,-2.1,vol_pt
-2025-07-02,Historical 2025-07-02,EUR Credit Spread,-75.0,bps
-2025-07-02,Historical 2025-07-02,Brent,7.0,pct
-2025-07-03,Historical 2025-07-03,SOFR,40.0,bps
-2025-07-03,Historical 2025-07-03,SONIA,24.0,bps
-2025-07-03,Historical 2025-07-03,ESTER,0.0,bps
-2025-07-03,Historical 2025-07-03,USD GBP,7.0,pct
-2025-07-03,Historical 2025-07-03,USD EUR,-1.0,pct
-2025-07-03,Historical 2025-07-03,USD JPY,1.0,pct
-2025-07-03,Historical 2025-07-03,Vodafone Spot,-3.0,pct
-2025-07-03,Historical 2025-07-03,HSBC Spot,7.0,pct
-2025-07-03,Historical 2025-07-03,SPX,6.0,pct
-2025-07-03,Historical 2025-07-03,GBP Swaption Vol,-3.5,vol_pt
-2025-07-03,Historical 2025-07-03,EUR Credit Spread,64.0,bps
-2025-07-03,Historical 2025-07-03,Brent,3.0,pct
-2025-07-04,Historical 2025-07-04,SOFR,11.0,bps
-2025-07-04,Historical 2025-07-04,SONIA,-5.0,bps
-2025-07-04,Historical 2025-07-04,ESTER,-29.0,bps
-2025-07-04,Historical 2025-07-04,USD GBP,3.0,pct
-2025-07-04,Historical 2025-07-04,USD EUR,-5.0,pct
-2025-07-04,Historical 2025-07-04,USD JPY,-3.0,pct
-2025-07-04,Historical 2025-07-04,Vodafone Spot,-7.0,pct
-2025-07-04,Historical 2025-07-04,HSBC Spot,3.0,pct
-2025-07-04,Historical 2025-07-04,SPX,2.0,pct
-2025-07-04,Historical 2025-07-04,GBP Swaption Vol,2.45,vol_pt
-2025-07-04,Historical 2025-07-04,EUR Credit Spread,35.0,bps
-2025-07-04,Historical 2025-07-04,Brent,-1.0,pct
-2025-07-05,Historical 2025-07-05,SOFR,-18.0,bps
-2025-07-05,Historical 2025-07-05,SONIA,-34.0,bps
-2025-07-05,Historical 2025-07-05,ESTER,-58.0,bps
-2025-07-05,Historical 2025-07-05,USD GBP,-1.0,pct
-2025-07-05,Historical 2025-07-05,USD EUR,-9.0,pct
-2025-07-05,Historical 2025-07-05,USD JPY,-7.0,pct
-2025-07-05,Historical 2025-07-05,Vodafone Spot,10.0,pct
-2025-07-05,Historical 2025-07-05,HSBC Spot,-1.0,pct
-2025-07-05,Historical 2025-07-05,SPX,-2.0,pct
-2025-07-05,Historical 2025-07-05,GBP Swaption Vol,1.05,vol_pt
-2025-07-05,Historical 2025-07-05,EUR Credit Spread,6.0,bps
-2025-07-05,Historical 2025-07-05,Brent,-5.0,pct
-2025-07-06,Historical 2025-07-06,SOFR,-62.0,bps
-2025-07-06,Historical 2025-07-06,SONIA,-78.0,bps
-2025-07-06,Historical 2025-07-06,ESTER,66.0,bps
-2025-07-06,Historical 2025-07-06,USD GBP,-5.0,pct
-2025-07-06,Historical 2025-07-06,USD EUR,8.0,pct
-2025-07-06,Historical 2025-07-06,USD JPY,10.0,pct
-2025-07-06,Historical 2025-07-06,Vodafone Spot,6.0,pct
-2025-07-06,Historical 2025-07-06,HSBC Spot,-5.0,pct
-2025-07-06,Historical 2025-07-06,SPX,-6.0,pct
-2025-07-06,Historical 2025-07-06,GBP Swaption Vol,-0.35,vol_pt
-2025-07-06,Historical 2025-07-06,EUR Credit Spread,-38.0,bps
-2025-07-06,Historical 2025-07-06,Brent,-9.0,pct
-2025-07-07,Historical 2025-07-07,SOFR,77.0,bps
-2025-07-07,Historical 2025-07-07,SONIA,61.0,bps
-2025-07-07,Historical 2025-07-07,ESTER,37.0,bps
-2025-07-07,Historical 2025-07-07,USD GBP,-9.0,pct
-2025-07-07,Historical 2025-07-07,USD EUR,4.0,pct
-2025-07-07,Historical 2025-07-07,USD JPY,6.0,pct
-2025-07-07,Historical 2025-07-07,Vodafone Spot,2.0,pct
-2025-07-07,Historical 2025-07-07,HSBC Spot,-9.0,pct
-2025-07-07,Historical 2025-07-07,SPX,-10.0,pct
-2025-07-07,Historical 2025-07-07,GBP Swaption Vol,-1.75,vol_pt
-2025-07-07,Historical 2025-07-07,EUR Credit Spread,-67.0,bps
-2025-07-07,Historical 2025-07-07,Brent,8.0,pct
-2025-07-08,Historical 2025-07-08,SOFR,48.0,bps
-2025-07-08,Historical 2025-07-08,SONIA,32.0,bps
-2025-07-08,Historical 2025-07-08,ESTER,8.0,bps
-2025-07-08,Historical 2025-07-08,USD GBP,8.0,pct
-2025-07-08,Historical 2025-07-08,USD EUR,0.0,pct
-2025-07-08,Historical 2025-07-08,USD JPY,2.0,pct
-2025-07-08,Historical 2025-07-08,Vodafone Spot,-2.0,pct
-2025-07-08,Historical 2025-07-08,HSBC Spot,8.0,pct
-2025-07-08,Historical 2025-07-08,SPX,7.0,pct
-2025-07-08,Historical 2025-07-08,GBP Swaption Vol,-3.15,vol_pt
-2025-07-08,Historical 2025-07-08,EUR Credit Spread,72.0,bps
-2025-07-08,Historical 2025-07-08,Brent,4.0,pct
-2025-07-09,Historical 2025-07-09,SOFR,19.0,bps
-2025-07-09,Historical 2025-07-09,SONIA,3.0,bps
-2025-07-09,Historical 2025-07-09,ESTER,-21.0,bps
-2025-07-09,Historical 2025-07-09,USD GBP,4.0,pct
-2025-07-09,Historical 2025-07-09,USD EUR,-4.0,pct
-2025-07-09,Historical 2025-07-09,USD JPY,-2.0,pct
-2025-07-09,Historical 2025-07-09,Vodafone Spot,-6.0,pct
-2025-07-09,Historical 2025-07-09,HSBC Spot,4.0,pct
-2025-07-09,Historical 2025-07-09,SPX,3.0,pct
-2025-07-09,Historical 2025-07-09,GBP Swaption Vol,2.8,vol_pt
-2025-07-09,Historical 2025-07-09,EUR Credit Spread,43.0,bps
-2025-07-09,Historical 2025-07-09,Brent,0.0,pct
-2025-07-10,Historical 2025-07-10,SOFR,-10.0,bps
-2025-07-10,Historical 2025-07-10,SONIA,-26.0,bps
-2025-07-10,Historical 2025-07-10,ESTER,-50.0,bps
-2025-07-10,Historical 2025-07-10,USD GBP,0.0,pct
-2025-07-10,Historical 2025-07-10,USD EUR,-8.0,pct
-2025-07-10,Historical 2025-07-10,USD JPY,-6.0,pct
-2025-07-10,Historical 2025-07-10,Vodafone Spot,-10.0,pct
-2025-07-10,Historical 2025-07-10,HSBC Spot,0.0,pct
-2025-07-10,Historical 2025-07-10,SPX,-1.0,pct
-2025-07-10,Historical 2025-07-10,GBP Swaption Vol,1.4,vol_pt
-2025-07-10,Historical 2025-07-10,EUR Credit Spread,14.0,bps
-2025-07-10,Historical 2025-07-10,Brent,-4.0,pct
-2025-07-11,Historical 2025-07-11,SOFR,-54.0,bps
-2025-07-11,Historical 2025-07-11,SONIA,-70.0,bps
-2025-07-11,Historical 2025-07-11,ESTER,74.0,bps
-2025-07-11,Historical 2025-07-11,USD GBP,-4.0,pct
-2025-07-11,Historical 2025-07-11,USD EUR,9.0,pct
-2025-07-11,Historical 2025-07-11,USD JPY,-10.0,pct
-2025-07-11,Historical 2025-07-11,Vodafone Spot,7.0,pct
-2025-07-11,Historical 2025-07-11,HSBC Spot,-4.0,pct
-2025-07-11,Historical 2025-07-11,SPX,-5.0,pct
-2025-07-11,Historical 2025-07-11,GBP Swaption Vol,0.0,vol_pt
-2025-07-11,Historical 2025-07-11,EUR Credit Spread,-30.0,bps
-2025-07-11,Historical 2025-07-11,Brent,-8.0,pct
-2025-07-12,Historical 2025-07-12,SOFR,-83.0,bps
-2025-07-12,Historical 2025-07-12,SONIA,69.0,bps
-2025-07-12,Historical 2025-07-12,ESTER,45.0,bps
-2025-07-12,Historical 2025-07-12,USD GBP,-8.0,pct
-2025-07-12,Historical 2025-07-12,USD EUR,5.0,pct
-2025-07-12,Historical 2025-07-12,USD JPY,7.0,pct
-2025-07-12,Historical 2025-07-12,Vodafone Spot,3.0,pct
-2025-07-12,Historical 2025-07-12,HSBC Spot,-8.0,pct
-2025-07-12,Historical 2025-07-12,SPX,-9.0,pct
-2025-07-12,Historical 2025-07-12,GBP Swaption Vol,-1.4,vol_pt
-2025-07-12,Historical 2025-07-12,EUR Credit Spread,-59.0,bps
-2025-07-12,Historical 2025-07-12,Brent,9.0,pct
-2025-07-13,Historical 2025-07-13,SOFR,56.0,bps
-2025-07-13,Historical 2025-07-13,SONIA,40.0,bps
-2025-07-13,Historical 2025-07-13,ESTER,16.0,bps
-2025-07-13,Historical 2025-07-13,USD GBP,9.0,pct
-2025-07-13,Historical 2025-07-13,USD EUR,1.0,pct
-2025-07-13,Historical 2025-07-13,USD JPY,3.0,pct
-2025-07-13,Historical 2025-07-13,Vodafone Spot,-1.0,pct
-2025-07-13,Historical 2025-07-13,HSBC Spot,9.0,pct
-2025-07-13,Historical 2025-07-13,SPX,8.0,pct
-2025-07-13,Historical 2025-07-13,GBP Swaption Vol,-2.8,vol_pt
-2025-07-13,Historical 2025-07-13,EUR Credit Spread,80.0,bps
-2025-07-13,Historical 2025-07-13,Brent,5.0,pct
-2025-07-14,Historical 2025-07-14,SOFR,27.0,bps
-2025-07-14,Historical 2025-07-14,SONIA,11.0,bps
-2025-07-14,Historical 2025-07-14,ESTER,-13.0,bps
-2025-07-14,Historical 2025-07-14,USD GBP,5.0,pct
-2025-07-14,Historical 2025-07-14,USD EUR,-3.0,pct
-2025-07-14,Historical 2025-07-14,USD JPY,-1.0,pct
-2025-07-14,Historical 2025-07-14,Vodafone Spot,-5.0,pct
-2025-07-14,Historical 2025-07-14,HSBC Spot,5.0,pct
-2025-07-14,Historical 2025-07-14,SPX,4.0,pct
-2025-07-14,Historical 2025-07-14,GBP Swaption Vol,3.15,vol_pt
-2025-07-14,Historical 2025-07-14,EUR Credit Spread,51.0,bps
-2025-07-14,Historical 2025-07-14,Brent,1.0,pct
-2025-07-15,Historical 2025-07-15,SOFR,-2.0,bps
-2025-07-15,Historical 2025-07-15,SONIA,-18.0,bps
-2025-07-15,Historical 2025-07-15,ESTER,-42.0,bps
-2025-07-15,Historical 2025-07-15,USD GBP,1.0,pct
-2025-07-15,Historical 2025-07-15,USD EUR,-7.0,pct
-2025-07-15,Historical 2025-07-15,USD JPY,-5.0,pct
-2025-07-15,Historical 2025-07-15,Vodafone Spot,-9.0,pct
-2025-07-15,Historical 2025-07-15,HSBC Spot,1.0,pct
-2025-07-15,Historical 2025-07-15,SPX,0.0,pct
-2025-07-15,Historical 2025-07-15,GBP Swaption Vol,1.75,vol_pt
-2025-07-15,Historical 2025-07-15,EUR Credit Spread,22.0,bps
-2025-07-15,Historical 2025-07-15,Brent,-3.0,pct
-2025-07-16,Historical 2025-07-16,SOFR,-46.0,bps
-2025-07-16,Historical 2025-07-16,SONIA,-62.0,bps
-2025-07-16,Historical 2025-07-16,ESTER,-86.0,bps
-2025-07-16,Historical 2025-07-16,USD GBP,-3.0,pct
-2025-07-16,Historical 2025-07-16,USD EUR,10.0,pct
-2025-07-16,Historical 2025-07-16,USD JPY,-9.0,pct
-2025-07-16,Historical 2025-07-16,Vodafone Spot,8.0,pct
-2025-07-16,Historical 2025-07-16,HSBC Spot,-3.0,pct
-2025-07-16,Historical 2025-07-16,SPX,-4.0,pct
-2025-07-16,Historical 2025-07-16,GBP Swaption Vol,0.35,vol_pt
-2025-07-16,Historical 2025-07-16,EUR Credit Spread,-22.0,bps
-2025-07-16,Historical 2025-07-16,Brent,-7.0,pct
-2025-07-17,Historical 2025-07-17,SOFR,-75.0,bps
-2025-07-17,Historical 2025-07-17,SONIA,77.0,bps
-2025-07-17,Historical 2025-07-17,ESTER,53.0,bps
-2025-07-17,Historical 2025-07-17,USD GBP,-7.0,pct
-2025-07-17,Historical 2025-07-17,USD EUR,6.0,pct
-2025-07-17,Historical 2025-07-17,USD JPY,8.0,pct
-2025-07-17,Historical 2025-07-17,Vodafone Spot,4.0,pct
-2025-07-17,Historical 2025-07-17,HSBC Spot,-7.0,pct
-2025-07-17,Historical 2025-07-17,SPX,-8.0,pct
-2025-07-17,Historical 2025-07-17,GBP Swaption Vol,-1.05,vol_pt
-2025-07-17,Historical 2025-07-17,EUR Credit Spread,-51.0,bps
-2025-07-17,Historical 2025-07-17,Brent,10.0,pct
-2025-07-18,Historical 2025-07-18,SOFR,64.0,bps
-2025-07-18,Historical 2025-07-18,SONIA,48.0,bps
-2025-07-18,Historical 2025-07-18,ESTER,24.0,bps
-2025-07-18,Historical 2025-07-18,USD GBP,10.0,pct
-2025-07-18,Historical 2025-07-18,USD EUR,2.0,pct
-2025-07-18,Historical 2025-07-18,USD JPY,4.0,pct
-2025-07-18,Historical 2025-07-18,Vodafone Spot,0.0,pct
-2025-07-18,Historical 2025-07-18,HSBC Spot,10.0,pct
-2025-07-18,Historical 2025-07-18,SPX,9.0,pct
-2025-07-18,Historical 2025-07-18,GBP Swaption Vol,-2.45,vol_pt
-2025-07-18,Historical 2025-07-18,EUR Credit Spread,-80.0,bps
-2025-07-18,Historical 2025-07-18,Brent,6.0,pct
-2025-07-19,Historical 2025-07-19,SOFR,35.0,bps
-2025-07-19,Historical 2025-07-19,SONIA,19.0,bps
-2025-07-19,Historical 2025-07-19,ESTER,-5.0,bps
-2025-07-19,Historical 2025-07-19,USD GBP,6.0,pct
-2025-07-19,Historical 2025-07-19,USD EUR,-2.0,pct
-2025-07-19,Historical 2025-07-19,USD JPY,0.0,pct
-2025-07-19,Historical 2025-07-19,Vodafone Spot,-4.0,pct
-2025-07-19,Historical 2025-07-19,HSBC Spot,6.0,pct
-2025-07-19,Historical 2025-07-19,SPX,5.0,pct
-2025-07-19,Historical 2025-07-19,GBP Swaption Vol,3.5,vol_pt
-2025-07-19,Historical 2025-07-19,EUR Credit Spread,59.0,bps
-2025-07-19,Historical 2025-07-19,Brent,2.0,pct
-2025-07-20,Historical 2025-07-20,SOFR,6.0,bps
-2025-07-20,Historical 2025-07-20,SONIA,-10.0,bps
-2025-07-20,Historical 2025-07-20,ESTER,-34.0,bps
-2025-07-20,Historical 2025-07-20,USD GBP,2.0,pct
-2025-07-20,Historical 2025-07-20,USD EUR,-6.0,pct
-2025-07-20,Historical 2025-07-20,USD JPY,-4.0,pct
-2025-07-20,Historical 2025-07-20,Vodafone Spot,-8.0,pct
-2025-07-20,Historical 2025-07-20,HSBC Spot,2.0,pct
-2025-07-20,Historical 2025-07-20,SPX,1.0,pct
-2025-07-20,Historical 2025-07-20,GBP Swaption Vol,2.1,vol_pt
-2025-07-20,Historical 2025-07-20,EUR Credit Spread,30.0,bps
-2025-07-20,Historical 2025-07-20,Brent,-2.0,pct
-2025-07-21,Historical 2025-07-21,SOFR,-38.0,bps
-2025-07-21,Historical 2025-07-21,SONIA,-54.0,bps
-2025-07-21,Historical 2025-07-21,ESTER,-78.0,bps
-2025-07-21,Historical 2025-07-21,USD GBP,-2.0,pct
-2025-07-21,Historical 2025-07-21,USD EUR,-10.0,pct
-2025-07-21,Historical 2025-07-21,USD JPY,-8.0,pct
-2025-07-21,Historical 2025-07-21,Vodafone Spot,9.0,pct
-2025-07-21,Historical 2025-07-21,HSBC Spot,-2.0,pct
-2025-07-21,Historical 2025-07-21,SPX,-3.0,pct
-2025-07-21,Historical 2025-07-21,GBP Swaption Vol,0.7,vol_pt
-2025-07-21,Historical 2025-07-21,EUR Credit Spread,-14.0,bps
-2025-07-21,Historical 2025-07-21,Brent,-6.0,pct
-2025-07-22,Historical 2025-07-22,SOFR,-67.0,bps
-2025-07-22,Historical 2025-07-22,SONIA,-83.0,bps
-2025-07-22,Historical 2025-07-22,ESTER,61.0,bps
-2025-07-22,Historical 2025-07-22,USD GBP,-6.0,pct
-2025-07-22,Historical 2025-07-22,USD EUR,7.0,pct
-2025-07-22,Historical 2025-07-22,USD JPY,9.0,pct
-2025-07-22,Historical 2025-07-22,Vodafone Spot,5.0,pct
-2025-07-22,Historical 2025-07-22,HSBC Spot,-6.0,pct
-2025-07-22,Historical 2025-07-22,SPX,-7.0,pct
-2025-07-22,Historical 2025-07-22,GBP Swaption Vol,-0.7,vol_pt
-2025-07-22,Historical 2025-07-22,EUR Credit Spread,-43.0,bps
-2025-07-22,Historical 2025-07-22,Brent,-10.0,pct
-2025-07-23,Historical 2025-07-23,SOFR,72.0,bps
-2025-07-23,Historical 2025-07-23,SONIA,56.0,bps
-2025-07-23,Historical 2025-07-23,ESTER,32.0,bps
-2025-07-23,Historical 2025-07-23,USD GBP,-10.0,pct
-2025-07-23,Historical 2025-07-23,USD EUR,3.0,pct
-2025-07-23,Historical 2025-07-23,USD JPY,5.0,pct
-2025-07-23,Historical 2025-07-23,Vodafone Spot,1.0,pct
-2025-07-23,Historical 2025-07-23,HSBC Spot,-10.0,pct
-2025-07-23,Historical 2025-07-23,SPX,10.0,pct
-2025-07-23,Historical 2025-07-23,GBP Swaption Vol,-2.1,vol_pt
-2025-07-23,Historical 2025-07-23,EUR Credit Spread,-72.0,bps
-2025-07-23,Historical 2025-07-23,Brent,7.0,pct
-2025-07-24,Historical 2025-07-24,SOFR,43.0,bps
-2025-07-24,Historical 2025-07-24,SONIA,27.0,bps
-2025-07-24,Historical 2025-07-24,ESTER,3.0,bps
-2025-07-24,Historical 2025-07-24,USD GBP,7.0,pct
-2025-07-24,Historical 2025-07-24,USD EUR,-1.0,pct
-2025-07-24,Historical 2025-07-24,USD JPY,1.0,pct
-2025-07-24,Historical 2025-07-24,Vodafone Spot,-3.0,pct
-2025-07-24,Historical 2025-07-24,HSBC Spot,7.0,pct
-2025-07-24,Historical 2025-07-24,SPX,6.0,pct
-2025-07-24,Historical 2025-07-24,GBP Swaption Vol,-3.5,vol_pt
-2025-07-24,Historical 2025-07-24,EUR Credit Spread,67.0,bps
-2025-07-24,Historical 2025-07-24,Brent,3.0,pct
-2025-07-25,Historical 2025-07-25,SOFR,14.0,bps
-2025-07-25,Historical 2025-07-25,SONIA,-2.0,bps
-2025-07-25,Historical 2025-07-25,ESTER,-26.0,bps
-2025-07-25,Historical 2025-07-25,USD GBP,3.0,pct
-2025-07-25,Historical 2025-07-25,USD EUR,-5.0,pct
-2025-07-25,Historical 2025-07-25,USD JPY,-3.0,pct
-2025-07-25,Historical 2025-07-25,Vodafone Spot,-7.0,pct
-2025-07-25,Historical 2025-07-25,HSBC Spot,3.0,pct
-2025-07-25,Historical 2025-07-25,SPX,2.0,pct
-2025-07-25,Historical 2025-07-25,GBP Swaption Vol,2.45,vol_pt
-2025-07-25,Historical 2025-07-25,EUR Credit Spread,38.0,bps
-2025-07-25,Historical 2025-07-25,Brent,-1.0,pct
-2025-07-26,Historical 2025-07-26,SOFR,-30.0,bps
-2025-07-26,Historical 2025-07-26,SONIA,-46.0,bps
-2025-07-26,Historical 2025-07-26,ESTER,-70.0,bps
-2025-07-26,Historical 2025-07-26,USD GBP,-1.0,pct
-2025-07-26,Historical 2025-07-26,USD EUR,-9.0,pct
-2025-07-26,Historical 2025-07-26,USD JPY,-7.0,pct
-2025-07-26,Historical 2025-07-26,Vodafone Spot,10.0,pct
-2025-07-26,Historical 2025-07-26,HSBC Spot,-1.0,pct
-2025-07-26,Historical 2025-07-26,SPX,-2.0,pct
-2025-07-26,Historical 2025-07-26,GBP Swaption Vol,1.05,vol_pt
-2025-07-26,Historical 2025-07-26,EUR Credit Spread,-6.0,bps
-2025-07-26,Historical 2025-07-26,Brent,-5.0,pct
-2025-07-27,Historical 2025-07-27,SOFR,-59.0,bps
-2025-07-27,Historical 2025-07-27,SONIA,-75.0,bps
-2025-07-27,Historical 2025-07-27,ESTER,69.0,bps
-2025-07-27,Historical 2025-07-27,USD GBP,-5.0,pct
-2025-07-27,Historical 2025-07-27,USD EUR,8.0,pct
-2025-07-27,Historical 2025-07-27,USD JPY,10.0,pct
-2025-07-27,Historical 2025-07-27,Vodafone Spot,6.0,pct
-2025-07-27,Historical 2025-07-27,HSBC Spot,-5.0,pct
-2025-07-27,Historical 2025-07-27,SPX,-6.0,pct
-2025-07-27,Historical 2025-07-27,GBP Swaption Vol,-0.35,vol_pt
-2025-07-27,Historical 2025-07-27,EUR Credit Spread,-35.0,bps
-2025-07-27,Historical 2025-07-27,Brent,-9.0,pct
-2025-07-28,Historical 2025-07-28,SOFR,80.0,bps
-2025-07-28,Historical 2025-07-28,SONIA,64.0,bps
-2025-07-28,Historical 2025-07-28,ESTER,40.0,bps
-2025-07-28,Historical 2025-07-28,USD GBP,-9.0,pct
-2025-07-28,Historical 2025-07-28,USD EUR,4.0,pct
-2025-07-28,Historical 2025-07-28,USD JPY,6.0,pct
-2025-07-28,Historical 2025-07-28,Vodafone Spot,2.0,pct
-2025-07-28,Historical 2025-07-28,HSBC Spot,-9.0,pct
-2025-07-28,Historical 2025-07-28,SPX,-10.0,pct
-2025-07-28,Historical 2025-07-28,GBP Swaption Vol,-1.75,vol_pt
-2025-07-28,Historical 2025-07-28,EUR Credit Spread,-64.0,bps
-2025-07-28,Historical 2025-07-28,Brent,8.0,pct
-2025-07-29,Historical 2025-07-29,SOFR,51.0,bps
-2025-07-29,Historical 2025-07-29,SONIA,35.0,bps
-2025-07-29,Historical 2025-07-29,ESTER,11.0,bps
-2025-07-29,Historical 2025-07-29,USD GBP,8.0,pct
-2025-07-29,Historical 2025-07-29,USD EUR,0.0,pct
-2025-07-29,Historical 2025-07-29,USD JPY,2.0,pct
-2025-07-29,Historical 2025-07-29,Vodafone Spot,-2.0,pct
-2025-07-29,Historical 2025-07-29,HSBC Spot,8.0,pct
-2025-07-29,Historical 2025-07-29,SPX,7.0,pct
-2025-07-29,Historical 2025-07-29,GBP Swaption Vol,-3.15,vol_pt
-2025-07-29,Historical 2025-07-29,EUR Credit Spread,75.0,bps
-2025-07-29,Historical 2025-07-29,Brent,4.0,pct
-2025-07-30,Historical 2025-07-30,SOFR,22.0,bps
-2025-07-30,Historical 2025-07-30,SONIA,6.0,bps
-2025-07-30,Historical 2025-07-30,ESTER,-18.0,bps
-2025-07-30,Historical 2025-07-30,USD GBP,4.0,pct
-2025-07-30,Historical 2025-07-30,USD EUR,-4.0,pct
-2025-07-30,Historical 2025-07-30,USD JPY,-2.0,pct
-2025-07-30,Historical 2025-07-30,Vodafone Spot,-6.0,pct
-2025-07-30,Historical 2025-07-30,HSBC Spot,4.0,pct
-2025-07-30,Historical 2025-07-30,SPX,3.0,pct
-2025-07-30,Historical 2025-07-30,GBP Swaption Vol,2.8,vol_pt
-2025-07-30,Historical 2025-07-30,EUR Credit Spread,46.0,bps
-2025-07-30,Historical 2025-07-30,Brent,0.0,pct
-2025-07-31,Historical 2025-07-31,SOFR,-22.0,bps
-2025-07-31,Historical 2025-07-31,SONIA,-38.0,bps
-2025-07-31,Historical 2025-07-31,ESTER,-62.0,bps
-2025-07-31,Historical 2025-07-31,USD GBP,0.0,pct
-2025-07-31,Historical 2025-07-31,USD EUR,-8.0,pct
-2025-07-31,Historical 2025-07-31,USD JPY,-6.0,pct
-2025-07-31,Historical 2025-07-31,Vodafone Spot,-10.0,pct
-2025-07-31,Historical 2025-07-31,HSBC Spot,0.0,pct
-2025-07-31,Historical 2025-07-31,SPX,-1.0,pct
-2025-07-31,Historical 2025-07-31,GBP Swaption Vol,1.4,vol_pt
-2025-07-31,Historical 2025-07-31,EUR Credit Spread,2.0,bps
-2025-07-31,Historical 2025-07-31,Brent,-4.0,pct
-2025-08-01,Historical 2025-08-01,SOFR,-51.0,bps
-2025-08-01,Historical 2025-08-01,SONIA,-67.0,bps
-2025-08-01,Historical 2025-08-01,ESTER,77.0,bps
-2025-08-01,Historical 2025-08-01,USD GBP,-4.0,pct
-2025-08-01,Historical 2025-08-01,USD EUR,9.0,pct
-2025-08-01,Historical 2025-08-01,USD JPY,-10.0,pct
-2025-08-01,Historical 2025-08-01,Vodafone Spot,7.0,pct
-2025-08-01,Historical 2025-08-01,HSBC Spot,-4.0,pct
-2025-08-01,Historical 2025-08-01,SPX,-5.0,pct
-2025-08-01,Historical 2025-08-01,GBP Swaption Vol,0.0,vol_pt
-2025-08-01,Historical 2025-08-01,EUR Credit Spread,-27.0,bps
-2025-08-01,Historical 2025-08-01,Brent,-8.0,pct
-2025-08-02,Historical 2025-08-02,SOFR,-80.0,bps
-2025-08-02,Historical 2025-08-02,SONIA,72.0,bps
-2025-08-02,Historical 2025-08-02,ESTER,48.0,bps
-2025-08-02,Historical 2025-08-02,USD GBP,-8.0,pct
-2025-08-02,Historical 2025-08-02,USD EUR,5.0,pct
-2025-08-02,Historical 2025-08-02,USD JPY,7.0,pct
-2025-08-02,Historical 2025-08-02,Vodafone Spot,3.0,pct
-2025-08-02,Historical 2025-08-02,HSBC Spot,-8.0,pct
-2025-08-02,Historical 2025-08-02,SPX,-9.0,pct
-2025-08-02,Historical 2025-08-02,GBP Swaption Vol,-1.4,vol_pt
-2025-08-02,Historical 2025-08-02,EUR Credit Spread,-56.0,bps
-2025-08-02,Historical 2025-08-02,Brent,9.0,pct
-2025-08-03,Historical 2025-08-03,SOFR,59.0,bps
-2025-08-03,Historical 2025-08-03,SONIA,43.0,bps
-2025-08-03,Historical 2025-08-03,ESTER,19.0,bps
-2025-08-03,Historical 2025-08-03,USD GBP,9.0,pct
-2025-08-03,Historical 2025-08-03,USD EUR,1.0,pct
-2025-08-03,Historical 2025-08-03,USD JPY,3.0,pct
-2025-08-03,Historical 2025-08-03,Vodafone Spot,-1.0,pct
-2025-08-03,Historical 2025-08-03,HSBC Spot,9.0,pct
-2025-08-03,Historical 2025-08-03,SPX,8.0,pct
-2025-08-03,Historical 2025-08-03,GBP Swaption Vol,-2.8,vol_pt
-2025-08-03,Historical 2025-08-03,EUR Credit Spread,83.0,bps
-2025-08-03,Historical 2025-08-03,Brent,5.0,pct
-2025-08-04,Historical 2025-08-04,SOFR,30.0,bps
-2025-08-04,Historical 2025-08-04,SONIA,14.0,bps
-2025-08-04,Historical 2025-08-04,ESTER,-10.0,bps
-2025-08-04,Historical 2025-08-04,USD GBP,5.0,pct
-2025-08-04,Historical 2025-08-04,USD EUR,-3.0,pct
-2025-08-04,Historical 2025-08-04,USD JPY,-1.0,pct
-2025-08-04,Historical 2025-08-04,Vodafone Spot,-5.0,pct
-2025-08-04,Historical 2025-08-04,HSBC Spot,5.0,pct
-2025-08-04,Historical 2025-08-04,SPX,4.0,pct
-2025-08-04,Historical 2025-08-04,GBP Swaption Vol,3.15,vol_pt
-2025-08-04,Historical 2025-08-04,EUR Credit Spread,54.0,bps
-2025-08-04,Historical 2025-08-04,Brent,1.0,pct
-2025-08-05,Historical 2025-08-05,SOFR,-14.0,bps
-2025-08-05,Historical 2025-08-05,SONIA,-30.0,bps
-2025-08-05,Historical 2025-08-05,ESTER,-54.0,bps
-2025-08-05,Historical 2025-08-05,USD GBP,1.0,pct
-2025-08-05,Historical 2025-08-05,USD EUR,-7.0,pct
-2025-08-05,Historical 2025-08-05,USD JPY,-5.0,pct
-2025-08-05,Historical 2025-08-05,Vodafone Spot,-9.0,pct
-2025-08-05,Historical 2025-08-05,HSBC Spot,1.0,pct
-2025-08-05,Historical 2025-08-05,SPX,0.0,pct
-2025-08-05,Historical 2025-08-05,GBP Swaption Vol,1.75,vol_pt
-2025-08-05,Historical 2025-08-05,EUR Credit Spread,10.0,bps
-2025-08-05,Historical 2025-08-05,Brent,-3.0,pct
-2025-08-06,Historical 2025-08-06,SOFR,-43.0,bps
-2025-08-06,Historical 2025-08-06,SONIA,-59.0,bps
-2025-08-06,Historical 2025-08-06,ESTER,-83.0,bps
-2025-08-06,Historical 2025-08-06,USD GBP,-3.0,pct
-2025-08-06,Historical 2025-08-06,USD EUR,10.0,pct
-2025-08-06,Historical 2025-08-06,USD JPY,-9.0,pct
-2025-08-06,Historical 2025-08-06,Vodafone Spot,8.0,pct
-2025-08-06,Historical 2025-08-06,HSBC Spot,-3.0,pct
-2025-08-06,Historical 2025-08-06,SPX,-4.0,pct
-2025-08-06,Historical 2025-08-06,GBP Swaption Vol,0.35,vol_pt
-2025-08-06,Historical 2025-08-06,EUR Credit Spread,-19.0,bps
-2025-08-06,Historical 2025-08-06,Brent,-7.0,pct
-2025-08-07,Historical 2025-08-07,SOFR,-72.0,bps
-2025-08-07,Historical 2025-08-07,SONIA,80.0,bps
-2025-08-07,Historical 2025-08-07,ESTER,56.0,bps
-2025-08-07,Historical 2025-08-07,USD GBP,-7.0,pct
-2025-08-07,Historical 2025-08-07,USD EUR,6.0,pct
-2025-08-07,Historical 2025-08-07,USD JPY,8.0,pct
-2025-08-07,Historical 2025-08-07,Vodafone Spot,4.0,pct
-2025-08-07,Historical 2025-08-07,HSBC Spot,-7.0,pct
-2025-08-07,Historical 2025-08-07,SPX,-8.0,pct
-2025-08-07,Historical 2025-08-07,GBP Swaption Vol,-1.05,vol_pt
-2025-08-07,Historical 2025-08-07,EUR Credit Spread,-48.0,bps
-2025-08-07,Historical 2025-08-07,Brent,10.0,pct
-2025-08-08,Historical 2025-08-08,SOFR,67.0,bps
-2025-08-08,Historical 2025-08-08,SONIA,51.0,bps
-2025-08-08,Historical 2025-08-08,ESTER,27.0,bps
-2025-08-08,Historical 2025-08-08,USD GBP,10.0,pct
-2025-08-08,Historical 2025-08-08,USD EUR,2.0,pct
-2025-08-08,Historical 2025-08-08,USD JPY,4.0,pct
-2025-08-08,Historical 2025-08-08,Vodafone Spot,0.0,pct
-2025-08-08,Historical 2025-08-08,HSBC Spot,10.0,pct
-2025-08-08,Historical 2025-08-08,SPX,9.0,pct
-2025-08-08,Historical 2025-08-08,GBP Swaption Vol,-2.45,vol_pt
-2025-08-08,Historical 2025-08-08,EUR Credit Spread,-77.0,bps
-2025-08-08,Historical 2025-08-08,Brent,6.0,pct
-2025-08-09,Historical 2025-08-09,SOFR,38.0,bps
-2025-08-09,Historical 2025-08-09,SONIA,22.0,bps
-2025-08-09,Historical 2025-08-09,ESTER,-2.0,bps
-2025-08-09,Historical 2025-08-09,USD GBP,6.0,pct
-2025-08-09,Historical 2025-08-09,USD EUR,-2.0,pct
-2025-08-09,Historical 2025-08-09,USD JPY,0.0,pct
-2025-08-09,Historical 2025-08-09,Vodafone Spot,-4.0,pct
-2025-08-09,Historical 2025-08-09,HSBC Spot,6.0,pct
-2025-08-09,Historical 2025-08-09,SPX,5.0,pct
-2025-08-09,Historical 2025-08-09,GBP Swaption Vol,3.5,vol_pt
-2025-08-09,Historical 2025-08-09,EUR Credit Spread,62.0,bps
-2025-08-09,Historical 2025-08-09,Brent,2.0,pct
-2025-08-10,Historical 2025-08-10,SOFR,-6.0,bps
-2025-08-10,Historical 2025-08-10,SONIA,-22.0,bps
-2025-08-10,Historical 2025-08-10,ESTER,-46.0,bps
-2025-08-10,Historical 2025-08-10,USD GBP,2.0,pct
-2025-08-10,Historical 2025-08-10,USD EUR,-6.0,pct
-2025-08-10,Historical 2025-08-10,USD JPY,-4.0,pct
-2025-08-10,Historical 2025-08-10,Vodafone Spot,-8.0,pct
-2025-08-10,Historical 2025-08-10,HSBC Spot,2.0,pct
-2025-08-10,Historical 2025-08-10,SPX,1.0,pct
-2025-08-10,Historical 2025-08-10,GBP Swaption Vol,2.1,vol_pt
-2025-08-10,Historical 2025-08-10,EUR Credit Spread,18.0,bps
-2025-08-10,Historical 2025-08-10,Brent,-2.0,pct
-2025-08-11,Historical 2025-08-11,SOFR,-35.0,bps
-2025-08-11,Historical 2025-08-11,SONIA,-51.0,bps
-2025-08-11,Historical 2025-08-11,ESTER,-75.0,bps
-2025-08-11,Historical 2025-08-11,USD GBP,-2.0,pct
-2025-08-11,Historical 2025-08-11,USD EUR,-10.0,pct
-2025-08-11,Historical 2025-08-11,USD JPY,-8.0,pct
-2025-08-11,Historical 2025-08-11,Vodafone Spot,9.0,pct
-2025-08-11,Historical 2025-08-11,HSBC Spot,-2.0,pct
-2025-08-11,Historical 2025-08-11,SPX,-3.0,pct
-2025-08-11,Historical 2025-08-11,GBP Swaption Vol,0.7,vol_pt
-2025-08-11,Historical 2025-08-11,EUR Credit Spread,-11.0,bps
-2025-08-11,Historical 2025-08-11,Brent,-6.0,pct
-2025-08-12,Historical 2025-08-12,SOFR,-64.0,bps
-2025-08-12,Historical 2025-08-12,SONIA,-80.0,bps
-2025-08-12,Historical 2025-08-12,ESTER,64.0,bps
-2025-08-12,Historical 2025-08-12,USD GBP,-6.0,pct
-2025-08-12,Historical 2025-08-12,USD EUR,7.0,pct
-2025-08-12,Historical 2025-08-12,USD JPY,9.0,pct
-2025-08-12,Historical 2025-08-12,Vodafone Spot,5.0,pct
-2025-08-12,Historical 2025-08-12,HSBC Spot,-6.0,pct
-2025-08-12,Historical 2025-08-12,SPX,-7.0,pct
-2025-08-12,Historical 2025-08-12,GBP Swaption Vol,-0.7,vol_pt
-2025-08-12,Historical 2025-08-12,EUR Credit Spread,-40.0,bps
-2025-08-12,Historical 2025-08-12,Brent,-10.0,pct
-2025-08-13,Historical 2025-08-13,SOFR,75.0,bps
-2025-08-13,Historical 2025-08-13,SONIA,59.0,bps
-2025-08-13,Historical 2025-08-13,ESTER,35.0,bps
-2025-08-13,Historical 2025-08-13,USD GBP,-10.0,pct
-2025-08-13,Historical 2025-08-13,USD EUR,3.0,pct
-2025-08-13,Historical 2025-08-13,USD JPY,5.0,pct
-2025-08-13,Historical 2025-08-13,Vodafone Spot,1.0,pct
-2025-08-13,Historical 2025-08-13,HSBC Spot,-10.0,pct
-2025-08-13,Historical 2025-08-13,SPX,10.0,pct
-2025-08-13,Historical 2025-08-13,GBP Swaption Vol,-2.1,vol_pt
-2025-08-13,Historical 2025-08-13,EUR Credit Spread,-69.0,bps
-2025-08-13,Historical 2025-08-13,Brent,7.0,pct
-2025-08-14,Historical 2025-08-14,SOFR,46.0,bps
-2025-08-14,Historical 2025-08-14,SONIA,30.0,bps
-2025-08-14,Historical 2025-08-14,ESTER,6.0,bps
-2025-08-14,Historical 2025-08-14,USD GBP,7.0,pct
-2025-08-14,Historical 2025-08-14,USD EUR,-1.0,pct
-2025-08-14,Historical 2025-08-14,USD JPY,1.0,pct
-2025-08-14,Historical 2025-08-14,Vodafone Spot,-3.0,pct
-2025-08-14,Historical 2025-08-14,HSBC Spot,7.0,pct
-2025-08-14,Historical 2025-08-14,SPX,6.0,pct
-2025-08-14,Historical 2025-08-14,GBP Swaption Vol,-3.5,vol_pt
-2025-08-14,Historical 2025-08-14,EUR Credit Spread,70.0,bps
-2025-08-14,Historical 2025-08-14,Brent,3.0,pct
-2025-08-15,Historical 2025-08-15,SOFR,2.0,bps
-2025-08-15,Historical 2025-08-15,SONIA,-14.0,bps
-2025-08-15,Historical 2025-08-15,ESTER,-38.0,bps
-2025-08-15,Historical 2025-08-15,USD GBP,3.0,pct
-2025-08-15,Historical 2025-08-15,USD EUR,-5.0,pct
-2025-08-15,Historical 2025-08-15,USD JPY,-3.0,pct
-2025-08-15,Historical 2025-08-15,Vodafone Spot,-7.0,pct
-2025-08-15,Historical 2025-08-15,HSBC Spot,3.0,pct
-2025-08-15,Historical 2025-08-15,SPX,2.0,pct
-2025-08-15,Historical 2025-08-15,GBP Swaption Vol,2.45,vol_pt
-2025-08-15,Historical 2025-08-15,EUR Credit Spread,26.0,bps
-2025-08-15,Historical 2025-08-15,Brent,-1.0,pct
-2025-08-16,Historical 2025-08-16,SOFR,-27.0,bps
-2025-08-16,Historical 2025-08-16,SONIA,-43.0,bps
-2025-08-16,Historical 2025-08-16,ESTER,-67.0,bps
-2025-08-16,Historical 2025-08-16,USD GBP,-1.0,pct
-2025-08-16,Historical 2025-08-16,USD EUR,-9.0,pct
-2025-08-16,Historical 2025-08-16,USD JPY,-7.0,pct
-2025-08-16,Historical 2025-08-16,Vodafone Spot,10.0,pct
-2025-08-16,Historical 2025-08-16,HSBC Spot,-1.0,pct
-2025-08-16,Historical 2025-08-16,SPX,-2.0,pct
-2025-08-16,Historical 2025-08-16,GBP Swaption Vol,1.05,vol_pt
-2025-08-16,Historical 2025-08-16,EUR Credit Spread,-3.0,bps
-2025-08-16,Historical 2025-08-16,Brent,-5.0,pct
-2025-08-17,Historical 2025-08-17,SOFR,-56.0,bps
-2025-08-17,Historical 2025-08-17,SONIA,-72.0,bps
-2025-08-17,Historical 2025-08-17,ESTER,72.0,bps
-2025-08-17,Historical 2025-08-17,USD GBP,-5.0,pct
-2025-08-17,Historical 2025-08-17,USD EUR,8.0,pct
-2025-08-17,Historical 2025-08-17,USD JPY,10.0,pct
-2025-08-17,Historical 2025-08-17,Vodafone Spot,6.0,pct
-2025-08-17,Historical 2025-08-17,HSBC Spot,-5.0,pct
-2025-08-17,Historical 2025-08-17,SPX,-6.0,pct
-2025-08-17,Historical 2025-08-17,GBP Swaption Vol,-0.35,vol_pt
-2025-08-17,Historical 2025-08-17,EUR Credit Spread,-32.0,bps
-2025-08-17,Historical 2025-08-17,Brent,-9.0,pct
-2025-08-18,Historical 2025-08-18,SOFR,83.0,bps
-2025-08-18,Historical 2025-08-18,SONIA,67.0,bps
-2025-08-18,Historical 2025-08-18,ESTER,43.0,bps
-2025-08-18,Historical 2025-08-18,USD GBP,-9.0,pct
-2025-08-18,Historical 2025-08-18,USD EUR,4.0,pct
-2025-08-18,Historical 2025-08-18,USD JPY,6.0,pct
-2025-08-18,Historical 2025-08-18,Vodafone Spot,2.0,pct
-2025-08-18,Historical 2025-08-18,HSBC Spot,-9.0,pct
-2025-08-18,Historical 2025-08-18,SPX,-10.0,pct
-2025-08-18,Historical 2025-08-18,GBP Swaption Vol,-1.75,vol_pt
-2025-08-18,Historical 2025-08-18,EUR Credit Spread,-61.0,bps
-2025-08-18,Historical 2025-08-18,Brent,8.0,pct
-2025-08-19,Historical 2025-08-19,SOFR,54.0,bps
-2025-08-19,Historical 2025-08-19,SONIA,38.0,bps
-2025-08-19,Historical 2025-08-19,ESTER,14.0,bps
-2025-08-19,Historical 2025-08-19,USD GBP,8.0,pct
-2025-08-19,Historical 2025-08-19,USD EUR,0.0,pct
-2025-08-19,Historical 2025-08-19,USD JPY,2.0,pct
-2025-08-19,Historical 2025-08-19,Vodafone Spot,-2.0,pct
-2025-08-19,Historical 2025-08-19,HSBC Spot,8.0,pct
-2025-08-19,Historical 2025-08-19,SPX,7.0,pct
-2025-08-19,Historical 2025-08-19,GBP Swaption Vol,-3.15,vol_pt
-2025-08-19,Historical 2025-08-19,EUR Credit Spread,78.0,bps
-2025-08-19,Historical 2025-08-19,Brent,4.0,pct
+2026-03-28,Historical 2026-03-28,SOFR,19.0,bps
+2026-03-28,Historical 2026-03-28,SONIA,-45.0,bps
+2026-03-28,Historical 2026-03-28,ESTER,-29.0,bps
+2026-03-28,Historical 2026-03-28,USD GBP,-4.0,pct
+2026-03-28,Historical 2026-03-28,USD EUR,5.0,pct
+2026-03-28,Historical 2026-03-28,USD JPY,-9.0,pct
+2026-03-28,Historical 2026-03-28,Vodafone Spot,-8.0,pct
+2026-03-28,Historical 2026-03-28,HSBC Spot,6.0,pct
+2026-03-28,Historical 2026-03-28,SPX,-4.0,pct
+2026-03-28,Historical 2026-03-28,GBP Swaption Vol,-1.05,vol_pt
+2026-03-28,Historical 2026-03-28,EUR Credit Spread,83.0,bps
+2026-03-28,Historical 2026-03-28,Brent,3.0,pct
+2026-03-29,Historical 2026-03-29,SOFR,38.0,bps
+2026-03-29,Historical 2026-03-29,SONIA,-34.0,bps
+2026-03-29,Historical 2026-03-29,ESTER,22.0,bps
+2026-03-29,Historical 2026-03-29,USD GBP,6.0,pct
+2026-03-29,Historical 2026-03-29,USD EUR,-3.0,pct
+2026-03-29,Historical 2026-03-29,USD JPY,3.0,pct
+2026-03-29,Historical 2026-03-29,Vodafone Spot,0.0,pct
+2026-03-29,Historical 2026-03-29,HSBC Spot,0.0,pct
+2026-03-29,Historical 2026-03-29,SPX,7.0,pct
+2026-03-29,Historical 2026-03-29,GBP Swaption Vol,2.45,vol_pt
+2026-03-29,Historical 2026-03-29,EUR Credit Spread,14.0,bps
+2026-03-29,Historical 2026-03-29,Brent,7.0,pct
+2026-03-30,Historical 2026-03-30,SOFR,66.0,bps
+2026-03-30,Historical 2026-03-30,SONIA,-70.0,bps
+2026-03-30,Historical 2026-03-30,ESTER,-62.0,bps
+2026-03-30,Historical 2026-03-30,USD GBP,5.0,pct
+2026-03-30,Historical 2026-03-30,USD EUR,1.0,pct
+2026-03-30,Historical 2026-03-30,USD JPY,9.0,pct
+2026-03-30,Historical 2026-03-30,Vodafone Spot,1.0,pct
+2026-03-30,Historical 2026-03-30,HSBC Spot,4.0,pct
+2026-03-30,Historical 2026-03-30,SPX,-5.0,pct
+2026-03-30,Historical 2026-03-30,GBP Swaption Vol,-0.35,vol_pt
+2026-03-30,Historical 2026-03-30,EUR Credit Spread,-46.0,bps
+2026-03-30,Historical 2026-03-30,Brent,-7.0,pct
+2026-03-31,Historical 2026-03-31,SOFR,3.0,bps
+2026-03-31,Historical 2026-03-31,SONIA,67.0,bps
+2026-03-31,Historical 2026-03-31,ESTER,-69.0,bps
+2026-03-31,Historical 2026-03-31,USD GBP,9.0,pct
+2026-03-31,Historical 2026-03-31,USD EUR,-8.0,pct
+2026-03-31,Historical 2026-03-31,USD JPY,8.0,pct
+2026-03-31,Historical 2026-03-31,Vodafone Spot,9.0,pct
+2026-03-31,Historical 2026-03-31,HSBC Spot,7.0,pct
+2026-03-31,Historical 2026-03-31,SPX,-2.0,pct
+2026-03-31,Historical 2026-03-31,GBP Swaption Vol,2.45,vol_pt
+2026-03-31,Historical 2026-03-31,EUR Credit Spread,-29.0,bps
+2026-03-31,Historical 2026-03-31,Brent,4.0,pct
+2026-04-01,Historical 2026-04-01,SOFR,-3.0,bps
+2026-04-01,Historical 2026-04-01,SONIA,-19.0,bps
+2026-04-01,Historical 2026-04-01,ESTER,37.0,bps
+2026-04-01,Historical 2026-04-01,USD GBP,-8.0,pct
+2026-04-01,Historical 2026-04-01,USD EUR,-5.0,pct
+2026-04-01,Historical 2026-04-01,USD JPY,5.0,pct
+2026-04-01,Historical 2026-04-01,Vodafone Spot,-3.0,pct
+2026-04-01,Historical 2026-04-01,HSBC Spot,-6.0,pct
+2026-04-01,Historical 2026-04-01,SPX,6.0,pct
+2026-04-01,Historical 2026-04-01,GBP Swaption Vol,2.45,vol_pt
+2026-04-01,Historical 2026-04-01,EUR Credit Spread,5.0,bps
+2026-04-01,Historical 2026-04-01,Brent,-3.0,pct
+2026-04-02,Historical 2026-04-02,SOFR,-48.0,bps
+2026-04-02,Historical 2026-04-02,SONIA,48.0,bps
+2026-04-02,Historical 2026-04-02,ESTER,56.0,bps
+2026-04-02,Historical 2026-04-02,USD GBP,8.0,pct
+2026-04-02,Historical 2026-04-02,USD EUR,9.0,pct
+2026-04-02,Historical 2026-04-02,USD JPY,2.0,pct
+2026-04-02,Historical 2026-04-02,Vodafone Spot,10.0,pct
+2026-04-02,Historical 2026-04-02,HSBC Spot,0.0,pct
+2026-04-02,Historical 2026-04-02,SPX,2.0,pct
+2026-04-02,Historical 2026-04-02,GBP Swaption Vol,2.45,vol_pt
+2026-04-02,Historical 2026-04-02,EUR Credit Spread,16.0,bps
+2026-04-02,Historical 2026-04-02,Brent,-1.0,pct
+2026-04-03,Historical 2026-04-03,SOFR,-26.0,bps
+2026-04-03,Historical 2026-04-03,SONIA,22.0,bps
+2026-04-03,Historical 2026-04-03,ESTER,62.0,bps
+2026-04-03,Historical 2026-04-03,USD GBP,-8.0,pct
+2026-04-03,Historical 2026-04-03,USD EUR,-10.0,pct
+2026-04-03,Historical 2026-04-03,USD JPY,2.0,pct
+2026-04-03,Historical 2026-04-03,Vodafone Spot,-2.0,pct
+2026-04-03,Historical 2026-04-03,HSBC Spot,7.0,pct
+2026-04-03,Historical 2026-04-03,SPX,-2.0,pct
+2026-04-03,Historical 2026-04-03,GBP Swaption Vol,2.8,vol_pt
+2026-04-03,Historical 2026-04-03,EUR Credit Spread,-18.0,bps
+2026-04-03,Historical 2026-04-03,Brent,10.0,pct
+2026-04-04,Historical 2026-04-04,SOFR,37.0,bps
+2026-04-04,Historical 2026-04-04,SONIA,-59.0,bps
+2026-04-04,Historical 2026-04-04,ESTER,-35.0,bps
+2026-04-04,Historical 2026-04-04,USD GBP,9.0,pct
+2026-04-04,Historical 2026-04-04,USD EUR,-5.0,pct
+2026-04-04,Historical 2026-04-04,USD JPY,-4.0,pct
+2026-04-04,Historical 2026-04-04,Vodafone Spot,-10.0,pct
+2026-04-04,Historical 2026-04-04,HSBC Spot,-10.0,pct
+2026-04-04,Historical 2026-04-04,SPX,2.0,pct
+2026-04-04,Historical 2026-04-04,GBP Swaption Vol,-3.5,vol_pt
+2026-04-04,Historical 2026-04-04,EUR Credit Spread,5.0,bps
+2026-04-04,Historical 2026-04-04,Brent,-2.0,pct
+2026-04-05,Historical 2026-04-05,SOFR,62.0,bps
+2026-04-05,Historical 2026-04-05,SONIA,6.0,bps
+2026-04-05,Historical 2026-04-05,ESTER,78.0,bps
+2026-04-05,Historical 2026-04-05,USD GBP,8.0,pct
+2026-04-05,Historical 2026-04-05,USD EUR,-3.0,pct
+2026-04-05,Historical 2026-04-05,USD JPY,8.0,pct
+2026-04-05,Historical 2026-04-05,Vodafone Spot,-5.0,pct
+2026-04-05,Historical 2026-04-05,HSBC Spot,-4.0,pct
+2026-04-05,Historical 2026-04-05,SPX,7.0,pct
+2026-04-05,Historical 2026-04-05,GBP Swaption Vol,-3.5,vol_pt
+2026-04-05,Historical 2026-04-05,EUR Credit Spread,62.0,bps
+2026-04-05,Historical 2026-04-05,Brent,-7.0,pct
+2026-04-06,Historical 2026-04-06,SOFR,13.0,bps
+2026-04-06,Historical 2026-04-06,SONIA,69.0,bps
+2026-04-06,Historical 2026-04-06,ESTER,53.0,bps
+2026-04-06,Historical 2026-04-06,USD GBP,-3.0,pct
+2026-04-06,Historical 2026-04-06,USD EUR,-2.0,pct
+2026-04-06,Historical 2026-04-06,USD JPY,-10.0,pct
+2026-04-06,Historical 2026-04-06,Vodafone Spot,-3.0,pct
+2026-04-06,Historical 2026-04-06,HSBC Spot,2.0,pct
+2026-04-06,Historical 2026-04-06,SPX,6.0,pct
+2026-04-06,Historical 2026-04-06,GBP Swaption Vol,1.4,vol_pt
+2026-04-06,Historical 2026-04-06,EUR Credit Spread,-27.0,bps
+2026-04-06,Historical 2026-04-06,Brent,5.0,pct
+2026-04-07,Historical 2026-04-07,SOFR,-38.0,bps
+2026-04-07,Historical 2026-04-07,SONIA,-70.0,bps
+2026-04-07,Historical 2026-04-07,ESTER,-54.0,bps
+2026-04-07,Historical 2026-04-07,USD GBP,10.0,pct
+2026-04-07,Historical 2026-04-07,USD EUR,-3.0,pct
+2026-04-07,Historical 2026-04-07,USD JPY,-5.0,pct
+2026-04-07,Historical 2026-04-07,Vodafone Spot,7.0,pct
+2026-04-07,Historical 2026-04-07,HSBC Spot,0.0,pct
+2026-04-07,Historical 2026-04-07,SPX,-6.0,pct
+2026-04-07,Historical 2026-04-07,GBP Swaption Vol,1.05,vol_pt
+2026-04-07,Historical 2026-04-07,EUR Credit Spread,50.0,bps
+2026-04-07,Historical 2026-04-07,Brent,-7.0,pct
+2026-04-08,Historical 2026-04-08,SOFR,-51.0,bps
+2026-04-08,Historical 2026-04-08,SONIA,61.0,bps
+2026-04-08,Historical 2026-04-08,ESTER,-43.0,bps
+2026-04-08,Historical 2026-04-08,USD GBP,9.0,pct
+2026-04-08,Historical 2026-04-08,USD EUR,-8.0,pct
+2026-04-08,Historical 2026-04-08,USD JPY,-5.0,pct
+2026-04-08,Historical 2026-04-08,Vodafone Spot,-2.0,pct
+2026-04-08,Historical 2026-04-08,HSBC Spot,4.0,pct
+2026-04-08,Historical 2026-04-08,SPX,-5.0,pct
+2026-04-08,Historical 2026-04-08,GBP Swaption Vol,-1.75,vol_pt
+2026-04-08,Historical 2026-04-08,EUR Credit Spread,-75.0,bps
+2026-04-08,Historical 2026-04-08,Brent,-10.0,pct
+2026-04-09,Historical 2026-04-09,SOFR,54.0,bps
+2026-04-09,Historical 2026-04-09,SONIA,14.0,bps
+2026-04-09,Historical 2026-04-09,ESTER,-34.0,bps
+2026-04-09,Historical 2026-04-09,USD GBP,-9.0,pct
+2026-04-09,Historical 2026-04-09,USD EUR,5.0,pct
+2026-04-09,Historical 2026-04-09,USD JPY,6.0,pct
+2026-04-09,Historical 2026-04-09,Vodafone Spot,4.0,pct
+2026-04-09,Historical 2026-04-09,HSBC Spot,10.0,pct
+2026-04-09,Historical 2026-04-09,SPX,-7.0,pct
+2026-04-09,Historical 2026-04-09,GBP Swaption Vol,1.75,vol_pt
+2026-04-09,Historical 2026-04-09,EUR Credit Spread,-74.0,bps
+2026-04-09,Historical 2026-04-09,Brent,1.0,pct
+2026-04-10,Historical 2026-04-10,SOFR,74.0,bps
+2026-04-10,Historical 2026-04-10,SONIA,34.0,bps
+2026-04-10,Historical 2026-04-10,ESTER,-14.0,bps
+2026-04-10,Historical 2026-04-10,USD GBP,-5.0,pct
+2026-04-10,Historical 2026-04-10,USD EUR,7.0,pct
+2026-04-10,Historical 2026-04-10,USD JPY,-4.0,pct
+2026-04-10,Historical 2026-04-10,Vodafone Spot,8.0,pct
+2026-04-10,Historical 2026-04-10,HSBC Spot,3.0,pct
+2026-04-10,Historical 2026-04-10,SPX,-3.0,pct
+2026-04-10,Historical 2026-04-10,GBP Swaption Vol,0.0,vol_pt
+2026-04-10,Historical 2026-04-10,EUR Credit Spread,-22.0,bps
+2026-04-10,Historical 2026-04-10,Brent,-9.0,pct
+2026-04-11,Historical 2026-04-11,SOFR,-78.0,bps
+2026-04-11,Historical 2026-04-11,SONIA,10.0,bps
+2026-04-11,Historical 2026-04-11,ESTER,-30.0,bps
+2026-04-11,Historical 2026-04-11,USD GBP,4.0,pct
+2026-04-11,Historical 2026-04-11,USD EUR,10.0,pct
+2026-04-11,Historical 2026-04-11,USD JPY,0.0,pct
+2026-04-11,Historical 2026-04-11,Vodafone Spot,7.0,pct
+2026-04-11,Historical 2026-04-11,HSBC Spot,-6.0,pct
+2026-04-11,Historical 2026-04-11,SPX,4.0,pct
+2026-04-11,Historical 2026-04-11,GBP Swaption Vol,3.15,vol_pt
+2026-04-11,Historical 2026-04-11,EUR Credit Spread,-38.0,bps
+2026-04-11,Historical 2026-04-11,Brent,-9.0,pct
+2026-04-12,Historical 2026-04-12,SOFR,0.0,bps
+2026-04-12,Historical 2026-04-12,SONIA,8.0,bps
+2026-04-12,Historical 2026-04-12,ESTER,72.0,bps
+2026-04-12,Historical 2026-04-12,USD GBP,-2.0,pct
+2026-04-12,Historical 2026-04-12,USD EUR,10.0,pct
+2026-04-12,Historical 2026-04-12,USD JPY,5.0,pct
+2026-04-12,Historical 2026-04-12,Vodafone Spot,-1.0,pct
+2026-04-12,Historical 2026-04-12,HSBC Spot,-6.0,pct
+2026-04-12,Historical 2026-04-12,SPX,7.0,pct
+2026-04-12,Historical 2026-04-12,GBP Swaption Vol,-0.7,vol_pt
+2026-04-12,Historical 2026-04-12,EUR Credit Spread,-40.0,bps
+2026-04-12,Historical 2026-04-12,Brent,4.0,pct
+2026-04-13,Historical 2026-04-13,SOFR,-62.0,bps
+2026-04-13,Historical 2026-04-13,SONIA,26.0,bps
+2026-04-13,Historical 2026-04-13,ESTER,-30.0,bps
+2026-04-13,Historical 2026-04-13,USD GBP,-2.0,pct
+2026-04-13,Historical 2026-04-13,USD EUR,10.0,pct
+2026-04-13,Historical 2026-04-13,USD JPY,1.0,pct
+2026-04-13,Historical 2026-04-13,Vodafone Spot,-10.0,pct
+2026-04-13,Historical 2026-04-13,HSBC Spot,2.0,pct
+2026-04-13,Historical 2026-04-13,SPX,0.0,pct
+2026-04-13,Historical 2026-04-13,GBP Swaption Vol,0.7,vol_pt
+2026-04-13,Historical 2026-04-13,EUR Credit Spread,58.0,bps
+2026-04-13,Historical 2026-04-13,Brent,-6.0,pct
+2026-04-14,Historical 2026-04-14,SOFR,-67.0,bps
+2026-04-14,Historical 2026-04-14,SONIA,77.0,bps
+2026-04-14,Historical 2026-04-14,ESTER,-83.0,bps
+2026-04-14,Historical 2026-04-14,USD GBP,-1.0,pct
+2026-04-14,Historical 2026-04-14,USD EUR,9.0,pct
+2026-04-14,Historical 2026-04-14,USD JPY,7.0,pct
+2026-04-14,Historical 2026-04-14,Vodafone Spot,4.0,pct
+2026-04-14,Historical 2026-04-14,HSBC Spot,2.0,pct
+2026-04-14,Historical 2026-04-14,SPX,-5.0,pct
+2026-04-14,Historical 2026-04-14,GBP Swaption Vol,-0.35,vol_pt
+2026-04-14,Historical 2026-04-14,EUR Credit Spread,-59.0,bps
+2026-04-14,Historical 2026-04-14,Brent,4.0,pct
+2026-04-15,Historical 2026-04-15,SOFR,51.0,bps
+2026-04-15,Historical 2026-04-15,SONIA,-13.0,bps
+2026-04-15,Historical 2026-04-15,ESTER,27.0,bps
+2026-04-15,Historical 2026-04-15,USD GBP,-9.0,pct
+2026-04-15,Historical 2026-04-15,USD EUR,7.0,pct
+2026-04-15,Historical 2026-04-15,USD JPY,-9.0,pct
+2026-04-15,Historical 2026-04-15,Vodafone Spot,-5.0,pct
+2026-04-15,Historical 2026-04-15,HSBC Spot,4.0,pct
+2026-04-15,Historical 2026-04-15,SPX,-6.0,pct
+2026-04-15,Historical 2026-04-15,GBP Swaption Vol,-3.5,vol_pt
+2026-04-15,Historical 2026-04-15,EUR Credit Spread,27.0,bps
+2026-04-15,Historical 2026-04-15,Brent,-9.0,pct
+2026-04-16,Historical 2026-04-16,SOFR,42.0,bps
+2026-04-16,Historical 2026-04-16,SONIA,26.0,bps
+2026-04-16,Historical 2026-04-16,ESTER,42.0,bps
+2026-04-16,Historical 2026-04-16,USD GBP,3.0,pct
+2026-04-16,Historical 2026-04-16,USD EUR,9.0,pct
+2026-04-16,Historical 2026-04-16,USD JPY,9.0,pct
+2026-04-16,Historical 2026-04-16,Vodafone Spot,-2.0,pct
+2026-04-16,Historical 2026-04-16,HSBC Spot,-1.0,pct
+2026-04-16,Historical 2026-04-16,SPX,-5.0,pct
+2026-04-16,Historical 2026-04-16,GBP Swaption Vol,-0.7,vol_pt
+2026-04-16,Historical 2026-04-16,EUR Credit Spread,-30.0,bps
+2026-04-16,Historical 2026-04-16,Brent,-7.0,pct
+2026-04-17,Historical 2026-04-17,SOFR,3.0,bps
+2026-04-17,Historical 2026-04-17,SONIA,83.0,bps
+2026-04-17,Historical 2026-04-17,ESTER,-61.0,bps
+2026-04-17,Historical 2026-04-17,USD GBP,-8.0,pct
+2026-04-17,Historical 2026-04-17,USD EUR,6.0,pct
+2026-04-17,Historical 2026-04-17,USD JPY,-5.0,pct
+2026-04-17,Historical 2026-04-17,Vodafone Spot,7.0,pct
+2026-04-17,Historical 2026-04-17,HSBC Spot,-6.0,pct
+2026-04-17,Historical 2026-04-17,SPX,-4.0,pct
+2026-04-17,Historical 2026-04-17,GBP Swaption Vol,-1.75,vol_pt
+2026-04-17,Historical 2026-04-17,EUR Credit Spread,-13.0,bps
+2026-04-17,Historical 2026-04-17,Brent,-2.0,pct
+2026-04-18,Historical 2026-04-18,SOFR,45.0,bps
+2026-04-18,Historical 2026-04-18,SONIA,-35.0,bps
+2026-04-18,Historical 2026-04-18,ESTER,-35.0,bps
+2026-04-18,Historical 2026-04-18,USD GBP,-5.0,pct
+2026-04-18,Historical 2026-04-18,USD EUR,-8.0,pct
+2026-04-18,Historical 2026-04-18,USD JPY,8.0,pct
+2026-04-18,Historical 2026-04-18,Vodafone Spot,7.0,pct
+2026-04-18,Historical 2026-04-18,HSBC Spot,-6.0,pct
+2026-04-18,Historical 2026-04-18,SPX,-10.0,pct
+2026-04-18,Historical 2026-04-18,GBP Swaption Vol,-1.75,vol_pt
+2026-04-18,Historical 2026-04-18,EUR Credit Spread,-83.0,bps
+2026-04-18,Historical 2026-04-18,Brent,0.0,pct
+2026-04-19,Historical 2026-04-19,SOFR,-6.0,bps
+2026-04-19,Historical 2026-04-19,SONIA,-46.0,bps
+2026-04-19,Historical 2026-04-19,ESTER,34.0,bps
+2026-04-19,Historical 2026-04-19,USD GBP,2.0,pct
+2026-04-19,Historical 2026-04-19,USD EUR,-2.0,pct
+2026-04-19,Historical 2026-04-19,USD JPY,1.0,pct
+2026-04-19,Historical 2026-04-19,Vodafone Spot,-5.0,pct
+2026-04-19,Historical 2026-04-19,HSBC Spot,3.0,pct
+2026-04-19,Historical 2026-04-19,SPX,-2.0,pct
+2026-04-19,Historical 2026-04-19,GBP Swaption Vol,-2.45,vol_pt
+2026-04-19,Historical 2026-04-19,EUR Credit Spread,-78.0,bps
+2026-04-19,Historical 2026-04-19,Brent,-9.0,pct
+2026-04-20,Historical 2026-04-20,SOFR,-45.0,bps
+2026-04-20,Historical 2026-04-20,SONIA,-21.0,bps
+2026-04-20,Historical 2026-04-20,ESTER,43.0,bps
+2026-04-20,Historical 2026-04-20,USD GBP,4.0,pct
+2026-04-20,Historical 2026-04-20,USD EUR,-10.0,pct
+2026-04-20,Historical 2026-04-20,USD JPY,7.0,pct
+2026-04-20,Historical 2026-04-20,Vodafone Spot,1.0,pct
+2026-04-20,Historical 2026-04-20,HSBC Spot,2.0,pct
+2026-04-20,Historical 2026-04-20,SPX,4.0,pct
+2026-04-20,Historical 2026-04-20,GBP Swaption Vol,0.35,vol_pt
+2026-04-20,Historical 2026-04-20,EUR Credit Spread,-45.0,bps
+2026-04-20,Historical 2026-04-20,Brent,8.0,pct
+2026-04-21,Historical 2026-04-21,SOFR,21.0,bps
+2026-04-21,Historical 2026-04-21,SONIA,-43.0,bps
+2026-04-21,Historical 2026-04-21,ESTER,-3.0,bps
+2026-04-21,Historical 2026-04-21,USD GBP,-6.0,pct
+2026-04-21,Historical 2026-04-21,USD EUR,-10.0,pct
+2026-04-21,Historical 2026-04-21,USD JPY,8.0,pct
+2026-04-21,Historical 2026-04-21,Vodafone Spot,-5.0,pct
+2026-04-21,Historical 2026-04-21,HSBC Spot,10.0,pct
+2026-04-21,Historical 2026-04-21,SPX,4.0,pct
+2026-04-21,Historical 2026-04-21,GBP Swaption Vol,0.0,vol_pt
+2026-04-21,Historical 2026-04-21,EUR Credit Spread,45.0,bps
+2026-04-21,Historical 2026-04-21,Brent,4.0,pct
+2026-04-22,Historical 2026-04-22,SOFR,-54.0,bps
+2026-04-22,Historical 2026-04-22,SONIA,-46.0,bps
+2026-04-22,Historical 2026-04-22,ESTER,-62.0,bps
+2026-04-22,Historical 2026-04-22,USD GBP,7.0,pct
+2026-04-22,Historical 2026-04-22,USD EUR,8.0,pct
+2026-04-22,Historical 2026-04-22,USD JPY,-10.0,pct
+2026-04-22,Historical 2026-04-22,Vodafone Spot,6.0,pct
+2026-04-22,Historical 2026-04-22,HSBC Spot,7.0,pct
+2026-04-22,Historical 2026-04-22,SPX,9.0,pct
+2026-04-22,Historical 2026-04-22,GBP Swaption Vol,-3.15,vol_pt
+2026-04-22,Historical 2026-04-22,EUR Credit Spread,-46.0,bps
+2026-04-22,Historical 2026-04-22,Brent,3.0,pct
+2026-04-23,Historical 2026-04-23,SOFR,-53.0,bps
+2026-04-23,Historical 2026-04-23,SONIA,59.0,bps
+2026-04-23,Historical 2026-04-23,ESTER,75.0,bps
+2026-04-23,Historical 2026-04-23,USD GBP,10.0,pct
+2026-04-23,Historical 2026-04-23,USD EUR,4.0,pct
+2026-04-23,Historical 2026-04-23,USD JPY,10.0,pct
+2026-04-23,Historical 2026-04-23,Vodafone Spot,5.0,pct
+2026-04-23,Historical 2026-04-23,HSBC Spot,-5.0,pct
+2026-04-23,Historical 2026-04-23,SPX,7.0,pct
+2026-04-23,Historical 2026-04-23,GBP Swaption Vol,-3.15,vol_pt
+2026-04-23,Historical 2026-04-23,EUR Credit Spread,83.0,bps
+2026-04-23,Historical 2026-04-23,Brent,-6.0,pct
+2026-04-24,Historical 2026-04-24,SOFR,61.0,bps
+2026-04-24,Historical 2026-04-24,SONIA,45.0,bps
+2026-04-24,Historical 2026-04-24,ESTER,-11.0,bps
+2026-04-24,Historical 2026-04-24,USD GBP,-10.0,pct
+2026-04-24,Historical 2026-04-24,USD EUR,10.0,pct
+2026-04-24,Historical 2026-04-24,USD JPY,4.0,pct
+2026-04-24,Historical 2026-04-24,Vodafone Spot,-3.0,pct
+2026-04-24,Historical 2026-04-24,HSBC Spot,2.0,pct
+2026-04-24,Historical 2026-04-24,SPX,-9.0,pct
+2026-04-24,Historical 2026-04-24,GBP Swaption Vol,0.7,vol_pt
+2026-04-24,Historical 2026-04-24,EUR Credit Spread,-51.0,bps
+2026-04-24,Historical 2026-04-24,Brent,-6.0,pct
+2026-04-25,Historical 2026-04-25,SOFR,16.0,bps
+2026-04-25,Historical 2026-04-25,SONIA,72.0,bps
+2026-04-25,Historical 2026-04-25,ESTER,-8.0,bps
+2026-04-25,Historical 2026-04-25,USD GBP,5.0,pct
+2026-04-25,Historical 2026-04-25,USD EUR,9.0,pct
+2026-04-25,Historical 2026-04-25,USD JPY,10.0,pct
+2026-04-25,Historical 2026-04-25,Vodafone Spot,-3.0,pct
+2026-04-25,Historical 2026-04-25,HSBC Spot,4.0,pct
+2026-04-25,Historical 2026-04-25,SPX,3.0,pct
+2026-04-25,Historical 2026-04-25,GBP Swaption Vol,-2.8,vol_pt
+2026-04-25,Historical 2026-04-25,EUR Credit Spread,48.0,bps
+2026-04-25,Historical 2026-04-25,Brent,7.0,pct
+2026-04-26,Historical 2026-04-26,SOFR,-37.0,bps
+2026-04-26,Historical 2026-04-26,SONIA,-5.0,bps
+2026-04-26,Historical 2026-04-26,ESTER,83.0,bps
+2026-04-26,Historical 2026-04-26,USD GBP,-5.0,pct
+2026-04-26,Historical 2026-04-26,USD EUR,-1.0,pct
+2026-04-26,Historical 2026-04-26,USD JPY,7.0,pct
+2026-04-26,Historical 2026-04-26,Vodafone Spot,-8.0,pct
+2026-04-26,Historical 2026-04-26,HSBC Spot,-1.0,pct
+2026-04-26,Historical 2026-04-26,SPX,-8.0,pct
+2026-04-26,Historical 2026-04-26,GBP Swaption Vol,-3.15,vol_pt
+2026-04-26,Historical 2026-04-26,EUR Credit Spread,35.0,bps
+2026-04-26,Historical 2026-04-26,Brent,10.0,pct
+2026-04-27,Historical 2026-04-27,SOFR,-35.0,bps
+2026-04-27,Historical 2026-04-27,SONIA,21.0,bps
+2026-04-27,Historical 2026-04-27,ESTER,-27.0,bps
+2026-04-27,Historical 2026-04-27,USD GBP,-2.0,pct
+2026-04-27,Historical 2026-04-27,USD EUR,4.0,pct
+2026-04-27,Historical 2026-04-27,USD JPY,6.0,pct
+2026-04-27,Historical 2026-04-27,Vodafone Spot,0.0,pct
+2026-04-27,Historical 2026-04-27,HSBC Spot,-5.0,pct
+2026-04-27,Historical 2026-04-27,SPX,-1.0,pct
+2026-04-27,Historical 2026-04-27,GBP Swaption Vol,2.8,vol_pt
+2026-04-27,Historical 2026-04-27,EUR Credit Spread,77.0,bps
+2026-04-27,Historical 2026-04-27,Brent,-4.0,pct
+2026-04-28,Historical 2026-04-28,SOFR,29.0,bps
+2026-04-28,Historical 2026-04-28,SONIA,-11.0,bps
+2026-04-28,Historical 2026-04-28,ESTER,-27.0,bps
+2026-04-28,Historical 2026-04-28,USD GBP,8.0,pct
+2026-04-28,Historical 2026-04-28,USD EUR,-3.0,pct
+2026-04-28,Historical 2026-04-28,USD JPY,8.0,pct
+2026-04-28,Historical 2026-04-28,Vodafone Spot,-10.0,pct
+2026-04-28,Historical 2026-04-28,HSBC Spot,7.0,pct
+2026-04-28,Historical 2026-04-28,SPX,-9.0,pct
+2026-04-28,Historical 2026-04-28,GBP Swaption Vol,1.05,vol_pt
+2026-04-28,Historical 2026-04-28,EUR Credit Spread,77.0,bps
+2026-04-28,Historical 2026-04-28,Brent,7.0,pct
+2026-04-29,Historical 2026-04-29,SOFR,0.0,bps
+2026-04-29,Historical 2026-04-29,SONIA,72.0,bps
+2026-04-29,Historical 2026-04-29,ESTER,-40.0,bps
+2026-04-29,Historical 2026-04-29,USD GBP,7.0,pct
+2026-04-29,Historical 2026-04-29,USD EUR,-7.0,pct
+2026-04-29,Historical 2026-04-29,USD JPY,-5.0,pct
+2026-04-29,Historical 2026-04-29,Vodafone Spot,5.0,pct
+2026-04-29,Historical 2026-04-29,HSBC Spot,-2.0,pct
+2026-04-29,Historical 2026-04-29,SPX,9.0,pct
+2026-04-29,Historical 2026-04-29,GBP Swaption Vol,0.7,vol_pt
+2026-04-29,Historical 2026-04-29,EUR Credit Spread,-16.0,bps
+2026-04-29,Historical 2026-04-29,Brent,-7.0,pct
+2026-04-30,Historical 2026-04-30,SOFR,18.0,bps
+2026-04-30,Historical 2026-04-30,SONIA,-6.0,bps
+2026-04-30,Historical 2026-04-30,ESTER,-22.0,bps
+2026-04-30,Historical 2026-04-30,USD GBP,4.0,pct
+2026-04-30,Historical 2026-04-30,USD EUR,4.0,pct
+2026-04-30,Historical 2026-04-30,USD JPY,5.0,pct
+2026-04-30,Historical 2026-04-30,Vodafone Spot,-4.0,pct
+2026-04-30,Historical 2026-04-30,HSBC Spot,-7.0,pct
+2026-04-30,Historical 2026-04-30,SPX,4.0,pct
+2026-04-30,Historical 2026-04-30,GBP Swaption Vol,2.45,vol_pt
+2026-04-30,Historical 2026-04-30,EUR Credit Spread,34.0,bps
+2026-04-30,Historical 2026-04-30,Brent,4.0,pct
+2026-05-01,Historical 2026-05-01,SOFR,29.0,bps
+2026-05-01,Historical 2026-05-01,SONIA,-27.0,bps
+2026-05-01,Historical 2026-05-01,ESTER,21.0,bps
+2026-05-01,Historical 2026-05-01,USD GBP,0.0,pct
+2026-05-01,Historical 2026-05-01,USD EUR,-1.0,pct
+2026-05-01,Historical 2026-05-01,USD JPY,4.0,pct
+2026-05-01,Historical 2026-05-01,Vodafone Spot,-1.0,pct
+2026-05-01,Historical 2026-05-01,HSBC Spot,-4.0,pct
+2026-05-01,Historical 2026-05-01,SPX,-1.0,pct
+2026-05-01,Historical 2026-05-01,GBP Swaption Vol,-1.05,vol_pt
+2026-05-01,Historical 2026-05-01,EUR Credit Spread,-83.0,bps
+2026-05-01,Historical 2026-05-01,Brent,9.0,pct
+2026-05-02,Historical 2026-05-02,SOFR,-24.0,bps
+2026-05-02,Historical 2026-05-02,SONIA,72.0,bps
+2026-05-02,Historical 2026-05-02,ESTER,-48.0,bps
+2026-05-02,Historical 2026-05-02,USD GBP,5.0,pct
+2026-05-02,Historical 2026-05-02,USD EUR,-10.0,pct
+2026-05-02,Historical 2026-05-02,USD JPY,10.0,pct
+2026-05-02,Historical 2026-05-02,Vodafone Spot,-2.0,pct
+2026-05-02,Historical 2026-05-02,HSBC Spot,10.0,pct
+2026-05-02,Historical 2026-05-02,SPX,4.0,pct
+2026-05-02,Historical 2026-05-02,GBP Swaption Vol,3.5,vol_pt
+2026-05-02,Historical 2026-05-02,EUR Credit Spread,0.0,bps
+2026-05-02,Historical 2026-05-02,Brent,5.0,pct
+2026-05-03,Historical 2026-05-03,SOFR,22.0,bps
+2026-05-03,Historical 2026-05-03,SONIA,78.0,bps
+2026-05-03,Historical 2026-05-03,ESTER,54.0,bps
+2026-05-03,Historical 2026-05-03,USD GBP,-4.0,pct
+2026-05-03,Historical 2026-05-03,USD EUR,-4.0,pct
+2026-05-03,Historical 2026-05-03,USD JPY,-9.0,pct
+2026-05-03,Historical 2026-05-03,Vodafone Spot,-9.0,pct
+2026-05-03,Historical 2026-05-03,HSBC Spot,1.0,pct
+2026-05-03,Historical 2026-05-03,SPX,6.0,pct
+2026-05-03,Historical 2026-05-03,GBP Swaption Vol,1.05,vol_pt
+2026-05-03,Historical 2026-05-03,EUR Credit Spread,14.0,bps
+2026-05-03,Historical 2026-05-03,Brent,-2.0,pct
+2026-05-04,Historical 2026-05-04,SOFR,8.0,bps
+2026-05-04,Historical 2026-05-04,SONIA,32.0,bps
+2026-05-04,Historical 2026-05-04,ESTER,8.0,bps
+2026-05-04,Historical 2026-05-04,USD GBP,1.0,pct
+2026-05-04,Historical 2026-05-04,USD EUR,-4.0,pct
+2026-05-04,Historical 2026-05-04,USD JPY,-9.0,pct
+2026-05-04,Historical 2026-05-04,Vodafone Spot,10.0,pct
+2026-05-04,Historical 2026-05-04,HSBC Spot,-8.0,pct
+2026-05-04,Historical 2026-05-04,SPX,-8.0,pct
+2026-05-04,Historical 2026-05-04,GBP Swaption Vol,2.45,vol_pt
+2026-05-04,Historical 2026-05-04,EUR Credit Spread,-64.0,bps
+2026-05-04,Historical 2026-05-04,Brent,2.0,pct
+2026-05-05,Historical 2026-05-05,SOFR,43.0,bps
+2026-05-05,Historical 2026-05-05,SONIA,-37.0,bps
+2026-05-05,Historical 2026-05-05,ESTER,83.0,bps
+2026-05-05,Historical 2026-05-05,USD GBP,-9.0,pct
+2026-05-05,Historical 2026-05-05,USD EUR,3.0,pct
+2026-05-05,Historical 2026-05-05,USD JPY,-3.0,pct
+2026-05-05,Historical 2026-05-05,Vodafone Spot,-5.0,pct
+2026-05-05,Historical 2026-05-05,HSBC Spot,5.0,pct
+2026-05-05,Historical 2026-05-05,SPX,4.0,pct
+2026-05-05,Historical 2026-05-05,GBP Swaption Vol,3.15,vol_pt
+2026-05-05,Historical 2026-05-05,EUR Credit Spread,35.0,bps
+2026-05-05,Historical 2026-05-05,Brent,0.0,pct
+2026-05-06,Historical 2026-05-06,SOFR,-46.0,bps
+2026-05-06,Historical 2026-05-06,SONIA,66.0,bps
+2026-05-06,Historical 2026-05-06,ESTER,18.0,bps
+2026-05-06,Historical 2026-05-06,USD GBP,-5.0,pct
+2026-05-06,Historical 2026-05-06,USD EUR,10.0,pct
+2026-05-06,Historical 2026-05-06,USD JPY,6.0,pct
+2026-05-06,Historical 2026-05-06,Vodafone Spot,7.0,pct
+2026-05-06,Historical 2026-05-06,HSBC Spot,-3.0,pct
+2026-05-06,Historical 2026-05-06,SPX,-8.0,pct
+2026-05-06,Historical 2026-05-06,GBP Swaption Vol,-2.45,vol_pt
+2026-05-06,Historical 2026-05-06,EUR Credit Spread,-78.0,bps
+2026-05-06,Historical 2026-05-06,Brent,8.0,pct
+2026-05-07,Historical 2026-05-07,SOFR,-48.0,bps
+2026-05-07,Historical 2026-05-07,SONIA,-48.0,bps
+2026-05-07,Historical 2026-05-07,ESTER,-72.0,bps
+2026-05-07,Historical 2026-05-07,USD GBP,-2.0,pct
+2026-05-07,Historical 2026-05-07,USD EUR,-3.0,pct
+2026-05-07,Historical 2026-05-07,USD JPY,-3.0,pct
+2026-05-07,Historical 2026-05-07,Vodafone Spot,-4.0,pct
+2026-05-07,Historical 2026-05-07,HSBC Spot,-10.0,pct
+2026-05-07,Historical 2026-05-07,SPX,-6.0,pct
+2026-05-07,Historical 2026-05-07,GBP Swaption Vol,1.4,vol_pt
+2026-05-07,Historical 2026-05-07,EUR Credit Spread,24.0,bps
+2026-05-07,Historical 2026-05-07,Brent,4.0,pct
+2026-05-08,Historical 2026-05-08,SOFR,11.0,bps
+2026-05-08,Historical 2026-05-08,SONIA,19.0,bps
+2026-05-08,Historical 2026-05-08,ESTER,-61.0,bps
+2026-05-08,Historical 2026-05-08,USD GBP,-9.0,pct
+2026-05-08,Historical 2026-05-08,USD EUR,0.0,pct
+2026-05-08,Historical 2026-05-08,USD JPY,-8.0,pct
+2026-05-08,Historical 2026-05-08,Vodafone Spot,7.0,pct
+2026-05-08,Historical 2026-05-08,HSBC Spot,-9.0,pct
+2026-05-08,Historical 2026-05-08,SPX,-7.0,pct
+2026-05-08,Historical 2026-05-08,GBP Swaption Vol,0.35,vol_pt
+2026-05-08,Historical 2026-05-08,EUR Credit Spread,51.0,bps
+2026-05-08,Historical 2026-05-08,Brent,-5.0,pct
+2026-05-09,Historical 2026-05-09,SOFR,-5.0,bps
+2026-05-09,Historical 2026-05-09,SONIA,11.0,bps
+2026-05-09,Historical 2026-05-09,ESTER,-21.0,bps
+2026-05-09,Historical 2026-05-09,USD GBP,1.0,pct
+2026-05-09,Historical 2026-05-09,USD EUR,-5.0,pct
+2026-05-09,Historical 2026-05-09,USD JPY,-1.0,pct
+2026-05-09,Historical 2026-05-09,Vodafone Spot,3.0,pct
+2026-05-09,Historical 2026-05-09,HSBC Spot,8.0,pct
+2026-05-09,Historical 2026-05-09,SPX,-1.0,pct
+2026-05-09,Historical 2026-05-09,GBP Swaption Vol,3.5,vol_pt
+2026-05-09,Historical 2026-05-09,EUR Credit Spread,51.0,bps
+2026-05-09,Historical 2026-05-09,Brent,-7.0,pct
+2026-05-10,Historical 2026-05-10,SOFR,74.0,bps
+2026-05-10,Historical 2026-05-10,SONIA,-6.0,bps
+2026-05-10,Historical 2026-05-10,ESTER,34.0,bps
+2026-05-10,Historical 2026-05-10,USD GBP,-2.0,pct
+2026-05-10,Historical 2026-05-10,USD EUR,-3.0,pct
+2026-05-10,Historical 2026-05-10,USD JPY,10.0,pct
+2026-05-10,Historical 2026-05-10,Vodafone Spot,-9.0,pct
+2026-05-10,Historical 2026-05-10,HSBC Spot,3.0,pct
+2026-05-10,Historical 2026-05-10,SPX,-8.0,pct
+2026-05-10,Historical 2026-05-10,GBP Swaption Vol,-0.35,vol_pt
+2026-05-10,Historical 2026-05-10,EUR Credit Spread,-38.0,bps
+2026-05-10,Historical 2026-05-10,Brent,-2.0,pct
+2026-05-11,Historical 2026-05-11,SOFR,10.0,bps
+2026-05-11,Historical 2026-05-11,SONIA,-54.0,bps
+2026-05-11,Historical 2026-05-11,ESTER,-6.0,bps
+2026-05-11,Historical 2026-05-11,USD GBP,-1.0,pct
+2026-05-11,Historical 2026-05-11,USD EUR,0.0,pct
+2026-05-11,Historical 2026-05-11,USD JPY,10.0,pct
+2026-05-11,Historical 2026-05-11,Vodafone Spot,-4.0,pct
+2026-05-11,Historical 2026-05-11,HSBC Spot,-6.0,pct
+2026-05-11,Historical 2026-05-11,SPX,6.0,pct
+2026-05-11,Historical 2026-05-11,GBP Swaption Vol,-2.45,vol_pt
+2026-05-11,Historical 2026-05-11,EUR Credit Spread,-38.0,bps
+2026-05-11,Historical 2026-05-11,Brent,0.0,pct
+2026-05-12,Historical 2026-05-12,SOFR,-18.0,bps
+2026-05-12,Historical 2026-05-12,SONIA,78.0,bps
+2026-05-12,Historical 2026-05-12,ESTER,70.0,bps
+2026-05-12,Historical 2026-05-12,USD GBP,-6.0,pct
+2026-05-12,Historical 2026-05-12,USD EUR,-3.0,pct
+2026-05-12,Historical 2026-05-12,USD JPY,-8.0,pct
+2026-05-12,Historical 2026-05-12,Vodafone Spot,5.0,pct
+2026-05-12,Historical 2026-05-12,HSBC Spot,-1.0,pct
+2026-05-12,Historical 2026-05-12,SPX,7.0,pct
+2026-05-12,Historical 2026-05-12,GBP Swaption Vol,-0.35,vol_pt
+2026-05-12,Historical 2026-05-12,EUR Credit Spread,-26.0,bps
+2026-05-12,Historical 2026-05-12,Brent,-2.0,pct
+2026-05-13,Historical 2026-05-13,SOFR,-83.0,bps
+2026-05-13,Historical 2026-05-13,SONIA,-11.0,bps
+2026-05-13,Historical 2026-05-13,ESTER,77.0,bps
+2026-05-13,Historical 2026-05-13,USD GBP,6.0,pct
+2026-05-13,Historical 2026-05-13,USD EUR,6.0,pct
+2026-05-13,Historical 2026-05-13,USD JPY,4.0,pct
+2026-05-13,Historical 2026-05-13,Vodafone Spot,-8.0,pct
+2026-05-13,Historical 2026-05-13,HSBC Spot,-5.0,pct
+2026-05-13,Historical 2026-05-13,SPX,-5.0,pct
+2026-05-13,Historical 2026-05-13,GBP Swaption Vol,3.5,vol_pt
+2026-05-13,Historical 2026-05-13,EUR Credit Spread,13.0,bps
+2026-05-13,Historical 2026-05-13,Brent,3.0,pct
+2026-05-14,Historical 2026-05-14,SOFR,-13.0,bps
+2026-05-14,Historical 2026-05-14,SONIA,-21.0,bps
+2026-05-14,Historical 2026-05-14,ESTER,-29.0,bps
+2026-05-14,Historical 2026-05-14,USD GBP,10.0,pct
+2026-05-14,Historical 2026-05-14,USD EUR,-7.0,pct
+2026-05-14,Historical 2026-05-14,USD JPY,-8.0,pct
+2026-05-14,Historical 2026-05-14,Vodafone Spot,-1.0,pct
+2026-05-14,Historical 2026-05-14,HSBC Spot,4.0,pct
+2026-05-14,Historical 2026-05-14,SPX,-5.0,pct
+2026-05-14,Historical 2026-05-14,GBP Swaption Vol,2.8,vol_pt
+2026-05-14,Historical 2026-05-14,EUR Credit Spread,-53.0,bps
+2026-05-14,Historical 2026-05-14,Brent,-5.0,pct
+2026-05-15,Historical 2026-05-15,SOFR,-50.0,bps
+2026-05-15,Historical 2026-05-15,SONIA,54.0,bps
+2026-05-15,Historical 2026-05-15,ESTER,14.0,bps
+2026-05-15,Historical 2026-05-15,USD GBP,-1.0,pct
+2026-05-15,Historical 2026-05-15,USD EUR,9.0,pct
+2026-05-15,Historical 2026-05-15,USD JPY,6.0,pct
+2026-05-15,Historical 2026-05-15,Vodafone Spot,5.0,pct
+2026-05-15,Historical 2026-05-15,HSBC Spot,-4.0,pct
+2026-05-15,Historical 2026-05-15,SPX,2.0,pct
+2026-05-15,Historical 2026-05-15,GBP Swaption Vol,0.35,vol_pt
+2026-05-15,Historical 2026-05-15,EUR Credit Spread,14.0,bps
+2026-05-15,Historical 2026-05-15,Brent,-9.0,pct
+2026-05-16,Historical 2026-05-16,SOFR,-51.0,bps
+2026-05-16,Historical 2026-05-16,SONIA,-27.0,bps
+2026-05-16,Historical 2026-05-16,ESTER,-11.0,bps
+2026-05-16,Historical 2026-05-16,USD GBP,-10.0,pct
+2026-05-16,Historical 2026-05-16,USD EUR,5.0,pct
+2026-05-16,Historical 2026-05-16,USD JPY,1.0,pct
+2026-05-16,Historical 2026-05-16,Vodafone Spot,6.0,pct
+2026-05-16,Historical 2026-05-16,HSBC Spot,-7.0,pct
+2026-05-16,Historical 2026-05-16,SPX,6.0,pct
+2026-05-16,Historical 2026-05-16,GBP Swaption Vol,3.15,vol_pt
+2026-05-16,Historical 2026-05-16,EUR Credit Spread,-59.0,bps
+2026-05-16,Historical 2026-05-16,Brent,-5.0,pct
+2026-05-17,Historical 2026-05-17,SOFR,5.0,bps
+2026-05-17,Historical 2026-05-17,SONIA,21.0,bps
+2026-05-17,Historical 2026-05-17,ESTER,-27.0,bps
+2026-05-17,Historical 2026-05-17,USD GBP,-7.0,pct
+2026-05-17,Historical 2026-05-17,USD EUR,-8.0,pct
+2026-05-17,Historical 2026-05-17,USD JPY,3.0,pct
+2026-05-17,Historical 2026-05-17,Vodafone Spot,1.0,pct
+2026-05-17,Historical 2026-05-17,HSBC Spot,-8.0,pct
+2026-05-17,Historical 2026-05-17,SPX,7.0,pct
+2026-05-17,Historical 2026-05-17,GBP Swaption Vol,2.8,vol_pt
+2026-05-17,Historical 2026-05-17,EUR Credit Spread,5.0,bps
+2026-05-17,Historical 2026-05-17,Brent,-6.0,pct
+2026-05-18,Historical 2026-05-18,SOFR,-83.0,bps
+2026-05-18,Historical 2026-05-18,SONIA,-35.0,bps
+2026-05-18,Historical 2026-05-18,ESTER,-83.0,bps
+2026-05-18,Historical 2026-05-18,USD GBP,-7.0,pct
+2026-05-18,Historical 2026-05-18,USD EUR,-8.0,pct
+2026-05-18,Historical 2026-05-18,USD JPY,-9.0,pct
+2026-05-18,Historical 2026-05-18,Vodafone Spot,-5.0,pct
+2026-05-18,Historical 2026-05-18,HSBC Spot,-8.0,pct
+2026-05-18,Historical 2026-05-18,SPX,0.0,pct
+2026-05-18,Historical 2026-05-18,GBP Swaption Vol,0.7,vol_pt
+2026-05-18,Historical 2026-05-18,EUR Credit Spread,-83.0,bps
+2026-05-18,Historical 2026-05-18,Brent,3.0,pct
+2026-05-19,Historical 2026-05-19,SOFR,34.0,bps
+2026-05-19,Historical 2026-05-19,SONIA,-38.0,bps
+2026-05-19,Historical 2026-05-19,ESTER,18.0,bps
+2026-05-19,Historical 2026-05-19,USD GBP,-8.0,pct
+2026-05-19,Historical 2026-05-19,USD EUR,-5.0,pct
+2026-05-19,Historical 2026-05-19,USD JPY,6.0,pct
+2026-05-19,Historical 2026-05-19,Vodafone Spot,0.0,pct
+2026-05-19,Historical 2026-05-19,HSBC Spot,-1.0,pct
+2026-05-19,Historical 2026-05-19,SPX,4.0,pct
+2026-05-19,Historical 2026-05-19,GBP Swaption Vol,1.05,vol_pt
+2026-05-19,Historical 2026-05-19,EUR Credit Spread,2.0,bps
+2026-05-19,Historical 2026-05-19,Brent,4.0,pct
+2026-05-20,Historical 2026-05-20,SOFR,-74.0,bps
+2026-05-20,Historical 2026-05-20,SONIA,-10.0,bps
+2026-05-20,Historical 2026-05-20,ESTER,6.0,bps
+2026-05-20,Historical 2026-05-20,USD GBP,6.0,pct
+2026-05-20,Historical 2026-05-20,USD EUR,1.0,pct
+2026-05-20,Historical 2026-05-20,USD JPY,9.0,pct
+2026-05-20,Historical 2026-05-20,Vodafone Spot,-10.0,pct
+2026-05-20,Historical 2026-05-20,HSBC Spot,-8.0,pct
+2026-05-20,Historical 2026-05-20,SPX,3.0,pct
+2026-05-20,Historical 2026-05-20,GBP Swaption Vol,-1.75,vol_pt
+2026-05-20,Historical 2026-05-20,EUR Credit Spread,-34.0,bps
+2026-05-20,Historical 2026-05-20,Brent,-9.0,pct
+2026-05-21,Historical 2026-05-21,SOFR,66.0,bps
+2026-05-21,Historical 2026-05-21,SONIA,-30.0,bps
+2026-05-21,Historical 2026-05-21,ESTER,26.0,bps
+2026-05-21,Historical 2026-05-21,USD GBP,6.0,pct
+2026-05-21,Historical 2026-05-21,USD EUR,-9.0,pct
+2026-05-21,Historical 2026-05-21,USD JPY,-9.0,pct
+2026-05-21,Historical 2026-05-21,Vodafone Spot,-2.0,pct
+2026-05-21,Historical 2026-05-21,HSBC Spot,3.0,pct
+2026-05-21,Historical 2026-05-21,SPX,-9.0,pct
+2026-05-21,Historical 2026-05-21,GBP Swaption Vol,-3.5,vol_pt
+2026-05-21,Historical 2026-05-21,EUR Credit Spread,50.0,bps
+2026-05-21,Historical 2026-05-21,Brent,3.0,pct
+2026-05-22,Historical 2026-05-22,SOFR,29.0,bps
+2026-05-22,Historical 2026-05-22,SONIA,-83.0,bps
+2026-05-22,Historical 2026-05-22,ESTER,61.0,bps
+2026-05-22,Historical 2026-05-22,USD GBP,8.0,pct
+2026-05-22,Historical 2026-05-22,USD EUR,7.0,pct
+2026-05-22,Historical 2026-05-22,USD JPY,-5.0,pct
+2026-05-22,Historical 2026-05-22,Vodafone Spot,3.0,pct
+2026-05-22,Historical 2026-05-22,HSBC Spot,-8.0,pct
+2026-05-22,Historical 2026-05-22,SPX,10.0,pct
+2026-05-22,Historical 2026-05-22,GBP Swaption Vol,-1.05,vol_pt
+2026-05-22,Historical 2026-05-22,EUR Credit Spread,-27.0,bps
+2026-05-22,Historical 2026-05-22,Brent,-10.0,pct
+2026-05-23,Historical 2026-05-23,SOFR,80.0,bps
+2026-05-23,Historical 2026-05-23,SONIA,-48.0,bps
+2026-05-23,Historical 2026-05-23,ESTER,48.0,bps
+2026-05-23,Historical 2026-05-23,USD GBP,10.0,pct
+2026-05-23,Historical 2026-05-23,USD EUR,-6.0,pct
+2026-05-23,Historical 2026-05-23,USD JPY,10.0,pct
+2026-05-23,Historical 2026-05-23,Vodafone Spot,9.0,pct
+2026-05-23,Historical 2026-05-23,HSBC Spot,-5.0,pct
+2026-05-23,Historical 2026-05-23,SPX,0.0,pct
+2026-05-23,Historical 2026-05-23,GBP Swaption Vol,3.15,vol_pt
+2026-05-23,Historical 2026-05-23,EUR Credit Spread,32.0,bps
+2026-05-23,Historical 2026-05-23,Brent,-8.0,pct
+2026-05-24,Historical 2026-05-24,SOFR,27.0,bps
+2026-05-24,Historical 2026-05-24,SONIA,-37.0,bps
+2026-05-24,Historical 2026-05-24,ESTER,75.0,bps
+2026-05-24,Historical 2026-05-24,USD GBP,-5.0,pct
+2026-05-24,Historical 2026-05-24,USD EUR,-4.0,pct
+2026-05-24,Historical 2026-05-24,USD JPY,10.0,pct
+2026-05-24,Historical 2026-05-24,Vodafone Spot,-9.0,pct
+2026-05-24,Historical 2026-05-24,HSBC Spot,7.0,pct
+2026-05-24,Historical 2026-05-24,SPX,9.0,pct
+2026-05-24,Historical 2026-05-24,GBP Swaption Vol,0.0,vol_pt
+2026-05-24,Historical 2026-05-24,EUR Credit Spread,-37.0,bps
+2026-05-24,Historical 2026-05-24,Brent,10.0,pct
+2026-05-25,Historical 2026-05-25,SOFR,-35.0,bps
+2026-05-25,Historical 2026-05-25,SONIA,69.0,bps
+2026-05-25,Historical 2026-05-25,ESTER,77.0,bps
+2026-05-25,Historical 2026-05-25,USD GBP,-1.0,pct
+2026-05-25,Historical 2026-05-25,USD EUR,5.0,pct
+2026-05-25,Historical 2026-05-25,USD JPY,-3.0,pct
+2026-05-25,Historical 2026-05-25,Vodafone Spot,-6.0,pct
+2026-05-25,Historical 2026-05-25,HSBC Spot,-6.0,pct
+2026-05-25,Historical 2026-05-25,SPX,0.0,pct
+2026-05-25,Historical 2026-05-25,GBP Swaption Vol,0.35,vol_pt
+2026-05-25,Historical 2026-05-25,EUR Credit Spread,21.0,bps
+2026-05-25,Historical 2026-05-25,Brent,10.0,pct
+2026-05-26,Historical 2026-05-26,SOFR,-42.0,bps
+2026-05-26,Historical 2026-05-26,SONIA,54.0,bps
+2026-05-26,Historical 2026-05-26,ESTER,30.0,bps
+2026-05-26,Historical 2026-05-26,USD GBP,-8.0,pct
+2026-05-26,Historical 2026-05-26,USD EUR,2.0,pct
+2026-05-26,Historical 2026-05-26,USD JPY,8.0,pct
+2026-05-26,Historical 2026-05-26,Vodafone Spot,7.0,pct
+2026-05-26,Historical 2026-05-26,HSBC Spot,6.0,pct
+2026-05-26,Historical 2026-05-26,SPX,0.0,pct
+2026-05-26,Historical 2026-05-26,GBP Swaption Vol,-2.1,vol_pt
+2026-05-26,Historical 2026-05-26,EUR Credit Spread,86.0,bps
+2026-05-26,Historical 2026-05-26,Brent,6.0,pct
+2026-05-27,Historical 2026-05-27,SOFR,-46.0,bps
+2026-05-27,Historical 2026-05-27,SONIA,-70.0,bps
+2026-05-27,Historical 2026-05-27,ESTER,18.0,bps
+2026-05-27,Historical 2026-05-27,USD GBP,0.0,pct
+2026-05-27,Historical 2026-05-27,USD EUR,-2.0,pct
+2026-05-27,Historical 2026-05-27,USD JPY,9.0,pct
+2026-05-27,Historical 2026-05-27,Vodafone Spot,3.0,pct
+2026-05-27,Historical 2026-05-27,HSBC Spot,-6.0,pct
+2026-05-27,Historical 2026-05-27,SPX,-10.0,pct
+2026-05-27,Historical 2026-05-27,GBP Swaption Vol,-1.05,vol_pt
+2026-05-27,Historical 2026-05-27,EUR Credit Spread,18.0,bps
+2026-05-27,Historical 2026-05-27,Brent,-3.0,pct
+2026-05-28,Historical 2026-05-28,SOFR,56.0,bps
+2026-05-28,Historical 2026-05-28,SONIA,40.0,bps
+2026-05-28,Historical 2026-05-28,ESTER,48.0,bps
+2026-05-28,Historical 2026-05-28,USD GBP,-4.0,pct
+2026-05-28,Historical 2026-05-28,USD EUR,1.0,pct
+2026-05-28,Historical 2026-05-28,USD JPY,9.0,pct
+2026-05-28,Historical 2026-05-28,Vodafone Spot,-7.0,pct
+2026-05-28,Historical 2026-05-28,HSBC Spot,9.0,pct
+2026-05-28,Historical 2026-05-28,SPX,3.0,pct
+2026-05-28,Historical 2026-05-28,GBP Swaption Vol,2.8,vol_pt
+2026-05-28,Historical 2026-05-28,EUR Credit Spread,72.0,bps
+2026-05-28,Historical 2026-05-28,Brent,9.0,pct
+2026-05-29,Historical 2026-05-29,SOFR,-66.0,bps
+2026-05-29,Historical 2026-05-29,SONIA,-26.0,bps
+2026-05-29,Historical 2026-05-29,ESTER,-34.0,bps
+2026-05-29,Historical 2026-05-29,USD GBP,-3.0,pct
+2026-05-29,Historical 2026-05-29,USD EUR,-6.0,pct
+2026-05-29,Historical 2026-05-29,USD JPY,-6.0,pct
+2026-05-29,Historical 2026-05-29,Vodafone Spot,9.0,pct
+2026-05-29,Historical 2026-05-29,HSBC Spot,5.0,pct
+2026-05-29,Historical 2026-05-29,SPX,-4.0,pct
+2026-05-29,Historical 2026-05-29,GBP Swaption Vol,-0.7,vol_pt
+2026-05-29,Historical 2026-05-29,EUR Credit Spread,-18.0,bps
+2026-05-29,Historical 2026-05-29,Brent,-10.0,pct
+2026-05-30,Historical 2026-05-30,SOFR,19.0,bps
+2026-05-30,Historical 2026-05-30,SONIA,59.0,bps
+2026-05-30,Historical 2026-05-30,ESTER,-45.0,bps
+2026-05-30,Historical 2026-05-30,USD GBP,-10.0,pct
+2026-05-30,Historical 2026-05-30,USD EUR,5.0,pct
+2026-05-30,Historical 2026-05-30,USD JPY,4.0,pct
+2026-05-30,Historical 2026-05-30,Vodafone Spot,-3.0,pct
+2026-05-30,Historical 2026-05-30,HSBC Spot,-8.0,pct
+2026-05-30,Historical 2026-05-30,SPX,-7.0,pct
+2026-05-30,Historical 2026-05-30,GBP Swaption Vol,2.8,vol_pt
+2026-05-30,Historical 2026-05-30,EUR Credit Spread,59.0,bps
+2026-05-30,Historical 2026-05-30,Brent,-6.0,pct
+2026-05-31,Historical 2026-05-31,SOFR,69.0,bps
+2026-05-31,Historical 2026-05-31,SONIA,21.0,bps
+2026-05-31,Historical 2026-05-31,ESTER,61.0,bps
+2026-05-31,Historical 2026-05-31,USD GBP,10.0,pct
+2026-05-31,Historical 2026-05-31,USD EUR,-2.0,pct
+2026-05-31,Historical 2026-05-31,USD JPY,5.0,pct
+2026-05-31,Historical 2026-05-31,Vodafone Spot,0.0,pct
+2026-05-31,Historical 2026-05-31,HSBC Spot,-4.0,pct
+2026-05-31,Historical 2026-05-31,SPX,-3.0,pct
+2026-05-31,Historical 2026-05-31,GBP Swaption Vol,3.5,vol_pt
+2026-05-31,Historical 2026-05-31,EUR Credit Spread,53.0,bps
+2026-05-31,Historical 2026-05-31,Brent,5.0,pct
+2026-06-01,Historical 2026-06-01,SOFR,61.0,bps
+2026-06-01,Historical 2026-06-01,SONIA,-59.0,bps
+2026-06-01,Historical 2026-06-01,ESTER,21.0,bps
+2026-06-01,Historical 2026-06-01,USD GBP,0.0,pct
+2026-06-01,Historical 2026-06-01,USD EUR,-8.0,pct
+2026-06-01,Historical 2026-06-01,USD JPY,-3.0,pct
+2026-06-01,Historical 2026-06-01,Vodafone Spot,6.0,pct
+2026-06-01,Historical 2026-06-01,HSBC Spot,-10.0,pct
+2026-06-01,Historical 2026-06-01,SPX,6.0,pct
+2026-06-01,Historical 2026-06-01,GBP Swaption Vol,2.45,vol_pt
+2026-06-01,Historical 2026-06-01,EUR Credit Spread,-35.0,bps
+2026-06-01,Historical 2026-06-01,Brent,-9.0,pct
+2026-06-02,Historical 2026-06-02,SOFR,19.0,bps
+2026-06-02,Historical 2026-06-02,SONIA,3.0,bps
+2026-06-02,Historical 2026-06-02,ESTER,83.0,bps
+2026-06-02,Historical 2026-06-02,USD GBP,8.0,pct
+2026-06-02,Historical 2026-06-02,USD EUR,-2.0,pct
+2026-06-02,Historical 2026-06-02,USD JPY,-3.0,pct
+2026-06-02,Historical 2026-06-02,Vodafone Spot,7.0,pct
+2026-06-02,Historical 2026-06-02,HSBC Spot,9.0,pct
+2026-06-02,Historical 2026-06-02,SPX,3.0,pct
+2026-06-02,Historical 2026-06-02,GBP Swaption Vol,-1.4,vol_pt
+2026-06-02,Historical 2026-06-02,EUR Credit Spread,-13.0,bps
+2026-06-02,Historical 2026-06-02,Brent,-10.0,pct
+2026-06-03,Historical 2026-06-03,SOFR,-70.0,bps
+2026-06-03,Historical 2026-06-03,SONIA,-46.0,bps
+2026-06-03,Historical 2026-06-03,ESTER,-70.0,bps
+2026-06-03,Historical 2026-06-03,USD GBP,-10.0,pct
+2026-06-03,Historical 2026-06-03,USD EUR,-7.0,pct
+2026-06-03,Historical 2026-06-03,USD JPY,10.0,pct
+2026-06-03,Historical 2026-06-03,Vodafone Spot,1.0,pct
+2026-06-03,Historical 2026-06-03,HSBC Spot,6.0,pct
+2026-06-03,Historical 2026-06-03,SPX,-10.0,pct
+2026-06-03,Historical 2026-06-03,GBP Swaption Vol,0.35,vol_pt
+2026-06-03,Historical 2026-06-03,EUR Credit Spread,74.0,bps
+2026-06-03,Historical 2026-06-03,Brent,-4.0,pct
+2026-06-04,Historical 2026-06-04,SOFR,-67.0,bps
+2026-06-04,Historical 2026-06-04,SONIA,-43.0,bps
+2026-06-04,Historical 2026-06-04,ESTER,21.0,bps
+2026-06-04,Historical 2026-06-04,USD GBP,10.0,pct
+2026-06-04,Historical 2026-06-04,USD EUR,8.0,pct
+2026-06-04,Historical 2026-06-04,USD JPY,1.0,pct
+2026-06-04,Historical 2026-06-04,Vodafone Spot,7.0,pct
+2026-06-04,Historical 2026-06-04,HSBC Spot,1.0,pct
+2026-06-04,Historical 2026-06-04,SPX,-10.0,pct
+2026-06-04,Historical 2026-06-04,GBP Swaption Vol,-2.1,vol_pt
+2026-06-04,Historical 2026-06-04,EUR Credit Spread,13.0,bps
+2026-06-04,Historical 2026-06-04,Brent,5.0,pct
+2026-06-05,Historical 2026-06-05,SOFR,53.0,bps
+2026-06-05,Historical 2026-06-05,SONIA,-51.0,bps
+2026-06-05,Historical 2026-06-05,ESTER,-27.0,bps
+2026-06-05,Historical 2026-06-05,USD GBP,-1.0,pct
+2026-06-05,Historical 2026-06-05,USD EUR,-8.0,pct
+2026-06-05,Historical 2026-06-05,USD JPY,3.0,pct
+2026-06-05,Historical 2026-06-05,Vodafone Spot,-2.0,pct
+2026-06-05,Historical 2026-06-05,HSBC Spot,-2.0,pct
+2026-06-05,Historical 2026-06-05,SPX,-7.0,pct
+2026-06-05,Historical 2026-06-05,GBP Swaption Vol,1.4,vol_pt
+2026-06-05,Historical 2026-06-05,EUR Credit Spread,-75.0,bps
+2026-06-05,Historical 2026-06-05,Brent,6.0,pct
+2026-06-06,Historical 2026-06-06,SOFR,35.0,bps
+2026-06-06,Historical 2026-06-06,SONIA,-61.0,bps
+2026-06-06,Historical 2026-06-06,ESTER,-61.0,bps
+2026-06-06,Historical 2026-06-06,USD GBP,-9.0,pct
+2026-06-06,Historical 2026-06-06,USD EUR,0.0,pct
+2026-06-06,Historical 2026-06-06,USD JPY,9.0,pct
+2026-06-06,Historical 2026-06-06,Vodafone Spot,-2.0,pct
+2026-06-06,Historical 2026-06-06,HSBC Spot,8.0,pct
+2026-06-06,Historical 2026-06-06,SPX,-2.0,pct
+2026-06-06,Historical 2026-06-06,GBP Swaption Vol,-0.35,vol_pt
+2026-06-06,Historical 2026-06-06,EUR Credit Spread,-37.0,bps
+2026-06-06,Historical 2026-06-06,Brent,-3.0,pct
+2026-06-07,Historical 2026-06-07,SOFR,86.0,bps
+2026-06-07,Historical 2026-06-07,SONIA,-42.0,bps
+2026-06-07,Historical 2026-06-07,ESTER,46.0,bps
+2026-06-07,Historical 2026-06-07,USD GBP,1.0,pct
+2026-06-07,Historical 2026-06-07,USD EUR,5.0,pct
+2026-06-07,Historical 2026-06-07,USD JPY,5.0,pct
+2026-06-07,Historical 2026-06-07,Vodafone Spot,10.0,pct
+2026-06-07,Historical 2026-06-07,HSBC Spot,-5.0,pct
+2026-06-07,Historical 2026-06-07,SPX,-3.0,pct
+2026-06-07,Historical 2026-06-07,GBP Swaption Vol,1.75,vol_pt
+2026-06-07,Historical 2026-06-07,EUR Credit Spread,-50.0,bps
+2026-06-07,Historical 2026-06-07,Brent,4.0,pct
+2026-06-08,Historical 2026-06-08,SOFR,53.0,bps
+2026-06-08,Historical 2026-06-08,SONIA,29.0,bps
+2026-06-08,Historical 2026-06-08,ESTER,61.0,bps
+2026-06-08,Historical 2026-06-08,USD GBP,9.0,pct
+2026-06-08,Historical 2026-06-08,USD EUR,6.0,pct
+2026-06-08,Historical 2026-06-08,USD JPY,7.0,pct
+2026-06-08,Historical 2026-06-08,Vodafone Spot,1.0,pct
+2026-06-08,Historical 2026-06-08,HSBC Spot,5.0,pct
+2026-06-08,Historical 2026-06-08,SPX,-6.0,pct
+2026-06-08,Historical 2026-06-08,GBP Swaption Vol,-3.5,vol_pt
+2026-06-08,Historical 2026-06-08,EUR Credit Spread,-3.0,bps
+2026-06-08,Historical 2026-06-08,Brent,6.0,pct
+2026-06-09,Historical 2026-06-09,SOFR,-30.0,bps
+2026-06-09,Historical 2026-06-09,SONIA,18.0,bps
+2026-06-09,Historical 2026-06-09,ESTER,34.0,bps
+2026-06-09,Historical 2026-06-09,USD GBP,-5.0,pct
+2026-06-09,Historical 2026-06-09,USD EUR,4.0,pct
+2026-06-09,Historical 2026-06-09,USD JPY,8.0,pct
+2026-06-09,Historical 2026-06-09,Vodafone Spot,-10.0,pct
+2026-06-09,Historical 2026-06-09,HSBC Spot,-9.0,pct
+2026-06-09,Historical 2026-06-09,SPX,-9.0,pct
+2026-06-09,Historical 2026-06-09,GBP Swaption Vol,-2.45,vol_pt
+2026-06-09,Historical 2026-06-09,EUR Credit Spread,18.0,bps
+2026-06-09,Historical 2026-06-09,Brent,-9.0,pct
+2026-06-10,Historical 2026-06-10,SOFR,2.0,bps
+2026-06-10,Historical 2026-06-10,SONIA,-54.0,bps
+2026-06-10,Historical 2026-06-10,ESTER,-30.0,bps
+2026-06-10,Historical 2026-06-10,USD GBP,-7.0,pct
+2026-06-10,Historical 2026-06-10,USD EUR,-6.0,pct
+2026-06-10,Historical 2026-06-10,USD JPY,10.0,pct
+2026-06-10,Historical 2026-06-10,Vodafone Spot,7.0,pct
+2026-06-10,Historical 2026-06-10,HSBC Spot,-1.0,pct
+2026-06-10,Historical 2026-06-10,SPX,-3.0,pct
+2026-06-10,Historical 2026-06-10,GBP Swaption Vol,2.45,vol_pt
+2026-06-10,Historical 2026-06-10,EUR Credit Spread,74.0,bps
+2026-06-10,Historical 2026-06-10,Brent,-3.0,pct
+2026-06-11,Historical 2026-06-11,SOFR,22.0,bps
+2026-06-11,Historical 2026-06-11,SONIA,62.0,bps
+2026-06-11,Historical 2026-06-11,ESTER,-66.0,bps
+2026-06-11,Historical 2026-06-11,USD GBP,2.0,pct
+2026-06-11,Historical 2026-06-11,USD EUR,-2.0,pct
+2026-06-11,Historical 2026-06-11,USD JPY,-3.0,pct
+2026-06-11,Historical 2026-06-11,Vodafone Spot,9.0,pct
+2026-06-11,Historical 2026-06-11,HSBC Spot,-4.0,pct
+2026-06-11,Historical 2026-06-11,SPX,8.0,pct
+2026-06-11,Historical 2026-06-11,GBP Swaption Vol,2.1,vol_pt
+2026-06-11,Historical 2026-06-11,EUR Credit Spread,-34.0,bps
+2026-06-11,Historical 2026-06-11,Brent,5.0,pct
+2026-06-12,Historical 2026-06-12,SOFR,-61.0,bps
+2026-06-12,Historical 2026-06-12,SONIA,-77.0,bps
+2026-06-12,Historical 2026-06-12,ESTER,43.0,bps
+2026-06-12,Historical 2026-06-12,USD GBP,9.0,pct
+2026-06-12,Historical 2026-06-12,USD EUR,-2.0,pct
+2026-06-12,Historical 2026-06-12,USD JPY,-7.0,pct
+2026-06-12,Historical 2026-06-12,Vodafone Spot,2.0,pct
+2026-06-12,Historical 2026-06-12,HSBC Spot,0.0,pct
+2026-06-12,Historical 2026-06-12,SPX,7.0,pct
+2026-06-12,Historical 2026-06-12,GBP Swaption Vol,3.15,vol_pt
+2026-06-12,Historical 2026-06-12,EUR Credit Spread,35.0,bps
+2026-06-12,Historical 2026-06-12,Brent,3.0,pct
+2026-06-13,Historical 2026-06-13,SOFR,48.0,bps
+2026-06-13,Historical 2026-06-13,SONIA,-8.0,bps
+2026-06-13,Historical 2026-06-13,ESTER,24.0,bps
+2026-06-13,Historical 2026-06-13,USD GBP,7.0,pct
+2026-06-13,Historical 2026-06-13,USD EUR,2.0,pct
+2026-06-13,Historical 2026-06-13,USD JPY,1.0,pct
+2026-06-13,Historical 2026-06-13,Vodafone Spot,-7.0,pct
+2026-06-13,Historical 2026-06-13,HSBC Spot,9.0,pct
+2026-06-13,Historical 2026-06-13,SPX,0.0,pct
+2026-06-13,Historical 2026-06-13,GBP Swaption Vol,-2.45,vol_pt
+2026-06-13,Historical 2026-06-13,EUR Credit Spread,-24.0,bps
+2026-06-13,Historical 2026-06-13,Brent,10.0,pct
+2026-06-14,Historical 2026-06-14,SOFR,83.0,bps
+2026-06-14,Historical 2026-06-14,SONIA,19.0,bps
+2026-06-14,Historical 2026-06-14,ESTER,3.0,bps
+2026-06-14,Historical 2026-06-14,USD GBP,3.0,pct
+2026-06-14,Historical 2026-06-14,USD EUR,2.0,pct
+2026-06-14,Historical 2026-06-14,USD JPY,-10.0,pct
+2026-06-14,Historical 2026-06-14,Vodafone Spot,2.0,pct
+2026-06-14,Historical 2026-06-14,HSBC Spot,10.0,pct
+2026-06-14,Historical 2026-06-14,SPX,9.0,pct
+2026-06-14,Historical 2026-06-14,GBP Swaption Vol,-2.1,vol_pt
+2026-06-14,Historical 2026-06-14,EUR Credit Spread,-69.0,bps
+2026-06-14,Historical 2026-06-14,Brent,-8.0,pct
+2026-06-15,Historical 2026-06-15,SOFR,51.0,bps
+2026-06-15,Historical 2026-06-15,SONIA,-61.0,bps
+2026-06-15,Historical 2026-06-15,ESTER,-69.0,bps
+2026-06-15,Historical 2026-06-15,USD GBP,-3.0,pct
+2026-06-15,Historical 2026-06-15,USD EUR,-5.0,pct
+2026-06-15,Historical 2026-06-15,USD JPY,-4.0,pct
+2026-06-15,Historical 2026-06-15,Vodafone Spot,-4.0,pct
+2026-06-15,Historical 2026-06-15,HSBC Spot,-10.0,pct
+2026-06-15,Historical 2026-06-15,SPX,3.0,pct
+2026-06-15,Historical 2026-06-15,GBP Swaption Vol,0.7,vol_pt
+2026-06-15,Historical 2026-06-15,EUR Credit Spread,27.0,bps
+2026-06-15,Historical 2026-06-15,Brent,-4.0,pct
+2026-06-16,Historical 2026-06-16,SOFR,-16.0,bps
+2026-06-16,Historical 2026-06-16,SONIA,64.0,bps
+2026-06-16,Historical 2026-06-16,ESTER,64.0,bps
+2026-06-16,Historical 2026-06-16,USD GBP,-10.0,pct
+2026-06-16,Historical 2026-06-16,USD EUR,0.0,pct
+2026-06-16,Historical 2026-06-16,USD JPY,-4.0,pct
+2026-06-16,Historical 2026-06-16,Vodafone Spot,-3.0,pct
+2026-06-16,Historical 2026-06-16,HSBC Spot,-10.0,pct
+2026-06-16,Historical 2026-06-16,SPX,-3.0,pct
+2026-06-16,Historical 2026-06-16,GBP Swaption Vol,-2.1,vol_pt
+2026-06-16,Historical 2026-06-16,EUR Credit Spread,64.0,bps
+2026-06-16,Historical 2026-06-16,Brent,-8.0,pct
+2026-06-17,Historical 2026-06-17,SOFR,-72.0,bps
+2026-06-17,Historical 2026-06-17,SONIA,-40.0,bps
+2026-06-17,Historical 2026-06-17,ESTER,8.0,bps
+2026-06-17,Historical 2026-06-17,USD GBP,1.0,pct
+2026-06-17,Historical 2026-06-17,USD EUR,1.0,pct
+2026-06-17,Historical 2026-06-17,USD JPY,0.0,pct
+2026-06-17,Historical 2026-06-17,Vodafone Spot,-10.0,pct
+2026-06-17,Historical 2026-06-17,HSBC Spot,-10.0,pct
+2026-06-17,Historical 2026-06-17,SPX,8.0,pct
+2026-06-17,Historical 2026-06-17,GBP Swaption Vol,0.0,vol_pt
+2026-06-17,Historical 2026-06-17,EUR Credit Spread,-8.0,bps
+2026-06-17,Historical 2026-06-17,Brent,1.0,pct
+2026-06-18,Historical 2026-06-18,SOFR,38.0,bps
+2026-06-18,Historical 2026-06-18,SONIA,-26.0,bps
+2026-06-18,Historical 2026-06-18,ESTER,38.0,bps
+2026-06-18,Historical 2026-06-18,USD GBP,6.0,pct
+2026-06-18,Historical 2026-06-18,USD EUR,-10.0,pct
+2026-06-18,Historical 2026-06-18,USD JPY,4.0,pct
+2026-06-18,Historical 2026-06-18,Vodafone Spot,7.0,pct
+2026-06-18,Historical 2026-06-18,HSBC Spot,-4.0,pct
+2026-06-18,Historical 2026-06-18,SPX,-2.0,pct
+2026-06-18,Historical 2026-06-18,GBP Swaption Vol,2.8,vol_pt
+2026-06-18,Historical 2026-06-18,EUR Credit Spread,-58.0,bps
+2026-06-18,Historical 2026-06-18,Brent,6.0,pct
+2026-06-19,Historical 2026-06-19,SOFR,-45.0,bps
+2026-06-19,Historical 2026-06-19,SONIA,-13.0,bps
+2026-06-19,Historical 2026-06-19,ESTER,-77.0,bps
+2026-06-19,Historical 2026-06-19,USD GBP,0.0,pct
+2026-06-19,Historical 2026-06-19,USD EUR,1.0,pct
+2026-06-19,Historical 2026-06-19,USD JPY,7.0,pct
+2026-06-19,Historical 2026-06-19,Vodafone Spot,-8.0,pct
+2026-06-19,Historical 2026-06-19,HSBC Spot,-6.0,pct
+2026-06-19,Historical 2026-06-19,SPX,6.0,pct
+2026-06-19,Historical 2026-06-19,GBP Swaption Vol,1.4,vol_pt
+2026-06-19,Historical 2026-06-19,EUR Credit Spread,27.0,bps
+2026-06-19,Historical 2026-06-19,Brent,-1.0,pct
+2026-06-20,Historical 2026-06-20,SOFR,38.0,bps
+2026-06-20,Historical 2026-06-20,SONIA,38.0,bps
+2026-06-20,Historical 2026-06-20,ESTER,-34.0,bps
+2026-06-20,Historical 2026-06-20,USD GBP,-4.0,pct
+2026-06-20,Historical 2026-06-20,USD EUR,6.0,pct
+2026-06-20,Historical 2026-06-20,USD JPY,-2.0,pct
+2026-06-20,Historical 2026-06-20,Vodafone Spot,-3.0,pct
+2026-06-20,Historical 2026-06-20,HSBC Spot,6.0,pct
+2026-06-20,Historical 2026-06-20,SPX,5.0,pct
+2026-06-20,Historical 2026-06-20,GBP Swaption Vol,-3.15,vol_pt
+2026-06-20,Historical 2026-06-20,EUR Credit Spread,-26.0,bps
+2026-06-20,Historical 2026-06-20,Brent,-4.0,pct
+2026-06-21,Historical 2026-06-21,SOFR,86.0,bps
+2026-06-21,Historical 2026-06-21,SONIA,22.0,bps
+2026-06-21,Historical 2026-06-21,ESTER,-2.0,bps
+2026-06-21,Historical 2026-06-21,USD GBP,8.0,pct
+2026-06-21,Historical 2026-06-21,USD EUR,-4.0,pct
+2026-06-21,Historical 2026-06-21,USD JPY,3.0,pct
+2026-06-21,Historical 2026-06-21,Vodafone Spot,-4.0,pct
+2026-06-21,Historical 2026-06-21,HSBC Spot,-6.0,pct
+2026-06-21,Historical 2026-06-21,SPX,4.0,pct
+2026-06-21,Historical 2026-06-21,GBP Swaption Vol,-3.5,vol_pt
+2026-06-21,Historical 2026-06-21,EUR Credit Spread,46.0,bps
+2026-06-21,Historical 2026-06-21,Brent,-6.0,pct
+2026-06-22,Historical 2026-06-22,SOFR,-19.0,bps
+2026-06-22,Historical 2026-06-22,SONIA,13.0,bps
+2026-06-22,Historical 2026-06-22,ESTER,-83.0,bps
+2026-06-22,Historical 2026-06-22,USD GBP,3.0,pct
+2026-06-22,Historical 2026-06-22,USD EUR,8.0,pct
+2026-06-22,Historical 2026-06-22,USD JPY,9.0,pct
+2026-06-22,Historical 2026-06-22,Vodafone Spot,-6.0,pct
+2026-06-22,Historical 2026-06-22,HSBC Spot,10.0,pct
+2026-06-22,Historical 2026-06-22,SPX,-7.0,pct
+2026-06-22,Historical 2026-06-22,GBP Swaption Vol,1.4,vol_pt
+2026-06-22,Historical 2026-06-22,EUR Credit Spread,45.0,bps
+2026-06-22,Historical 2026-06-22,Brent,-10.0,pct
+2026-06-23,Historical 2026-06-23,SOFR,56.0,bps
+2026-06-23,Historical 2026-06-23,SONIA,40.0,bps
+2026-06-23,Historical 2026-06-23,ESTER,-8.0,bps
+2026-06-23,Historical 2026-06-23,USD GBP,-3.0,pct
+2026-06-23,Historical 2026-06-23,USD EUR,8.0,pct
+2026-06-23,Historical 2026-06-23,USD JPY,2.0,pct
+2026-06-23,Historical 2026-06-23,Vodafone Spot,6.0,pct
+2026-06-23,Historical 2026-06-23,HSBC Spot,5.0,pct
+2026-06-23,Historical 2026-06-23,SPX,-4.0,pct
+2026-06-23,Historical 2026-06-23,GBP Swaption Vol,0.7,vol_pt
+2026-06-23,Historical 2026-06-23,EUR Credit Spread,0.0,bps
+2026-06-23,Historical 2026-06-23,Brent,-5.0,pct
+2026-06-24,Historical 2026-06-24,SOFR,-11.0,bps
+2026-06-24,Historical 2026-06-24,SONIA,77.0,bps
+2026-06-24,Historical 2026-06-24,ESTER,-27.0,bps
+2026-06-24,Historical 2026-06-24,USD GBP,3.0,pct
+2026-06-24,Historical 2026-06-24,USD EUR,9.0,pct
+2026-06-24,Historical 2026-06-24,USD JPY,-10.0,pct
+2026-06-24,Historical 2026-06-24,Vodafone Spot,6.0,pct
+2026-06-24,Historical 2026-06-24,HSBC Spot,8.0,pct
+2026-06-24,Historical 2026-06-24,SPX,-2.0,pct
+2026-06-24,Historical 2026-06-24,GBP Swaption Vol,1.4,vol_pt
+2026-06-24,Historical 2026-06-24,EUR Credit Spread,-27.0,bps
+2026-06-24,Historical 2026-06-24,Brent,10.0,pct
+2026-06-25,Historical 2026-06-25,SOFR,69.0,bps
+2026-06-25,Historical 2026-06-25,SONIA,37.0,bps
+2026-06-25,Historical 2026-06-25,ESTER,29.0,bps
+2026-06-25,Historical 2026-06-25,USD GBP,-1.0,pct
+2026-06-25,Historical 2026-06-25,USD EUR,-9.0,pct
+2026-06-25,Historical 2026-06-25,USD JPY,-5.0,pct
+2026-06-25,Historical 2026-06-25,Vodafone Spot,10.0,pct
+2026-06-25,Historical 2026-06-25,HSBC Spot,-4.0,pct
+2026-06-25,Historical 2026-06-25,SPX,5.0,pct
+2026-06-25,Historical 2026-06-25,GBP Swaption Vol,-1.75,vol_pt
+2026-06-25,Historical 2026-06-25,EUR Credit Spread,-35.0,bps
+2026-06-25,Historical 2026-06-25,Brent,0.0,pct
+2026-06-26,Historical 2026-06-26,SOFR,77.0,bps
+2026-06-26,Historical 2026-06-26,SONIA,53.0,bps
+2026-06-26,Historical 2026-06-26,ESTER,13.0,bps
+2026-06-26,Historical 2026-06-26,USD GBP,9.0,pct
+2026-06-26,Historical 2026-06-26,USD EUR,5.0,pct
+2026-06-26,Historical 2026-06-26,USD JPY,4.0,pct
+2026-06-26,Historical 2026-06-26,Vodafone Spot,4.0,pct
+2026-06-26,Historical 2026-06-26,HSBC Spot,0.0,pct
+2026-06-26,Historical 2026-06-26,SPX,-9.0,pct
+2026-06-26,Historical 2026-06-26,GBP Swaption Vol,0.7,vol_pt
+2026-06-26,Historical 2026-06-26,EUR Credit Spread,61.0,bps
+2026-06-26,Historical 2026-06-26,Brent,-6.0,pct
+2026-06-27,Historical 2026-06-27,SOFR,10.0,bps
+2026-06-27,Historical 2026-06-27,SONIA,74.0,bps
+2026-06-27,Historical 2026-06-27,ESTER,10.0,bps
+2026-06-27,Historical 2026-06-27,USD GBP,-5.0,pct
+2026-06-27,Historical 2026-06-27,USD EUR,6.0,pct
+2026-06-27,Historical 2026-06-27,USD JPY,-7.0,pct
+2026-06-27,Historical 2026-06-27,Vodafone Spot,-8.0,pct
+2026-06-27,Historical 2026-06-27,HSBC Spot,9.0,pct
+2026-06-27,Historical 2026-06-27,SPX,4.0,pct
+2026-06-27,Historical 2026-06-27,GBP Swaption Vol,1.05,vol_pt
+2026-06-27,Historical 2026-06-27,EUR Credit Spread,-70.0,bps
+2026-06-27,Historical 2026-06-27,Brent,3.0,pct
+2026-06-28,Historical 2026-06-28,SOFR,22.0,bps
+2026-06-28,Historical 2026-06-28,SONIA,62.0,bps
+2026-06-28,Historical 2026-06-28,ESTER,-50.0,bps
+2026-06-28,Historical 2026-06-28,USD GBP,-6.0,pct
+2026-06-28,Historical 2026-06-28,USD EUR,-4.0,pct
+2026-06-28,Historical 2026-06-28,USD JPY,3.0,pct
+2026-06-28,Historical 2026-06-28,Vodafone Spot,7.0,pct
+2026-06-28,Historical 2026-06-28,HSBC Spot,5.0,pct
+2026-06-28,Historical 2026-06-28,SPX,7.0,pct
+2026-06-28,Historical 2026-06-28,GBP Swaption Vol,3.15,vol_pt
+2026-06-28,Historical 2026-06-28,EUR Credit Spread,54.0,bps
+2026-06-28,Historical 2026-06-28,Brent,-1.0,pct
+2026-06-29,Historical 2026-06-29,SOFR,70.0,bps
+2026-06-29,Historical 2026-06-29,SONIA,14.0,bps
+2026-06-29,Historical 2026-06-29,ESTER,22.0,bps
+2026-06-29,Historical 2026-06-29,USD GBP,1.0,pct
+2026-06-29,Historical 2026-06-29,USD EUR,-5.0,pct
+2026-06-29,Historical 2026-06-29,USD JPY,-1.0,pct
+2026-06-29,Historical 2026-06-29,Vodafone Spot,3.0,pct
+2026-06-29,Historical 2026-06-29,HSBC Spot,-5.0,pct
+2026-06-29,Historical 2026-06-29,SPX,1.0,pct
+2026-06-29,Historical 2026-06-29,GBP Swaption Vol,-1.4,vol_pt
+2026-06-29,Historical 2026-06-29,EUR Credit Spread,-2.0,bps
+2026-06-29,Historical 2026-06-29,Brent,5.0,pct
+2026-06-30,Historical 2026-06-30,SOFR,19.0,bps
+2026-06-30,Historical 2026-06-30,SONIA,-13.0,bps
+2026-06-30,Historical 2026-06-30,ESTER,-69.0,bps
+2026-06-30,Historical 2026-06-30,USD GBP,0.0,pct
+2026-06-30,Historical 2026-06-30,USD EUR,7.0,pct
+2026-06-30,Historical 2026-06-30,USD JPY,-2.0,pct
+2026-06-30,Historical 2026-06-30,Vodafone Spot,9.0,pct
+2026-06-30,Historical 2026-06-30,HSBC Spot,7.0,pct
+2026-06-30,Historical 2026-06-30,SPX,-10.0,pct
+2026-06-30,Historical 2026-06-30,GBP Swaption Vol,3.5,vol_pt
+2026-06-30,Historical 2026-06-30,EUR Credit Spread,-45.0,bps
+2026-06-30,Historical 2026-06-30,Brent,-6.0,pct
+2026-07-01,Historical 2026-07-01,SOFR,-2.0,bps
+2026-07-01,Historical 2026-07-01,SONIA,-74.0,bps
+2026-07-01,Historical 2026-07-01,ESTER,-26.0,bps
+2026-07-01,Historical 2026-07-01,USD GBP,7.0,pct
+2026-07-01,Historical 2026-07-01,USD EUR,-3.0,pct
+2026-07-01,Historical 2026-07-01,USD JPY,-5.0,pct
+2026-07-01,Historical 2026-07-01,Vodafone Spot,4.0,pct
+2026-07-01,Historical 2026-07-01,HSBC Spot,5.0,pct
+2026-07-01,Historical 2026-07-01,SPX,8.0,pct
+2026-07-01,Historical 2026-07-01,GBP Swaption Vol,1.05,vol_pt
+2026-07-01,Historical 2026-07-01,EUR Credit Spread,6.0,bps
+2026-07-01,Historical 2026-07-01,Brent,5.0,pct
+2026-07-02,Historical 2026-07-02,SOFR,27.0,bps
+2026-07-02,Historical 2026-07-02,SONIA,3.0,bps
+2026-07-02,Historical 2026-07-02,ESTER,75.0,bps
+2026-07-02,Historical 2026-07-02,USD GBP,-3.0,pct
+2026-07-02,Historical 2026-07-02,USD EUR,0.0,pct
+2026-07-02,Historical 2026-07-02,USD JPY,-4.0,pct
+2026-07-02,Historical 2026-07-02,Vodafone Spot,-7.0,pct
+2026-07-02,Historical 2026-07-02,HSBC Spot,-4.0,pct
+2026-07-02,Historical 2026-07-02,SPX,5.0,pct
+2026-07-02,Historical 2026-07-02,GBP Swaption Vol,3.5,vol_pt
+2026-07-02,Historical 2026-07-02,EUR Credit Spread,75.0,bps
+2026-07-02,Historical 2026-07-02,Brent,-5.0,pct
+2026-07-03,Historical 2026-07-03,SOFR,-24.0,bps
+2026-07-03,Historical 2026-07-03,SONIA,40.0,bps
+2026-07-03,Historical 2026-07-03,ESTER,-32.0,bps
+2026-07-03,Historical 2026-07-03,USD GBP,-6.0,pct
+2026-07-03,Historical 2026-07-03,USD EUR,-2.0,pct
+2026-07-03,Historical 2026-07-03,USD JPY,-5.0,pct
+2026-07-03,Historical 2026-07-03,Vodafone Spot,-4.0,pct
+2026-07-03,Historical 2026-07-03,HSBC Spot,-2.0,pct
+2026-07-03,Historical 2026-07-03,SPX,-8.0,pct
+2026-07-03,Historical 2026-07-03,GBP Swaption Vol,2.8,vol_pt
+2026-07-03,Historical 2026-07-03,EUR Credit Spread,0.0,bps
+2026-07-03,Historical 2026-07-03,Brent,8.0,pct
+2026-07-04,Historical 2026-07-04,SOFR,-46.0,bps
+2026-07-04,Historical 2026-07-04,SONIA,74.0,bps
+2026-07-04,Historical 2026-07-04,ESTER,-46.0,bps
+2026-07-04,Historical 2026-07-04,USD GBP,8.0,pct
+2026-07-04,Historical 2026-07-04,USD EUR,-6.0,pct
+2026-07-04,Historical 2026-07-04,USD JPY,-5.0,pct
+2026-07-04,Historical 2026-07-04,Vodafone Spot,-4.0,pct
+2026-07-04,Historical 2026-07-04,HSBC Spot,-6.0,pct
+2026-07-04,Historical 2026-07-04,SPX,9.0,pct
+2026-07-04,Historical 2026-07-04,GBP Swaption Vol,-3.15,vol_pt
+2026-07-04,Historical 2026-07-04,EUR Credit Spread,-86.0,bps
+2026-07-04,Historical 2026-07-04,Brent,-4.0,pct
+2026-07-05,Historical 2026-07-05,SOFR,-29.0,bps
+2026-07-05,Historical 2026-07-05,SONIA,-29.0,bps
+2026-07-05,Historical 2026-07-05,ESTER,19.0,bps
+2026-07-05,Historical 2026-07-05,USD GBP,-6.0,pct
+2026-07-05,Historical 2026-07-05,USD EUR,-5.0,pct
+2026-07-05,Historical 2026-07-05,USD JPY,-2.0,pct
+2026-07-05,Historical 2026-07-05,Vodafone Spot,3.0,pct
+2026-07-05,Historical 2026-07-05,HSBC Spot,4.0,pct
+2026-07-05,Historical 2026-07-05,SPX,-9.0,pct
+2026-07-05,Historical 2026-07-05,GBP Swaption Vol,-2.8,vol_pt
+2026-07-05,Historical 2026-07-05,EUR Credit Spread,51.0,bps
+2026-07-05,Historical 2026-07-05,Brent,0.0,pct
+2026-07-06,Historical 2026-07-06,SOFR,22.0,bps
+2026-07-06,Historical 2026-07-06,SONIA,-18.0,bps
+2026-07-06,Historical 2026-07-06,ESTER,-74.0,bps
+2026-07-06,Historical 2026-07-06,USD GBP,-2.0,pct
+2026-07-06,Historical 2026-07-06,USD EUR,3.0,pct
+2026-07-06,Historical 2026-07-06,USD JPY,7.0,pct
+2026-07-06,Historical 2026-07-06,Vodafone Spot,-1.0,pct
+2026-07-06,Historical 2026-07-06,HSBC Spot,0.0,pct
+2026-07-06,Historical 2026-07-06,SPX,9.0,pct
+2026-07-06,Historical 2026-07-06,GBP Swaption Vol,2.45,vol_pt
+2026-07-06,Historical 2026-07-06,EUR Credit Spread,-26.0,bps
+2026-07-06,Historical 2026-07-06,Brent,4.0,pct
+2026-07-07,Historical 2026-07-07,SOFR,-75.0,bps
+2026-07-07,Historical 2026-07-07,SONIA,-75.0,bps
+2026-07-07,Historical 2026-07-07,ESTER,5.0,bps
+2026-07-07,Historical 2026-07-07,USD GBP,3.0,pct
+2026-07-07,Historical 2026-07-07,USD EUR,6.0,pct
+2026-07-07,Historical 2026-07-07,USD JPY,5.0,pct
+2026-07-07,Historical 2026-07-07,Vodafone Spot,-5.0,pct
+2026-07-07,Historical 2026-07-07,HSBC Spot,4.0,pct
+2026-07-07,Historical 2026-07-07,SPX,-2.0,pct
+2026-07-07,Historical 2026-07-07,GBP Swaption Vol,2.8,vol_pt
+2026-07-07,Historical 2026-07-07,EUR Credit Spread,-43.0,bps
+2026-07-07,Historical 2026-07-07,Brent,5.0,pct
+2026-07-08,Historical 2026-07-08,SOFR,77.0,bps
+2026-07-08,Historical 2026-07-08,SONIA,-59.0,bps
+2026-07-08,Historical 2026-07-08,ESTER,-43.0,bps
+2026-07-08,Historical 2026-07-08,USD GBP,4.0,pct
+2026-07-08,Historical 2026-07-08,USD EUR,5.0,pct
+2026-07-08,Historical 2026-07-08,USD JPY,10.0,pct
+2026-07-08,Historical 2026-07-08,Vodafone Spot,-3.0,pct
+2026-07-08,Historical 2026-07-08,HSBC Spot,5.0,pct
+2026-07-08,Historical 2026-07-08,SPX,-3.0,pct
+2026-07-08,Historical 2026-07-08,GBP Swaption Vol,-0.7,vol_pt
+2026-07-08,Historical 2026-07-08,EUR Credit Spread,-3.0,bps
+2026-07-08,Historical 2026-07-08,Brent,-4.0,pct
+2026-07-09,Historical 2026-07-09,SOFR,-14.0,bps
+2026-07-09,Historical 2026-07-09,SONIA,66.0,bps
+2026-07-09,Historical 2026-07-09,ESTER,-14.0,bps
+2026-07-09,Historical 2026-07-09,USD GBP,-8.0,pct
+2026-07-09,Historical 2026-07-09,USD EUR,4.0,pct
+2026-07-09,Historical 2026-07-09,USD JPY,3.0,pct
+2026-07-09,Historical 2026-07-09,Vodafone Spot,10.0,pct
+2026-07-09,Historical 2026-07-09,HSBC Spot,-9.0,pct
+2026-07-09,Historical 2026-07-09,SPX,8.0,pct
+2026-07-09,Historical 2026-07-09,GBP Swaption Vol,-3.5,vol_pt
+2026-07-09,Historical 2026-07-09,EUR Credit Spread,-14.0,bps
+2026-07-09,Historical 2026-07-09,Brent,-9.0,pct

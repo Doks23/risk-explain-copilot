@@ -1,39 +1,197 @@
-trade_id,risk_factor,desk,sensitivity_type,sensitivity_value,product
-T1,SOFR,D1,IR Delta,44.0,IR Swap
-T1,USD GBP,D1,FX Delta,-57.0,IR Swap
-T2,SONIA,D1,IR Delta,76.0,IR Swap
-T2,USD GBP,D1,FX Delta,59.0,IR Swap
-T3,ESTER,D1,IR Delta,-91.0,FX Swap
-T3,USD EUR,D1,FX Delta,46.0,FX Swap
-T4,Vodafone Spot,D1,Equity Delta,65.0,Equity Option
-T4,USD GBP,D1,FX Delta,-63.0,Equity Option
-T4,SOFR,D1,IR Delta,50.0,Equity Option
-T5,USD JPY,D1,FX Delta,20.0,FX Forward
-T6,USD GBP,D2,FX Delta,67.0,FX Forward
-T7,USD EUR,D2,FX Delta,54.0,FX Swap
-T7,ESTER,D2,IR Delta,4.0,FX Swap
-T8,HSBC Spot,D2,Equity Delta,81.0,Equity Total Return Swap
-T8,USD GBP,D2,FX Delta,71.0,Equity Total Return Swap
-T8,ESTER,D2,IR Delta,6.0,Equity Total Return Swap
-T9,USD EUR,D2,FX Delta,58.0,FX Forward
-T10,ESTER,D2,IR Delta,93.0,IR Forward
-T10,USD EUR,D2,FX Delta,70.0,IR Forward
-T11,Vodafone Spot,D3,Equity Delta,3.0,Cash Equity
-T12,Vodafone Spot,D3,Equity Delta,6.0,Equity Total Return Swap
-T12,USD GBP,D3,FX Delta,72.0,Equity Total Return Swap
-T12,SONIA,D3,IR Delta,77.0,Equity Total Return Swap
-T13,USD JPY,D3,FX Delta,56.0,FX Forward
-T14,SONIA,D3,IR Delta,83.0,IR Swap
-T14,USD GBP,D3,FX Delta,78.0,IR Swap
-T15,HSBC Spot,D3,Equity Delta,63.0,Cash Equity
-T16,SOFR,D4,IR Delta,-90.0,Rates Option
-T16,GBP Swaption Vol,D4,Vega,-14.0,Rates Option
-T17,EUR Credit Spread,D4,CS01,79.0,Credit Index Swap
-T17,USD EUR,D4,FX Delta,91.0,Credit Index Swap
-T18,SPX,D4,Equity Delta,47.0,Equity Option
-T18,USD GBP,D4,FX Delta,90.0,Equity Option
-T19,Brent,D5,Commodity Delta,94.0,Commodity Forward
-T19,USD EUR,D5,FX Delta,2.0,Commodity Forward
-T20,SOFR,D5,IR Delta,74.0,Macro Hedge
-T20,SPX,D5,Equity Delta,-25.0,Macro Hedge
-T20,USD JPY,D5,FX Delta,-49.0,Macro Hedge
+cob_date,trade_id,risk_factor,desk,sensitivity_type,sensitivity_value,product
+2026-07-06,T1,SOFR,D1,IR Delta,-17.12,IR Swap
+2026-07-06,T1,USD GBP,D1,FX Delta,2.79,IR Swap
+2026-07-06,T2,SONIA,D1,IR Delta,-23.54,IR Swap
+2026-07-06,T2,USD GBP,D1,FX Delta,-5.4,IR Swap
+2026-07-06,T3,ESTER,D1,IR Delta,49.29,FX Swap
+2026-07-06,T3,USD EUR,D1,FX Delta,-48.88,FX Swap
+2026-07-06,T4,Vodafone Spot,D1,Equity Delta,-74.12,Equity Option
+2026-07-06,T4,USD GBP,D1,FX Delta,-7.68,Equity Option
+2026-07-06,T4,SOFR,D1,IR Delta,84.66,Equity Option
+2026-07-06,T5,USD JPY,D1,FX Delta,51.45,FX Forward
+2026-07-06,T6,USD GBP,D2,FX Delta,62.64,FX Forward
+2026-07-06,T7,USD EUR,D2,FX Delta,-63.63,FX Swap
+2026-07-06,T7,ESTER,D2,IR Delta,5.5,FX Swap
+2026-07-06,T8,HSBC Spot,D2,Equity Delta,13.2,Equity Total Return Swap
+2026-07-06,T8,USD GBP,D2,FX Delta,13.26,Equity Total Return Swap
+2026-07-06,T8,ESTER,D2,IR Delta,93.45,Equity Total Return Swap
+2026-07-06,T9,USD EUR,D2,FX Delta,42.32,FX Forward
+2026-07-06,T10,ESTER,D2,IR Delta,3.72,IR Forward
+2026-07-06,T10,USD EUR,D2,FX Delta,54.0,IR Forward
+2026-07-06,T11,Vodafone Spot,D3,Equity Delta,38.61,Cash Equity
+2026-07-06,T12,Vodafone Spot,D3,Equity Delta,86.7,Equity Total Return Swap
+2026-07-06,T12,USD GBP,D3,FX Delta,-67.34,Equity Total Return Swap
+2026-07-06,T12,SONIA,D3,IR Delta,45.32,Equity Total Return Swap
+2026-07-06,T13,USD JPY,D3,FX Delta,-69.58,FX Forward
+2026-07-06,T14,SONIA,D3,IR Delta,-65.27,IR Swap
+2026-07-06,T14,USD GBP,D3,FX Delta,-50.44,IR Swap
+2026-07-06,T15,HSBC Spot,D3,Equity Delta,-14.3,Cash Equity
+2026-07-06,T16,SOFR,D4,IR Delta,19.95,Rates Option
+2026-07-06,T16,GBP Swaption Vol,D4,Vega,22.75,Rates Option
+2026-07-06,T17,EUR Credit Spread,D4,CS01,62.7,Credit Index Swap
+2026-07-06,T17,USD EUR,D4,FX Delta,69.68,Credit Index Swap
+2026-07-06,T18,SPX,D4,Equity Delta,-19.0,Equity Option
+2026-07-06,T18,USD GBP,D4,FX Delta,60.9,Equity Option
+2026-07-06,T19,Brent,D5,Commodity Delta,13.65,Commodity Forward
+2026-07-06,T19,USD EUR,D5,FX Delta,-81.62,Commodity Forward
+2026-07-06,T20,SOFR,D5,IR Delta,3.3,Macro Hedge
+2026-07-06,T20,SPX,D5,Equity Delta,-68.82,Macro Hedge
+2026-07-06,T20,USD JPY,D5,FX Delta,90.64,Macro Hedge
+2026-07-07,T1,SOFR,D1,IR Delta,-15.2,IR Swap
+2026-07-07,T1,USD GBP,D1,FX Delta,3.21,IR Swap
+2026-07-07,T2,SONIA,D1,IR Delta,-22.0,IR Swap
+2026-07-07,T2,USD GBP,D1,FX Delta,-5.88,IR Swap
+2026-07-07,T3,ESTER,D1,IR Delta,51.94,FX Swap
+2026-07-07,T3,USD EUR,D1,FX Delta,-56.16,FX Swap
+2026-07-07,T4,Vodafone Spot,D1,Equity Delta,-72.76,Equity Option
+2026-07-07,T4,USD GBP,D1,FX Delta,-8.32,Equity Option
+2026-07-07,T4,SOFR,D1,IR Delta,88.81,Equity Option
+2026-07-07,T6,USD GBP,D2,FX Delta,60.32,FX Forward
+2026-07-07,T7,USD EUR,D2,FX Delta,-69.3,FX Swap
+2026-07-07,T7,ESTER,D2,IR Delta,5.25,FX Swap
+2026-07-07,T8,HSBC Spot,D2,Equity Delta,11.76,Equity Total Return Swap
+2026-07-07,T8,USD GBP,D2,FX Delta,13.78,Equity Total Return Swap
+2026-07-07,T8,ESTER,D2,IR Delta,94.34,Equity Total Return Swap
+2026-07-07,T9,USD EUR,D2,FX Delta,42.78,FX Forward
+2026-07-07,T10,ESTER,D2,IR Delta,4.16,IR Forward
+2026-07-07,T10,USD EUR,D2,FX Delta,60.0,IR Forward
+2026-07-07,T11,Vodafone Spot,D3,Equity Delta,42.9,Cash Equity
+2026-07-07,T12,Vodafone Spot,D3,Equity Delta,81.6,Equity Total Return Swap
+2026-07-07,T12,USD GBP,D3,FX Delta,-69.56,Equity Total Return Swap
+2026-07-07,T12,SONIA,D3,IR Delta,44.44,Equity Total Return Swap
+2026-07-07,T14,SONIA,D3,IR Delta,-61.61,IR Swap
+2026-07-07,T14,USD GBP,D3,FX Delta,-53.04,IR Swap
+2026-07-07,T15,HSBC Spot,D3,Equity Delta,-13.65,Cash Equity
+2026-07-07,T16,SOFR,D4,IR Delta,20.37,Rates Option
+2026-07-07,T16,GBP Swaption Vol,D4,Vega,24.0,Rates Option
+2026-07-07,T17,EUR Credit Spread,D4,CS01,57.0,Credit Index Swap
+2026-07-07,T17,USD EUR,D4,FX Delta,71.02,Credit Index Swap
+2026-07-07,T18,SPX,D4,Equity Delta,-21.8,Equity Option
+2026-07-07,T18,USD GBP,D4,FX Delta,63.22,Equity Option
+2026-07-07,T20,SOFR,D5,IR Delta,3.3,Macro Hedge
+2026-07-07,T20,SPX,D5,Equity Delta,-74.0,Macro Hedge
+2026-07-07,T20,USD JPY,D5,FX Delta,95.92,Macro Hedge
+2026-07-08,T1,SOFR,D1,IR Delta,-17.28,IR Swap
+2026-07-08,T1,USD GBP,D1,FX Delta,2.85,IR Swap
+2026-07-08,T2,SONIA,D1,IR Delta,-20.46,IR Swap
+2026-07-08,T2,USD GBP,D1,FX Delta,-5.82,IR Swap
+2026-07-08,T3,ESTER,D1,IR Delta,57.24,FX Swap
+2026-07-08,T3,USD EUR,D1,FX Delta,-53.56,FX Swap
+2026-07-08,T4,Vodafone Spot,D1,Equity Delta,-62.56,Equity Option
+2026-07-08,T4,USD GBP,D1,FX Delta,-8.56,Equity Option
+2026-07-08,T4,SOFR,D1,IR Delta,83.83,Equity Option
+2026-07-08,T6,USD GBP,D2,FX Delta,53.36,FX Forward
+2026-07-08,T7,USD EUR,D2,FX Delta,-67.41,FX Swap
+2026-07-08,T7,ESTER,D2,IR Delta,5.2,FX Swap
+2026-07-08,T8,HSBC Spot,D2,Equity Delta,12.72,Equity Total Return Swap
+2026-07-08,T8,USD GBP,D2,FX Delta,11.7,Equity Total Return Swap
+2026-07-08,T8,ESTER,D2,IR Delta,81.88,Equity Total Return Swap
+2026-07-08,T9,USD EUR,D2,FX Delta,49.68,FX Forward
+2026-07-08,T10,ESTER,D2,IR Delta,3.6,IR Forward
+2026-07-08,T10,USD EUR,D2,FX Delta,58.2,IR Forward
+2026-07-08,T11,Vodafone Spot,D3,Equity Delta,40.95,Cash Equity
+2026-07-08,T12,Vodafone Spot,D3,Equity Delta,77.35,Equity Total Return Swap
+2026-07-08,T12,USD GBP,D3,FX Delta,-74.74,Equity Total Return Swap
+2026-07-08,T12,SONIA,D3,IR Delta,42.24,Equity Total Return Swap
+2026-07-08,T14,SONIA,D3,IR Delta,-61.0,IR Swap
+2026-07-08,T14,USD GBP,D3,FX Delta,-55.64,IR Swap
+2026-07-08,T15,HSBC Spot,D3,Equity Delta,-12.61,Cash Equity
+2026-07-08,T16,SOFR,D4,IR Delta,20.16,Rates Option
+2026-07-08,T16,GBP Swaption Vol,D4,Vega,23.5,Rates Option
+2026-07-08,T17,EUR Credit Spread,D4,CS01,58.14,Credit Index Swap
+2026-07-08,T17,USD EUR,D4,FX Delta,73.7,Credit Index Swap
+2026-07-08,T18,SPX,D4,Equity Delta,-19.4,Equity Option
+2026-07-08,T18,USD GBP,D4,FX Delta,53.36,Equity Option
+2026-07-08,T20,SOFR,D5,IR Delta,3.06,Macro Hedge
+2026-07-08,T20,SPX,D5,Equity Delta,-67.34,Macro Hedge
+2026-07-08,T20,USD JPY,D5,FX Delta,80.08,Macro Hedge
+2026-07-08,T21,USD EUR,D2,FX Delta,28.6,FX Forward
+2026-07-08,T22,SOFR,D1,IR Delta,-82.8,IR Swap
+2026-07-08,T22,ESTER,D1,IR Delta,12.74,IR Swap
+2026-07-08,T23,SPX,D3,Equity Delta,17.17,Equity Option
+2026-07-08,T23,USD GBP,D3,FX Delta,-34.78,Equity Option
+2026-07-08,T24,USD JPY,D4,FX Delta,6.93,FX Swap
+2026-07-08,T24,ESTER,D4,IR Delta,85.36,FX Swap
+2026-07-08,T25,Brent,D5,Commodity Delta,38.13,Commodity Forward
+2026-07-08,T25,USD GBP,D5,FX Delta,3.3,Commodity Forward
+2026-07-09,T1,SOFR,D1,IR Delta,-16.8,IR Swap
+2026-07-09,T1,USD GBP,D1,FX Delta,3.03,IR Swap
+2026-07-09,T3,ESTER,D1,IR Delta,47.7,FX Swap
+2026-07-09,T3,USD EUR,D1,FX Delta,-56.68,FX Swap
+2026-07-09,T4,Vodafone Spot,D1,Equity Delta,-64.6,Equity Option
+2026-07-09,T4,USD GBP,D1,FX Delta,-7.52,Equity Option
+2026-07-09,T4,SOFR,D1,IR Delta,80.51,Equity Option
+2026-07-09,T6,USD GBP,D2,FX Delta,54.52,FX Forward
+2026-07-09,T7,USD EUR,D2,FX Delta,-66.15,FX Swap
+2026-07-09,T7,ESTER,D2,IR Delta,4.75,FX Swap
+2026-07-09,T8,HSBC Spot,D2,Equity Delta,12.72,Equity Total Return Swap
+2026-07-09,T8,USD GBP,D2,FX Delta,13.26,Equity Total Return Swap
+2026-07-09,T8,ESTER,D2,IR Delta,96.12,Equity Total Return Swap
+2026-07-09,T9,USD EUR,D2,FX Delta,49.68,FX Forward
+2026-07-09,T10,ESTER,D2,IR Delta,3.96,IR Forward
+2026-07-09,T10,USD EUR,D2,FX Delta,62.4,IR Forward
+2026-07-09,T11,Vodafone Spot,D3,Equity Delta,42.51,Cash Equity
+2026-07-09,T12,Vodafone Spot,D3,Equity Delta,88.4,Equity Total Return Swap
+2026-07-09,T12,USD GBP,D3,FX Delta,-69.56,Equity Total Return Swap
+2026-07-09,T12,SONIA,D3,IR Delta,44.44,Equity Total Return Swap
+2026-07-09,T14,SONIA,D3,IR Delta,-62.22,IR Swap
+2026-07-09,T14,USD GBP,D3,FX Delta,-54.08,IR Swap
+2026-07-09,T15,HSBC Spot,D3,Equity Delta,-14.04,Cash Equity
+2026-07-09,T16,SOFR,D4,IR Delta,22.26,Rates Option
+2026-07-09,T16,GBP Swaption Vol,D4,Vega,22.5,Rates Option
+2026-07-09,T17,EUR Credit Spread,D4,CS01,53.58,Credit Index Swap
+2026-07-09,T17,USD EUR,D4,FX Delta,70.35,Credit Index Swap
+2026-07-09,T18,SPX,D4,Equity Delta,-21.2,Equity Option
+2026-07-09,T18,USD GBP,D4,FX Delta,62.06,Equity Option
+2026-07-09,T20,SOFR,D5,IR Delta,2.76,Macro Hedge
+2026-07-09,T20,SPX,D5,Equity Delta,-80.66,Macro Hedge
+2026-07-09,T20,USD JPY,D5,FX Delta,95.92,Macro Hedge
+2026-07-09,T22,SOFR,D1,IR Delta,-83.72,IR Swap
+2026-07-09,T22,ESTER,D1,IR Delta,12.88,IR Swap
+2026-07-09,T23,SPX,D3,Equity Delta,18.36,Equity Option
+2026-07-09,T23,USD GBP,D3,FX Delta,-34.04,Equity Option
+2026-07-09,T24,USD JPY,D4,FX Delta,7.49,FX Swap
+2026-07-09,T24,ESTER,D4,IR Delta,92.4,FX Swap
+2026-07-09,T25,Brent,D5,Commodity Delta,42.64,Commodity Forward
+2026-07-09,T25,USD GBP,D5,FX Delta,3.03,Commodity Forward
+2026-07-10,T1,SOFR,D1,IR Delta,-14.88,IR Swap
+2026-07-10,T1,USD GBP,D1,FX Delta,3.24,IR Swap
+2026-07-10,T3,ESTER,D1,IR Delta,56.71,FX Swap
+2026-07-10,T3,USD EUR,D1,FX Delta,-50.96,FX Swap
+2026-07-10,T4,Vodafone Spot,D1,Equity Delta,-63.92,Equity Option
+2026-07-10,T4,USD GBP,D1,FX Delta,-7.6,Equity Option
+2026-07-10,T4,SOFR,D1,IR Delta,83.0,Equity Option
+2026-07-10,T6,USD GBP,D2,FX Delta,58.58,FX Forward
+2026-07-10,T7,USD EUR,D2,FX Delta,-67.41,FX Swap
+2026-07-10,T7,ESTER,D2,IR Delta,4.9,FX Swap
+2026-07-10,T9,USD EUR,D2,FX Delta,47.38,FX Forward
+2026-07-10,T10,ESTER,D2,IR Delta,4.32,IR Forward
+2026-07-10,T10,USD EUR,D2,FX Delta,66.0,IR Forward
+2026-07-10,T11,Vodafone Spot,D3,Equity Delta,37.44,Cash Equity
+2026-07-10,T12,Vodafone Spot,D3,Equity Delta,84.15,Equity Total Return Swap
+2026-07-10,T12,USD GBP,D3,FX Delta,-66.6,Equity Total Return Swap
+2026-07-10,T12,SONIA,D3,IR Delta,45.76,Equity Total Return Swap
+2026-07-10,T14,SONIA,D3,IR Delta,-65.88,IR Swap
+2026-07-10,T14,USD GBP,D3,FX Delta,-56.16,IR Swap
+2026-07-10,T15,HSBC Spot,D3,Equity Delta,-12.22,Cash Equity
+2026-07-10,T16,SOFR,D4,IR Delta,21.42,Rates Option
+2026-07-10,T16,GBP Swaption Vol,D4,Vega,23.75,Rates Option
+2026-07-10,T17,EUR Credit Spread,D4,CS01,58.14,Credit Index Swap
+2026-07-10,T17,USD EUR,D4,FX Delta,65.66,Credit Index Swap
+2026-07-10,T18,SPX,D4,Equity Delta,-21.0,Equity Option
+2026-07-10,T18,USD GBP,D4,FX Delta,58.58,Equity Option
+2026-07-10,T20,SOFR,D5,IR Delta,2.88,Macro Hedge
+2026-07-10,T20,SPX,D5,Equity Delta,-80.66,Macro Hedge
+2026-07-10,T20,USD JPY,D5,FX Delta,89.76,Macro Hedge
+2026-07-10,T22,SOFR,D1,IR Delta,-91.08,IR Swap
+2026-07-10,T22,ESTER,D1,IR Delta,13.44,IR Swap
+2026-07-10,T23,SPX,D3,Equity Delta,18.36,Equity Option
+2026-07-10,T23,USD GBP,D3,FX Delta,-40.33,Equity Option
+2026-07-10,T24,USD JPY,D4,FX Delta,7.63,FX Swap
+2026-07-10,T24,ESTER,D4,IR Delta,82.72,FX Swap
+2026-07-10,T25,Brent,D5,Commodity Delta,43.87,Commodity Forward
+2026-07-10,T25,USD GBP,D5,FX Delta,2.88,Commodity Forward
+2026-07-10,T26,USD EUR,D1,FX Delta,85.86,FX Forward
+2026-07-10,T27,HSBC Spot,D2,Equity Delta,18.24,Cash Equity
+2026-07-10,T28,SONIA,D3,IR Delta,15.3,IR Swap
+2026-07-10,T28,ESTER,D3,IR Delta,-5.7,IR Swap

@@ -19,6 +19,7 @@ EXPECTED_FILES = {
 SCHEMA = {
     "trade_sensitivities": """
         CREATE TABLE IF NOT EXISTS trade_sensitivities (
+            cob_date TEXT NOT NULL,
             trade_id TEXT NOT NULL,
             risk_factor TEXT NOT NULL,
             desk TEXT NOT NULL,
@@ -38,9 +39,11 @@ SCHEMA = {
     """,
     "trade_pnl": """
         CREATE TABLE IF NOT EXISTS trade_pnl (
+            cob_date TEXT NOT NULL,
             trade_id TEXT NOT NULL,
             desk TEXT NOT NULL,
             product TEXT NOT NULL,
+            risk_factor TEXT NOT NULL,
             historical_date TEXT NOT NULL,
             scenario_name TEXT NOT NULL,
             pnl REAL NOT NULL
@@ -49,9 +52,9 @@ SCHEMA = {
 }
 
 REQUIRED_COLUMNS = {
-    "trade_sensitivities": ["trade_id", "risk_factor", "desk", "sensitivity_type", "sensitivity_value", "product"],
+    "trade_sensitivities": ["cob_date", "trade_id", "risk_factor", "desk", "sensitivity_type", "sensitivity_value", "product"],
     "risk_factor_scenarios": ["historical_date", "scenario_name", "risk_factor", "shock_value", "shock_unit"],
-    "trade_pnl": ["trade_id", "desk", "product", "historical_date", "scenario_name", "pnl"],
+    "trade_pnl": ["cob_date", "trade_id", "desk", "product", "risk_factor", "historical_date", "scenario_name", "pnl"],
 }
 
 
@@ -115,8 +118,15 @@ def table_counts(db_path: Path = DB_PATH) -> dict[str, int]:
     return counts
 
 
+def latest_cob_date(db_path: Path = DB_PATH) -> str | None:
+    """Most recent close-of-business date on the book. ISO-formatted dates sort correctly as text."""
+    with get_connection(db_path) as conn:
+        row = conn.execute("SELECT MAX(cob_date) FROM trade_sensitivities").fetchone()
+    return row[0] if row and row[0] else None
+
+
 def distinct_values(column: str, table: str = "trade_sensitivities", db_path: Path = DB_PATH) -> list[str]:
-    allowed = {"trade_id", "desk", "product", "risk_factor", "sensitivity_type", "historical_date", "scenario_name", "shock_unit"}
+    allowed = {"cob_date", "trade_id", "desk", "product", "risk_factor", "sensitivity_type", "historical_date", "scenario_name", "shock_unit"}
     if column not in allowed:
         raise ValueError(f"Unsupported distinct column: {column}")
     if table not in EXPECTED_FILES:
@@ -127,7 +137,7 @@ def distinct_values(column: str, table: str = "trade_sensitivities", db_path: Pa
 
 
 def _create_indexes(conn: sqlite3.Connection) -> None:
-    conn.execute("CREATE INDEX IF NOT EXISTS idx_trade_scope ON trade_sensitivities(desk, product, trade_id)")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_trade_scope ON trade_sensitivities(cob_date, desk, product, trade_id)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_trade_factor ON trade_sensitivities(risk_factor)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_scenario_factor ON risk_factor_scenarios(historical_date, risk_factor)")
-    conn.execute("CREATE INDEX IF NOT EXISTS idx_trade_pnl_scope ON trade_pnl(desk, product, trade_id, historical_date)")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_trade_pnl_scope ON trade_pnl(cob_date, desk, product, trade_id, historical_date)")

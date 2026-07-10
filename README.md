@@ -26,13 +26,14 @@ This prototype stores three source inputs:
 - historical risk-factor scenarios (shocks)
 - trade-level P&L (the actual, stored P&L per trade per historical scenario date, as if from full revaluation)
 
-Aggregated P&L and VaR are computed directly from `trade_pnl`. Sensitivities and shocks are used
-only to *explain* what drove VaR on its worst-case date, via a linear risk-factor attribution that
-may leave a small unexplained residual against the actual P&L — the same gap real desks see between
-Greeks-based P&L explain and full revaluation.
+Aggregated P&L and VaR are computed directly from `trade_pnl`, which stores real P&L per risk
+factor per historical scenario date per COB. Explaining VaR by risk factor or by desk means
+grouping that same real data on the VaR's own historical date — exact, not an approximation.
 
 **VaR is not additive.** Entity-level VaR is not the sum of desk-level VaRs, because each scope's
-95th-percentile scenario date can be a different historical date. Only P&L is additive across scopes.
+worst-case historical date can differ. Only P&L is additive across scopes — which is exactly why a
+*desk breakdown of entity VaR* (same date, split by desk) reconciles perfectly, while *desk-level
+VaR figures* (each on their own date) do not sum back to the entity.
 
 ## Architecture
 
@@ -97,58 +98,44 @@ unchanged docs are instant.
 
 ## Data Model
 
-The database stores three source tables.
+The database stores three source tables, all scoped by `cob_date` (close-of-business snapshot).
+The book changes across COBs — trades book and mature, and sensitivities are re-marked every COB
+even for surviving trades — so the same `trade_id` can look different on different `cob_date` rows.
 
 ### `trade_sensitivities`
 
-Trade-level exposure data.
+Trade-level exposure data, per COB.
 
-Columns:
+Columns: `cob_date`, `trade_id`, `risk_factor`, `desk`, `sensitivity_type`, `sensitivity_value`, `product`
 
-- `trade_id`
-- `risk_factor`
-- `desk`
-- `sensitivity_type`
-- `sensitivity_value`
-- `product`
-
-This table answers: how exposed is each trade to each risk factor? Used for explain, not aggregation.
+Used for explain (risk-factor context), not aggregation.
 
 ### `risk_factor_scenarios`
 
-Historical risk-factor shocks.
+Historical risk-factor shocks. Not COB-scoped — it's raw market data, the same shock on the same
+historical date regardless of which COB's rolling window is looking at it.
 
-Columns:
-
-- `historical_date`
-- `scenario_name`
-- `risk_factor`
-- `shock_value`
-- `shock_unit`
-
-Each historical date is treated as one scenario containing shocks across risk factors. Used for explain, not aggregation.
+Columns: `historical_date`, `scenario_name`, `risk_factor`, `shock_value`, `shock_unit`
 
 ### `trade_pnl`
 
-Actual trade-level P&L per historical scenario date (as if from full revaluation).
+Actual P&L per trade, per risk factor, per historical scenario date, per COB (as if from full
+revaluation, attributed by risk factor). This is the source of truth for aggregation, VaR, and
+risk-factor/desk breakdowns at any scope.
 
-Columns:
+Columns: `cob_date`, `trade_id`, `desk`, `product`, `risk_factor`, `historical_date`, `scenario_name`, `pnl`
 
-- `trade_id`
-- `desk`
-- `product`
-- `historical_date`
-- `scenario_name`
-- `pnl`
-
-This is the source of truth for aggregation and VaR at any scope (entity, desk, product, or trade).
+Each `cob_date` uses its own 100-day rolling window of historical dates, ending the day *before*
+that COB — COB N's window ends one day later than COB N-1's, so consecutive COBs' windows overlap
+by 99 days. `risk_factor_scenarios` is generated once over the union of every COB's window, so the
+same historical date always has the same shock regardless of which COB is looking at it.
 
 ## Business Logic
 
-Portfolio/desk/entity scenario P&L (aggregation, always from `trade_pnl`):
+Portfolio/desk/entity scenario P&L (aggregation, always from `trade_pnl`, always scoped to one `cob_date`):
 
 ```text
-scenario_pnl = SUM(trade_pnl.pnl) by historical_date, for the scope's trades
+scenario_pnl = SUM(trade_pnl.pnl) by historical_date, for the scope's trades on that cob_date
 ```
 
 Loss amount:
@@ -157,28 +144,42 @@ Loss amount:
 loss_amount = max(-scenario_pnl, 0)
 ```
 
-95% VaR (nearest-rank method):
+95% VaR — literally the k-th worst day, not nearest-rank or linear interpolation:
 
 ```text
-95% VaR = ceil(N x 0.95)-th smallest loss_amount across the scope's N historical dates
-        = the 3rd-worst day out of 50 historical scenarios
+k = ROUND(N x (1 - 0.95))              e.g. ROUND(100 x 0.05) = 5
+95% VaR = the k-th worst day's loss_amount, across the scope's own N-day rolling window
+        = the 5th-worst day out of 100 historical scenarios
 ```
 
-VaR is not additive: entity VaR != SUM(desk VaRs), because each scope's 95th-percentile date can differ.
+VaR is not additive: entity VaR != SUM(desk VaRs), because each scope computes its own 95% VaR
+independently and each one's worst-case historical date can differ.
 
-VaR drivers (explain, not aggregation):
+**Explaining VaR by risk factor** (drill into *why*, on the scope's own VaR date):
 
-1. Find the historical date selected by the scope's 95% VaR percentile.
-2. Attribute P&L on that date by risk factor: `driver_pnl = sensitivity_value x shock_value`, from `trade_sensitivities` joined to `risk_factor_scenarios`.
-3. Group by risk factor and rank by absolute driver P&L.
-4. Reconcile: `residual = actual scenario_pnl on that date - SUM(driver_pnl)`, shown as an "Unexplained (non-linear residual)" row.
+1. Find the historical date selected by the scope's 95% VaR.
+2. `GROUP BY risk_factor` directly on `trade_pnl` for that single `(cob_date, historical_date, scope)`.
+   This is exact — `trade_pnl` already stores real P&L per risk factor — so it reconciles perfectly
+   to the scope's total P&L on that date with no approximation or residual. `sensitivity_value`/
+   `shock_value` are joined in from `trade_sensitivities`/`risk_factor_scenarios` purely as
+   supporting color.
+
+**Explaining VaR by desk** (e.g. break entity VaR down by desk):
+
+1. Find the historical date selected by the scope's 95% VaR (e.g. the entity's).
+2. `GROUP BY desk` directly on `trade_pnl` for that same single historical date, with no desk filter.
+3. Because every desk's number comes from the exact same date, these figures **are** additive and
+   sum exactly to the scope's total — unlike desk-level VaR figures, which are each computed
+   independently on their own worst-case date and never sum back to the entity's VaR.
 
 ## Sample Questions
 
-- What desks are we covering?
+- What desks are we covering? (as of the latest COB)
 - Show trade level P&L for D1.
 - Calculate 95% VaR for D1.
+- Calculate 95% VaR for D1 as of COB 2026-07-08.
 - Explain VaR risk factor drivers for D1.
+- Explain entity VaR by desk.
 - Show 10-day P&L trend for D2.
 - Show risk factor scenarios for SOFR.
 - What trades are in Equity Option?
