@@ -113,6 +113,33 @@ def test_var_is_literally_the_5th_worst_day_of_100(tmp_path: Path) -> None:
     assert result.iloc[0]["var_95"] == pytest.approx(fifth_worst, abs=0.01)
 
 
+@pytest.mark.parametrize("phrasing", ["What is expected shortfall for D1", "Show CVaR for D1", "What is the tail loss for D1", "conditional VaR for D1"])
+def test_expected_shortfall_is_mean_of_the_5_worst_days(phrasing: str, tmp_path: Path) -> None:
+    db_path = _db(tmp_path)
+
+    plan = generate_query_plan(phrasing, db_path=db_path)
+    result = execute_query_plan(plan, db_path=db_path)
+
+    from src.db import get_connection
+
+    with get_connection(db_path) as conn:
+        rows = conn.execute(
+            "SELECT historical_date, SUM(pnl) AS pnl FROM trade_pnl "
+            "WHERE desk = 'D1' AND cob_date = (SELECT MAX(cob_date) FROM trade_sensitivities) "
+            "GROUP BY historical_date"
+        ).fetchall()
+    losses = sorted((-r["pnl"] if r["pnl"] < 0 else 0.0) for r in rows)
+    worst_5 = losses[-5:]
+
+    assert plan.intent == "expected_shortfall"
+    row = result.iloc[0]
+    assert row["tail_days"] == 5
+    assert row["es_95"] == pytest.approx(sum(worst_5) / 5, abs=0.01)
+    assert row["var_95"] == pytest.approx(worst_5[0], abs=0.01)
+    # ES sits at or beyond VaR, since VaR is the least-severe day in the same tail.
+    assert row["es_95"] >= row["var_95"]
+
+
 def test_var_risk_factor_breakdown_is_exact_and_reconciles_with_no_residual(tmp_path: Path) -> None:
     db_path = _db(tmp_path)
 

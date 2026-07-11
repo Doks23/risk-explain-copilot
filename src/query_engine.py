@@ -44,6 +44,14 @@ Business rules:
   take the k-th row. This is NOT the nearest-rank/ceiling convention and NOT linear interpolation.
 - VaR is NOT additive: entity-level VaR is not the sum of desk-level VaRs, because each scope's
   95th-percentile scenario date can differ. Only P&L is additive across scopes, VaR is not.
+- 95% Expected Shortfall (also called CVaR / conditional VaR / tail loss) is the AVERAGE loss_amount
+  across the tail of k worst days that VaR sits at the boundary of (the same k = ROUND(N x 0.05)
+  used for VaR). Rank loss_amount descending, take the k worst rows, and average them -- VaR is the
+  least severe (smallest loss) day in that same tail, so es_95 >= var_95 always, and they are only
+  equal if every day in the tail has an identical loss. Report VaR and Expected Shortfall together
+  when Expected Shortfall is asked for, since ES is only meaningful next to the VaR threshold it
+  extends beyond. Do not confuse this with a trend (a series over time) -- Expected Shortfall is a
+  single number for one scope on one COB, exactly like VaR.
 - To explain WHAT drives VaR at the risk-factor level, find the scope's own VaR historical date,
   then GROUP BY risk_factor directly on trade_pnl for that single (cob_date, historical_date, scope)
   — trade_pnl already stores real P&L per risk factor, so this is exact and always reconciles to the
@@ -160,7 +168,7 @@ def _llm_sql_is_correctly_scoped(question: str, sql: str) -> bool:
         return True
     if "risk factor" in lowered and ("scenario" in lowered or "shock" in lowered) and not _mentions_pnl(lowered) and not _mentions_var(lowered):
         return True
-    if _mentions_var(lowered) or _mentions_pnl(lowered) or "trend" in lowered or "driver" in lowered or "explain" in lowered or re.search(r"\b\d+\s*[- ]?day\b", lowered):
+    if _mentions_var(lowered) or _mentions_pnl(lowered) or _mentions_expected_shortfall(lowered) or "trend" in lowered or "driver" in lowered or "explain" in lowered or re.search(r"\b\d+\s*[- ]?day\b", lowered):
         sql_lower = sql.lower()
         return "trade_pnl" in sql_lower and "cob_date" in sql_lower
     return True
@@ -286,10 +294,12 @@ def _llm_response(question: str, plan: QueryPlan, result: pd.DataFrame) -> str:
                 "content": (
                     "Answer using only the SQL result rows. Do not invent numbers. "
                     "trade_pnl holds actual trade-level P&L; 95% VaR is literally the 5th-worst day of the scope's own "
-                    "100-day rolling window and is NOT additive across scopes. Risk-factor and desk breakdowns of VaR "
-                    "are read directly from trade_pnl on the VaR's own historical date, so they are exact (a desk "
-                    "breakdown is additive back to the total; a risk-factor breakdown may include supporting "
-                    "sensitivity/shock context but the P&L itself is real, not approximated). "
+                    "100-day rolling window and is NOT additive across scopes. Expected Shortfall (es_95) is the "
+                    "average loss across that same tail of worst days VaR sits at the edge of, so es_95 >= var_95 "
+                    "always. Risk-factor and desk breakdowns of VaR are read directly from trade_pnl on the VaR's own "
+                    "historical date, so they are exact (a desk breakdown is additive back to the total; a "
+                    "risk-factor breakdown may include supporting sensitivity/shock context but the P&L itself is "
+                    "real, not approximated). "
                     "If the result rows include a cob_date, state it explicitly (e.g. 'As of COB 2026-07-08, ...') "
                     "since the book and its VaR both change from one COB to the next. "
                     "Be concise. Write like a market risk analyst briefing a colleague on a trading floor, not "
@@ -343,6 +353,9 @@ def _fallback_query_plan(question: str, db_path: Path, conversation_context: str
             # not one COB's own loss distribution spread across historical_date (that's PNL trend).
             return QueryPlan(question, _var_trend_across_cobs_sql(pnl_filters_no_cob, days), "var_trend", "VAR", "line", False, "Rule fallback generated VaR-per-COB trend SQL, recomputed independently for each COB.")
         return QueryPlan(question, _trend_sql(pnl_filters, days, "PNL", cob_date), "trend", "PNL", "line", False, f"Rule fallback generated PNL trend SQL from trade_pnl{cob_note}.")
+
+    if _mentions_expected_shortfall(planning_lower):
+        return QueryPlan(question, _expected_shortfall_sql(pnl_filters, cob_date), "expected_shortfall", "VAR_ES", "metric", False, f"Rule fallback generated 95% VaR + Expected Shortfall SQL from trade_pnl{cob_note}.")
 
     if _mentions_var(metric_context):
         wants_breakdown = "driver" in planning_lower or "explain" in planning_lower or "break" in planning_lower
@@ -474,6 +487,39 @@ SELECT
   ROUND(loss_amount, 4) AS var_95,
   scenario_count
 FROM var_scenario
+LIMIT 1
+"""
+
+
+def _expected_shortfall_sql(pnl_filters: str, cob_date: str | None) -> str:
+    """95% Expected Shortfall (CVaR): the average loss across the tail of k worst days that VaR sits
+    at the boundary of (k = ROUND(N x 0.05), the same k used to pick VaR itself). VaR is the least
+    severe day in that tail, so es_95 >= var_95 always, and es_95 == var_95 only when every day in
+    the tail has an identical loss.
+    """
+    cob_col = f"{_quote(cob_date)} AS cob_date," if cob_date else "NULL AS cob_date,"
+    return f"""
+WITH {_var_pnl_cte(pnl_filters)},
+tail AS (
+  SELECT ranked.loss_amount
+  FROM ranked
+  JOIN target ON ranked.rn >= target.target_rank
+),
+tail_stats AS (
+  SELECT ROUND(AVG(loss_amount), 4) AS es_95, COUNT(*) AS tail_days
+  FROM tail
+)
+SELECT
+  'VAR_ES' AS metric,
+  {cob_col}
+  0.95 AS confidence_level,
+  var_scenario.historical_date,
+  ROUND(var_scenario.scenario_pnl, 4) AS scenario_pnl,
+  ROUND(var_scenario.loss_amount, 4) AS var_95,
+  tail_stats.es_95,
+  tail_stats.tail_days,
+  var_scenario.scenario_count
+FROM var_scenario, tail_stats
 LIMIT 1
 """
 
@@ -638,6 +684,13 @@ def _fallback_response(question: str, plan: QueryPlan, result: pd.DataFrame) -> 
             f"{row['desk']} ({int(row['trade_count'])} trades, {row['products']})" for _, row in result.iterrows()
         ) + "."
 
+    if "es_95" in result.columns and "var_95" in result.columns:
+        return (
+            f"{cob_prefix}{_fmt(first['confidence_level'])} VaR is {_fmt(first['var_95'])} ({first['historical_date']}); "
+            f"Expected Shortfall is {_fmt(first['es_95'])}, the average loss across the {int(first['tail_days'])} worst days "
+            f"in the tail VaR sits at the edge of."
+        )
+
     if {"var_95", "scenario_pnl", "confidence_level"}.issubset(result.columns):
         return (
             f"{cob_prefix}{_fmt(first['confidence_level'])} VaR is {_fmt(first['var_95'])}, the 5th-worst day, {first['historical_date']} "
@@ -711,6 +764,12 @@ def _mentions_desk_breakdown(text: str) -> bool:
     return bool(re.search(r"by desk|desk level|desk breakdown|per desk|across desks|each desk|by book", text))
 
 
+def _mentions_expected_shortfall(text: str) -> bool:
+    # Deliberately requires the full phrase or a named abbreviation, not a bare "es", since a
+    # two-letter word is too easy to false-positive-match inside ordinary sentences.
+    return bool(re.search(r"expected shortfall|conditional var|conditional value at risk|\bcvar\b|tail loss|tail risk", text))
+
+
 def _mentions_timeline(text: str) -> bool:
     """Any phrasing that asks to see a series over time, plotted as a line chart.
 
@@ -722,7 +781,7 @@ def _mentions_timeline(text: str) -> bool:
 
 
 def _has_explicit_intent(lowered: str) -> bool:
-    return _mentions_timeline(lowered) or any(term in lowered for term in ("scenario", "shock", "day", "risk factor", "driver", "var", "pnl", "p&l", "pl", "trade"))
+    return _mentions_timeline(lowered) or _mentions_expected_shortfall(lowered) or any(term in lowered for term in ("scenario", "shock", "day", "risk factor", "driver", "var", "pnl", "p&l", "pl", "trade"))
 
 
 def _extract_top_n(lowered: str) -> int:
